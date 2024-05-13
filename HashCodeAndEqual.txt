@@ -1,0 +1,32 @@
+1. hashCode
+----------------------------
+
+	int age;
+	String fname;
+	String lname;
+
+public int hashCode(){
+
+	int prime=31;
+
+	int result=1;
+
+	result = prime * result +age;
+	
+	result = prime * result +((fname==null)?0:fname.hashCode());
+	
+	result = prime * result + ((lname==null)?0:lname.hashCode());
+}
+
+
+public boolean equals(Object obj){
+
+	1. true - if same ref
+	2. false - if obj is null
+	3. false - if not having same class
+		- type cast it 
+	1. false - int attributes - not equal
+	2. false - null check on non primitive attributes
+
+}
+

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Performance Tuning Tips for Hibernate and Java Persistence</title>
+  <link rel="stylesheet" media="screen" href="Performance%20Tuning%20Tips%20for%20Hibernate%20and%20Java%20Persistence_files/jquery.css" type="text/css">
+  <link rel="stylesheet" href="Performance%20Tuning%20Tips%20for%20Hibernate%20and%20Java%20Persistence_files/prettify.css" type="text/css">
+  <link rel="stylesheet" media="screen" href="Performance%20Tuning%20Tips%20for%20Hibernate%20and%20Java%20Persistence_files/laliluna.css" type="text/css">
+  <link rel="stylesheet" media="print" href="Performance%20Tuning%20Tips%20for%20Hibernate%20and%20Java%20Persistence_files/print.css" type="text/css">
+
+<script type="text/javascript" src="Performance%20Tuning%20Tips%20for%20Hibernate%20and%20Java%20Persistence_files/jquery_002.js"></script>
+  <script type="text/javascript" src="Performance%20Tuning%20Tips%20for%20Hibernate%20and%20Java%20Persistence_files/jquery.js"></script>
+  <script type="text/javascript" src="Performance%20Tuning%20Tips%20for%20Hibernate%20and%20Java%20Persistence_files/prettify.js"></script>
+
+
+
+<script type="text/javascript" src="Performance%20Tuning%20Tips%20for%20Hibernate%20and%20Java%20Persistence_files/laliluna.js"></script>
+
+
+    <meta name="generator" content="nanoc 3.1.7">
+  </head>
+  <body>
+	<div class="headerFix">
+<a href="http://www.laliluna.de/index.html">
+	  <div class="header">
+	    <h1>
+	      About Java and JRuby Development<br>
+	      JEE, Spring, Guice <br>
+	      Hibernate, Java Persistence (JPA) <br>
+	      and various Web Frameworks
+	    </h1>
+	  </div>
+</a>
+	</div>
+	
+    <div id="sidebar">
+	 <h2>Work</h2>
+	  <ul>
+	      <li><a href="http://www.laliluna.de/java-trainings.html">General about Training</a> </li>
+	      <li><a href="http://www.laliluna.de/java-persistence-training-course.html">Java Persistence Training</a> </li>
+	      <li><a href="http://www.laliluna.de/hibernate-3-training.html">Hibernate Training</a> </li>
+	      <li><a href="http://www.laliluna.de/advanced-hibernate-training.html">Advanced Hibernate</a> </li>
+	<li>&nbsp;</li>
+		<li><a href="http://www.laliluna.de/java-software-development-support.html">Software Development</a></li>
+	</ul>
+	<h2>Publications</h2>
+	<ul>
+	<li><a class="selected" href="http://www.laliluna.de/tutorials.html">Articles and Tutorials</a></li>
+	<li><a href="http://www.laliluna.de/hibernate-3-jpa-book-ebook.html">JPA &amp; Hibernate eBook</a></li>
+	<li><a href="http://www.laliluna.de/ebooks.html">eBooks</a></li>
+	<li id="search"><form action="/dynamic/search"><label for="key">Search</label><input name="key" type="text"></form></li>
+	</ul>
+    <h2>About</h2>
+    <ul>
+	      <li><a href="http://www.laliluna.de/about-me.html">About me</a> </li>
+	      <li><a href="http://www.laliluna.de/contact.html">Contact</a> </li>
+	      <li><a href="http://www.laliluna.de/social-commitment.html">Social Commitment</a> </li>
+	</ul>
+
+      <h2>Recent Articles</h2>
+      <ul>
+		
+<li><a href="http://www.laliluna.de/articles/2013/02/19/why-jee-fails.html">11 reasons why JEE fails?</a> <span class="date">(Feb 19, 2013 )</span></li>
+		
+<li><a href="http://www.laliluna.de/articles/2012/06/15/when-subversion-fails.html">Why does SVN fail?</a> <span class="date">(Jun 15, 2012 )</span></li>
+		
+<li><a href="http://www.laliluna.de/articles/2011/10/15/jpa-hibernate-ebook-update.html">JPA and Hibernate eBook update</a> <span class="date">(Oct 15, 2011 )</span></li>
+		
+<li><a href="http://www.laliluna.de/articles/2011/08/06/cost-factor-software-project.html">Communication as Cost Driver in Software Projects</a> <span class="date">(Aug 06, 2011 )</span></li>
+		
+<li><a href="http://www.laliluna.de/articles/2011/05/20/hibernate-javax-persistence-ebook-update.html">Java Persistence and Hibernate eBook updated</a> <span class="date">(May 20, 2011 )</span></li>
+		
+      </ul>
+    </div>
+    <div id="main">
+      <h1>Performance Tuning Tips for Hibernate and Java Persistence </h1>
+<p>This article is an extract of the<br>
+chapter Performance of my book <b>Hibernate and Java Persistence by<br>
+Example</b>.</p>
+<p>The book is available in English as<br>
+eBook (<span class="caps">PDF</span> document) and in German as paper book. The eBook is<br>
+continuously updated and covers the newest features of Hibernate. You<br>
+will find a complete table of content on my website<br>
+http://www.laliluna.de</p>
+<h2>Introduction</h2>
+<p>There is a incredible choice of options<br>
+to improve the performance of Hibernate based application. This<br>
+chapter describes quite a number of them. Each part starts with a<br>
+small use case describing the problem or requirement. After this you<br>
+will find a detailed solution how to solve the problem.</p>
+<p>Source code for the samples can be<br>
+found in the project <i>DeveloperGuideAnnotation</i>. Have a look in<br>
+the package <i>de.laliluna.other.query</i>.</p>
+<p align="baseline">Some of the use cases make use of the<br>
+following class structure:</p>
+<div style="text-align: left;">
+<p><img src="Performance%20Tuning%20Tips%20for%20Hibernate%20and%20Java%20Persistence_files/c_performance_classes.jpg" border="0" hspace="0" vspace="0"><br></p>
+</div>
+<p align="center"><br clear="left"><br></p>
+<h2>Debugging to analyse the performance problem</h2>
+<p><b>Scenario</b></p>
+<p>If a dialog is too slow, there might<br>
+happen a lot of unexpected queries. This can be caused by eager<br>
+loading of relations or you might just reuse the queries of another<br>
+dialog. Did you know for example that 1:1 and n:1 relations are<br>
+loaded eagerly, if you use annotations whereas <span class="caps">XML</span> mappings are lazy<br>
+by default.</p>
+<p><b>Solution</b></p>
+<p>The best approach is to analyse what is<br>
+happening behind the scenes. Hibernate offers two configuration<br>
+settings to print the generated <span class="caps">SQL</span>. The first one is a property in<br>
+the <i>hibernate.cfg.xml</i></p>
+<pre>&amp;lt;property name="show_sql"&amp;gt;true&amp;lt;/property&amp;gt;</pre>
+<p>
+</p><p>If it is set to true, the <span class="caps">SQL</span> statements will be printed to the<br>
+console. You will not see any timestamps, this is why I prefer the<br>
+second approach, which uses the normal logging output.</p><br>
+<pre># logs the <span class="caps">SQL</span> statements<br>log4j.logger.org.hibernate.<span class="caps">SQL</span>=debug <br><br># Some more useful loggings<br># Logs <span class="caps">SQL</span> statements for id generation<br>log4j.logger.org.hibernate.id=info <br># Logs the <span class="caps">JDBC</span>-Parameter which are passed to a query (very verboose)<br>log4j.logger.org.hibernate.type=debug <br># Logs cache related activities<br>log4j.logger.org.hibernate.cache=debug </pre><br>
+<p><br>
+There are more useful settings in the Hibernate configuration<br>
+<i>hibernate.cfg.xml</i></p><br>
+<p>The property <i>format_sql</i> will<br>
+nicely format the <span class="caps">SQL</span> instead of printing it on a single line.</p><br>
+<pre>&lt;property name=“format_sql”&gt;true&lt;/property&gt;</pre><br>
+<p><br>
+The property <i>use_sql_comments</i> adds a comment to each <span class="caps">SQL</span><br>
+explaining why it was created. It let’s you identity if a <span class="caps">HQL</span><br>
+statement, lazy loading or a criteria query led to the statement.</p><br>
+<pre>&lt;property name=“use_sql_comments”&gt;true&lt;/property&gt;</pre><br>
+<p><br>
+Another good source for information are the statistics of Hibernate.</p><br>
+<p>You can enable the statistics in the<br>
+Hibernate configuration or programmatically. The statistics class<br>
+offers a number methods to analyse what has happened. Here a quick<br>
+example:</p><br>
+<pre>Statistics statistics = sessionFactory.getStatistics();<br>statistics.setStatisticsEnabled(true);<br>statistics.logSummary();</pre><br>
+<p><br>
+Furthermore you can call <i>getStatistics</i> on a session as well to<br>
+gather information about it.</p><br>
+<h2>Iterating through relations efficiently – load<br>
+in batches</h2><br>
+<p><b>Scenario</b></p><br>
+<p>The application retrieves all books for<br>
+an author. It iterates through all chapters and counts the number of<br>
+characters. An alternative scenario could go through orders of a<br>
+customer and check if one of the order position can already be<br>
+delivered.</p><br>
+<p>The query for the books:</p><br>
+<pre>List&lt;Book&gt; books = session.createQuery( <br>   “from Book b where b.name like ?”).setString(0, “Java%”).list(); </pre><br>
+<p><br>
+The following code printing the books will create one <span class="caps">SQL</span> query per<br>
+book to initialize the chapters. We get 1+n queries in total. One for<br>
+the books and n for the chapters, if we have n books.</p><br>
+<pre>for (Book book : books) { <br>   int totalLength = 0; <br>   for (Chapter chapter : book.getChapters()) { <br>      totalLength += (chapter.getContent() != null ? <br>      chapter.getContent().length() : 0); <br>   } <br>   log.info("Length of all chapters: " + totalLength); <br>} </pre><br>
+<p><br>
+<br></p><br>
+<p><b>Solution</b></p><br>
+<p>One way to improve this is to define<br>
+that Hibernate loads the chapters in batches. Here is the mapping:</p><br>
+<p><b>Annotations</b></p><br>
+<pre><code>OneToMany(cascade = CascadeType.ALL) &lt;br&gt;</code>JoinColumn(nullable = false) <br>@BatchSize(size = 4) <br>private Set&lt;Chapter&gt; chapters = new HashSet&lt;Chapter&gt;(); </pre><br>
+<p><br>
+<b><span class="caps">XML</span></b></p><br>
+<pre>&lt;set name=“chapters” batch-size=“4”&gt;<br>  &lt;key column=“book_id”&gt;&lt;/key&gt;<br>  &lt;one-to-many/&gt;  <br>&lt;/set&gt; </pre><br>
+<p><br>
+When iterating through 10 books, Hibernate will load the chapters for<br>
+the first four, the next four and the last two books together in a<br>
+single query. This is possible because the <i>java.util.List</i><br>
+returned by Hibernate is bewitched. Take the sample code of this<br>
+chapter and play around with the batchsize in the method<br>
+<i>efficientBatchSizeForRelation</i> in the class <i>PerformanceTest</i>.</p><br>
+<p>The best size of the batch size is the<br>
+number of entries you print normally on the screen. If you print a<br>
+book and print only the first 10 chapters, then this could be your<br>
+batch size.</p><br>
+<p>It is possible to set a default for all<br>
+relations in the Hibernate configuration.</p><br>
+<pre>&lt;property name=“default_batch_fetch_size”&gt;4&lt;/property&gt;</pre><br>
+<p><br>
+Use this property with care. If you print on most screens the first 5<br>
+entries from a collection, a batch size of 100 is pretty useless. The<br>
+default should be very low. Keep in mind that a size of 2 reduces the<br>
+queries already by 50 % and 4 by 75 <span>.</span></p><br>
+<h2>Iterating through relations efficiently – load<br>
+all with a query</h2><br>
+<p><b>Scenario</b></p><br>
+<p>There is still the same problem but we<br>
+solve it with a different query.</p><br>
+<p><b>Solution</b></p><br>
+<p>With <i>join fetch</i> we can tell<br>
+Hibernate to load associations immediately. Hibernate will use a<br>
+single <span class="caps">SQL</span> select which joins the chapters to the book table.</p><br>
+<pre>List&lt;Book&gt; books = session.createQuery( <br>   “select b from Book b left join fetch b.chapters where b.name like ?”) <br>   .setString(0, "Java“) <br>   .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list(); </pre><br>
+<p><br>
+The same with a criteria query:</p><br>
+<pre>List&lt;Book&gt; books = session.createCriteria(Book.class) <br>   .setFetchMode(”chapters", org.hibernate.FetchMode.<span class="caps">JOIN</span>) <br>   .add(Restrictions.like(“name”, “Java”, MatchMode.<span class="caps">START</span>)) <br>   .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list(); </pre><br>
+<p><br>
+The performance is very good but we must be aware that we will load<br>
+all chapters into memory. Finally, don’t use join fetch with multiple<br>
+collections, you will create a rapidly growing Cartesian product. A<br>
+join will combine all possible combinations. Let’s do a <span class="caps">SQL</span> join on<br>
+data where every book have two chapters and two comments.</p><br>
+<p><i>select * from book b left join<br>
+chapters c on b.id=c.book_id left join comment cm on b.id=cm.book_id</i></p><br>
+<br><br><br><br><br><br><br><br><br><table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<colgroup><col width="43"></colgroup>
+<colgroup><col width="43"></colgroup>
+<colgroup><col width="43"></colgroup>
+<colgroup><col width="43"></colgroup>
+<colgroup><col width="43"></colgroup>
+<colgroup><col width="43"></colgroup>
+<tbody>
+<tr valign="top">
+<td width="17%"><br>
+			<p>Book id</p><p></p>
+</td>
+<td width="17%">
+			<p>Other book columns</p>
+</td>
+<td width="17%">
+			<p>Chapter id</p>
+</td>
+<td width="17%">
+			<p>Other chapter columns</p>
+</td>
+<td width="17%">
+			<p>Comment id</p>
+</td>
+<td width="17%">
+			<p>Other comment columns</p>
+</td>
+</tr>
+<tr valign="top">
+<td sdnum="1031;" sdval="1" width="17%">
+			<p>1</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+<td sdnum="1031;" sdval="1" width="17%">
+			<p>1</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+<td sdnum="1031;" sdval="1" width="17%">
+			<p>1</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+</tr>
+<tr valign="top">
+<td sdnum="1031;" sdval="1" width="17%">
+			<p>1</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+<td sdnum="1031;" sdval="1" width="17%">
+			<p>1</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+<td sdnum="1031;" sdval="2" width="17%">
+			<p>2</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+</tr>
+<tr valign="top">
+<td sdnum="1031;" sdval="1" width="17%">
+			<p>1</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+<td sdnum="1031;" sdval="2" width="17%">
+			<p>2</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+<td sdnum="1031;" sdval="1" width="17%">
+			<p>1</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+</tr>
+<tr valign="top">
+<td sdnum="1031;" sdval="1" width="17%">
+			<p>1</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+<td sdnum="1031;" sdval="2" width="17%">
+			<p>2</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+<td sdnum="1031;" sdval="2" width="17%">
+			<p>2</p>
+</td>
+<td width="17%">
+			<p>…</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2>Reporting queries</h2>
+<p><b>Scenario</b></p>
+<p>For a report you need to print the name<br>
+of the author, the number of books he wrote and the total of chapters<br>
+in his books. If your dataset consists of 10 authors with 10 books<br>
+each and each book having 10 chapters, you will end up with 1000<br>
+objects in memory. The report requires only 10 <i>java.lang.String</i><br>
+and 20 <i>java.lang.Integer.</i></p>
+<p><b>Solution</b></p>
+<p>The problem can easily be solved with a<br>
+reporting query. The following query returns a list of Object arrays<br>
+instead of entitys.</p>
+<pre>List&amp;lt;Object[]&amp;gt; authorReportObjects = session.createQuery("select a.name, " +&lt;br&gt;                    "count(b) as totalBooks, count(c) as totalChapters " +&lt;br&gt;                    "from Author a join a.books b join b.chapters c group by a.name").list();&lt;br&gt;for (Object[] objects : authorReportObjects) {&lt;br&gt;		log.info(String.format("Report: Author %s, total books %d, total chapters %d", objects[0], objects[1], objects[2]));&lt;br&gt;	}</pre>
+<p>
+</p><p>An alternative is to fill a Java class dynamically. If you use <span class="caps">HQL</span><br>
+you might call the constructor with a corresponding arguments or with<br>
+both <span class="caps">HQL</span> and criteria you can use an <i>AliasToBeanResultTransformer</i>.<br>
+In that case the Java class needs to have the same properties as the<br>
+column names of your query.</p><br>
+<p>Constructor approach:</p><br>
+<pre>List&lt;AuthorReport&gt; authorReports = session<br>   .createQuery("select new de.laliluna.other.query.AuthorReport(a.id, a.name, " +<br>   "count(b), count©) " +<br>   “from Author a join a.books b join b.chapters c group by a.id, a.name”).list();<br>for (AuthorReport authorReport : authorReports) {<br>   log.info(authorReport);<br>}</pre><br>
+<p><br>
+<i>AliasToBeanResultTransformer</i> approach:</p><br>
+<pre>List&lt;AuthorReport&gt; authorReports = session<br>  .createQuery("select a.name as name, count(b) as totalBooks, count© as totalChapters " +<br>        “from Author a join a.books b join b.chapters c group by a.name”)<br>        .setResultTransformer(new AliasToBeanResultTransformer(AuthorReport.class)).list();<br>for (AuthorReport authorReport : authorReports) {<br> log.info(authorReport);<br>}</pre><br>
+<h2><br>
+Summary</h2><br>
+<p>I hope you found some useful tips in<br>
+the article.  I wish you all the best for your Hibernate projects.</p><br>
+<p><br></p><p></p>
+    </div>
+	<div id="footer">Copyright (c) 2004-2013 by Sebastian Hennebrueder, laliluna.de <a href="http://www.laliluna.de/impressum.html">Impressum</a></div>
+  
+
+</body></html>

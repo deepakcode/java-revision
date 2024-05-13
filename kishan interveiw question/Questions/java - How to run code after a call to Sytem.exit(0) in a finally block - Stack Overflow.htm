@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        
+    <title>java - How to run code after a call to Sytem.exit(0) in a finally block - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    
+    <script src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/adzerk1_2_4_43adzerk2_2_17_45adzerk3_2_4_44" async="" type="text/javascript"></script><script src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/ga.js" async="" type="text/javascript"></script><script src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/quant.js" async="" type="text/javascript"></script><script type="text/javascript" src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script type="text/javascript" src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/all.css">
+    
+    <meta name="relativepagescore" content="49595">
+    <link rel="canonical" href="http://stackoverflow.com/questions/8730638/how-to-run-code-after-a-call-to-sytem-exit0-in-a-finally-block">
+    <link rel="alternate" type="application/atom+xml" title="Feed for question 'How to run code after a call to Sytem.exit(0) in a finally block'" href="http://stackoverflow.com/feeds/question/8730638">
+    <script type="text/javascript">
+        
+        StackExchange.ready(function () {
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({showAnswerHelp:true,totalCommentCount:1,shownCommentCount:1,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:8730638});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '8730638');
+            
+                
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        StackExchange.init({"stackAuthUrl":"https://stackauth.com","serverTime":1365104730,"styleCode":true,"enableUserHovercards":true,"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","useNewStyleFavoriteTagsEditor":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"0cdb083b4c32fbb4ca85b61e02ff8709","isAnonymous":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.js":"6c261bebf56a","js/moderator.js":"f96f7e4ee5dc","js/full-anon.js":"4aa778f20142","js/full.js":"0608347743ce","js/wmd.js":"da1a6112f182","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/mobile.js":"6eb68240242f","js/help.js":"fc9fb0517db2","js/tageditor.js":"450c9e8426fc","js/tageditornew.js":"b6c68ad4c7dd","js/inline-tag-editing.js":"8e84e8a137f7","js/revisions.js":"7273bb714bba","js/review.js":"51a50e83c754","js/tagsuggestions.js":"aa48ef6154df","js/post-validation.js":"cd619678f5d6","js/explore-qlist.js":"cd7ec19f58bf"});
+        
+    </script>
+
+
+    <script type="text/javascript">
+        StackExchange.using(
+            "gps",
+            function () {
+                StackExchange.gps.init(true);
+            }
+        );
+    </script>
+
+    
+<script src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/full-anon.js" type="text/javascript" async=""></script><script src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/post-validation.js" type="text/javascript" async=""></script><script src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/prettify-full.js" type="text/javascript" async=""></script><script src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><link rel="stylesheet" type="text/css" href="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/sidebar.css"></head>
+<body class="question-page">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+    <div class="container">
+        <div id="header">
+            <div id="portalLink">
+                <a class="genu" onclick="StackExchange.ready(function(){genuwine.click();});return false;">Stack Exchange</a>
+            </div>
+            <div id="topbar">
+                <div id="hlinks">
+                    
+
+
+
+
+
+
+
+
+
+<span id="hlinks-user"></span>
+<span id="hlinks-nav">                    <a href="http://stackoverflow.com/users/login?returnurl=%2fquestions%2f8730638%2fhow-to-run-code-after-a-call-to-sytem-exit0-in-a-finally-block">log in</a>
+
+ <span class="lsep">|</span>
+                    <a href="http://careers.stackoverflow.com/">careers 2.0</a>
+
+ <span class="lsep">|</span>
+</span>
+<span id="hlinks-custom">            <a href="http://chat.stackoverflow.com/">chat</a>
+
+ <span class="lsep">|</span>
+                <a href="http://meta.stackoverflow.com/">meta</a>
+
+ <span class="lsep">|</span>
+            <a href="http://stackoverflow.com/about">about</a>
+
+ <span class="lsep">|</span>
+        <a href="http://stackoverflow.com/faq">faq</a>
+</span>
+                </div>
+                <div id="hsearch">
+                    <form id="search" action="/search" method="get" autocomplete="off">
+                    <div>
+                        <input autocomplete="off" name="q" class="textbox" placeholder="search" tabindex="1" maxlength="240" size="28" type="text">
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                            <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                            <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                            <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                            <li><a id="nav-badges" href="http://stackoverflow.com/badges">Badges</a></li>
+                            <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+
+        <div id="content">
+            
+
+<div itemscope="" itemtype="http://schema.org/Article">
+<link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+<div id="question-header">
+    <h1 itemprop="name"><a href="http://stackoverflow.com/questions/8730638/how-to-run-code-after-a-call-to-sytem-exit0-in-a-finally-block" class="question-hyperlink">How to run code after a call to Sytem.exit(0) in a finally block</a></h1>
+</div>
+<div id="mainbar">
+
+
+
+<div class="question" data-questionid="8730638" id="question">
+    
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1"><a href="http://engine.adzerk.net/r?e=eyJ0cyI6MTM2NTEwNDc1ODk0OCwiYXYiOjQxNCwiYXQiOjQsImNtIjo4NDcsImNoIjoxMTc4LCJjciI6NTkyMCwiZG0iOjEsImZjIjo4ODA2LCJmbCI6MjQ0NCwia3ciOiJqYXZhIiwibnciOjIyLCJyZiI6Imh0dHA6Ly93d3cuZ29vZ2xlLmNvLmluL3VybD9zYT10IiwicnYiOjAsInByIjoxNTY4LCJzdCI6ODI3Nywiem4iOjQzLCJkaSI6ImNlMzEwYjFiYzIzMzQyN2U5ZGNjMGE3MWUyNjNjZjQxIiwidXIiOiJodHRwOi8vY2FyZWVycy5zdGFja292ZXJmbG93LmNvbS8ifQ&amp;s=fCselQ4FoC5DKRaBZg4mSGA166M" rel="nofollow" target="_blank" title=""><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/60abb4b317034aa2af0bc697e6f02963.png" title="" alt="" border="0" height="90" width="728"></a><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/i.gif" border="0" height="0px" width="0px"></div>
+
+
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="8730638" type="hidden">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear (click again to undo)">up vote</a>
+    <span class="vote-count-post ">5</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful (click again to undo)">down vote</a>
+    
+    <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b></b></div>   
+
+ 
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="description">
+        <p>I have three classes say alpha, beta, gamma and each of the three classes has a <code>main</code> method.</p>
+
+<p>Both alpha and beta classes have, inside their <code>main</code> method, a <code>try...catch...finally</code> block like:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> alpha</span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">){</span><span class="pln">
+        </span><span class="kwd">try</span><span class="pun">{</span><span class="pln">
+            </span><span class="typ">Do</span><span class="pln"> something</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="kwd">catch</span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> ex</span><span class="pun">){</span><span class="pln">
+            ex</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+        </span><span class="kwd">finally</span><span class="pun">{</span><span class="pln">
+            </span><span class="typ">System</span><span class="pun">.</span><span class="pln">exit</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> beta</span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">){</span><span class="pln">
+        </span><span class="kwd">try</span><span class="pun">{</span><span class="pln">
+            </span><span class="typ">Do</span><span class="pln"> something</span><span class="pun">;</span><span class="pln">
+         </span><span class="pun">}</span><span class="kwd">catch</span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> ex</span><span class="pun">){</span><span class="pln">
+            ex</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+        </span><span class="kwd">finally</span><span class="pun">{</span><span class="pln">
+            </span><span class="typ">System</span><span class="pun">.</span><span class="pln">exit</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Now in gamma class i call main methods of alpha and beta classes to run continuously like below</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> gamma</span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            alpha</span><span class="pun">.</span><span class="pln">main</span><span class="pun">(</span><span class="pln">arg</span><span class="pun">);</span><span class="pln">
+            beta</span><span class="pun">.</span><span class="pln">main</span><span class="pun">(</span><span class="pln">arg1</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>The problem is that the code <code>beta.main(arg1)</code> is never reached due to the <code>System.exit(0)</code> inside the alpha class's <code>finally</code>
+ block.
+Since alpha and beta are standalone applications when they executed 
+separately they should terminate the service at the end of program.
+So now this there any way to reach the <code>beta.main(arg1)</code> line without much changing the actual functionality of alpha and beta classes.</p>
+
+<p>Kindly let me know if you need further details.
+Thanks in advance...</p>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/q/8730638" title="short permalink to this question" class="short-link" id="link-post-8730638">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/8730638/edit" class="suggest-edit-post" title="">improve this question</a></div>            </td>
+    <td class="post-signature" align="right">
+
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                            edited
+                             <a href="http://stackoverflow.com/posts/8730638/revisions" title="show all edits to this post"><span title="2012-01-04 17:12:41Z" class="relativetime">Jan 4 '12 at 17:12</span></a>
+
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/20394/mike-samuel"><div class=""><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/8a662b85e473c0c03c90a3a0ca42dff8.jpg" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/20394/mike-samuel">Mike Samuel</a><br>
+            <span class="reputation-score" title="reputation score 38672" dir="ltr">38.7k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="47 silver badges"><span class="badge2"></span><span class="badgecount">47</span></span><span title="80 bronze badges"><span class="badge3"></span><span class="badgecount">80</span></span>
+        </div>
+    </div>
+    </td>
+    <td class="post-signature owner">
+        
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                    asked
+ <span title="2012-01-04 16:53:47Z" class="relativetime">Jan 4 '12 at 16:53</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/1106652/coolgokul"><div class=""><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/6a075e8b1d5c442515aaff6e83fddd29.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/1106652/coolgokul">coolgokul</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">55</span><span title="7 bronze badges"><span class="badge3"></span><span class="badgecount">7</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-8730638" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-10871750" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="cool">1</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">possible duplicate of <a href="http://stackoverflow.com/questions/5401281/preventing-system-exit-from-api">Preventing System.exit() from API</a></span> –&nbsp;<a href="http://stackoverflow.com/users/635608/mat" title="76469 reputation" class="comment-user">Mat</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(10871750, 0)" href="#comment10871750_8730638"><span title="2012-01-04 16:56:22Z" class="relativetime-clean">Jan 4 '12 at 16:56</span></a></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>            </tbody></table>    
+</div>
+
+
+<div id="answers">
+
+    <a name="tab-top"></a>
+    <div id="answers-header">
+        <div class="subheader answers-subheader">
+            <h2>
+                    4 Answers
+            </h2>
+            <div id="tabs">
+                <a href="http://stackoverflow.com/questions/8730638/how-to-run-code-after-a-call-to-sytem-exit0-in-a-finally-block?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+<a href="http://stackoverflow.com/questions/8730638/how-to-run-code-after-a-call-to-sytem-exit0-in-a-finally-block?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+<a class="youarehere" href="http://stackoverflow.com/questions/8730638/how-to-run-code-after-a-call-to-sytem-exit0-in-a-finally-block?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+
+            </div>
+        </div>    
+    </div>    
+
+
+
+
+  
+<a name="8730779"></a>
+<div id="answer-8730779" class="answer" data-answerid="8730779">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="8730779" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">4</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+ 
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>In such case, shutdown hook can be used:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Gamma</span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">Thread</span><span class="pln"> hook </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Thread</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> run</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="typ">Beta</span><span class="pun">.</span><span class="pln">main</span><span class="pun">(</span><span class="pln">args</span><span class="pun">);</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">};</span><span class="pln">
+            hook</span><span class="pun">.</span><span class="pln">setDaemon</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln">
+            </span><span class="typ">Runtime</span><span class="pun">.</span><span class="pln">getRuntime</span><span class="pun">().</span><span class="pln">addShutdownHook</span><span class="pun">(</span><span class="pln">hook</span><span class="pun">);</span><span class="pln">
+            </span><span class="typ">Alpha</span><span class="pun">.</span><span class="pln">main</span><span class="pun">(</span><span class="pln">args</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/8730779" title="short permalink to this answer" class="short-link" id="link-post-8730779">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/8730779/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                            edited
+                             <a href="http://stackoverflow.com/posts/8730779/revisions" title="show all edits to this post"><span title="2012-01-04 17:39:44Z" class="relativetime">Jan 4 '12 at 17:39</span></a>
+
+        </div>
+        <div class="user-gravatar32">
+            
+        </div>
+        <div class="user-details">
+            <br>
+            
+        </div>
+    </div>
+    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                    answered
+ <span title="2012-01-04 17:02:48Z" class="relativetime">Jan 4 '12 at 17:02</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/614135/vlad"><div class=""><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/dbc0104b5c615ac543f42ed3e2899882.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/614135/vlad">Vlad</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">645</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-8730779" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-10872063" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Nice.  I had never though of using shutdown hooks as a continuation mechanism.</span> –&nbsp;<a href="http://stackoverflow.com/users/20394/mike-samuel" title="38672 reputation" class="comment-user">Mike Samuel</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(10872063, 8730779)" href="#comment10872063_8730779"><span title="2012-01-04 17:08:42Z" class="relativetime-clean">Jan 4 '12 at 17:08</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-10872129" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Great answer.. Thanks alot Vlad....:-)</span> –&nbsp;<a href="http://stackoverflow.com/users/1106652/coolgokul" title="55 reputation" class="comment-user owner">coolgokul</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(10872129, 8730779)" href="#comment10872129_8730779"><span title="2012-01-04 17:11:19Z" class="relativetime-clean">Jan 4 '12 at 17:11</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-10872184" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">You're welcome )</span> –&nbsp;<a href="http://stackoverflow.com/users/614135/vlad" title="645 reputation" class="comment-user">Vlad</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(10872184, 8730779)" href="#comment10872184_8730779"><span title="2012-01-04 17:13:45Z" class="relativetime-clean">Jan 4 '12 at 17:13</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-10872308" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Hi 
+Vlad...I have one more query... how to end service of your code when 
+both alpha.main(args) and beta.main(args) executed.?? Thanks in 
+advance...</span> –&nbsp;<a href="http://stackoverflow.com/users/1106652/coolgokul" title="55 reputation" class="comment-user owner">coolgokul</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(10872308, 8730779)" href="#comment10872308_8730779"><span title="2012-01-04 17:19:28Z" class="relativetime-clean">Jan 4 '12 at 17:19</span></a></span><span class="edited-yes" title="this comment was edited"></span></div></td>
+    </tr>
+            
+    <tr id="comment-10872633" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Your 
+program executes so perfectly as like i desired but only one problem is 
+that the gamma class should end the service ( same like System.exit(0)) 
+once its executed your syntax. Can you able to help on this....? 
+Thanks...</span> –&nbsp;<a href="http://stackoverflow.com/users/1106652/coolgokul" title="55 reputation" class="comment-user owner">coolgokul</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(10872633, 8730779)" href="#comment10872633_8730779"><span title="2012-01-04 17:31:12Z" class="relativetime-clean">Jan 4 '12 at 17:31</span></a></span><span class="edited-yes" title="this comment was edited"></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    <a id="comments-link-8730779" class="comments-link" data-comments-count="4" title="expand to show all comments on this post">show <b>4</b> more comments</a>
+</td>
+</tr>
+   
+    </tbody></table>
+</div>
+        <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk3"><a href="http://engine.adzerk.net/r?e=eyJ0cyI6MTM2NTEwNDc1ODk1MSwiYXYiOjQxNCwiYXQiOjQsImNtIjo4NDcsImNoIjoxMTc4LCJjciI6MTA3NjksImRtIjoxLCJmYyI6MTY4ODYsImZsIjoyNDQ0LCJrdyI6ImphdmEiLCJudyI6MjIsInJmIjoiaHR0cDovL3d3dy5nb29nbGUuY28uaW4vdXJsP3NhPXQiLCJydiI6MCwicHIiOjE1NjgsInN0Ijo4Mjc3LCJ6biI6NDQsImRpIjoiNzJlMzgzZGZiMmY1NDFiMThlOTZjNzAzMGI2YjViZDIiLCJ1ciI6Imh0dHA6Ly9jYXJlZXJzLnN0YWNrb3ZlcmZsb3cuY29tL2pvYnMvdGVsZWNvbW11dGUifQ&amp;s=aZPiiQB1zvJxlabP0zCgx9gncmk" rel="nofollow" target="_blank" title=""><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/d893babe671c41118c1fece177e0a21a.jpg" title="" alt="" border="0" height="90" width="728"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/i_003.gif" border="0" height="0px" width="0px"></div>
+
+
+
+  
+<a name="8730690"></a>
+<div id="answer-8730690" class="answer" data-answerid="8730690">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="8730690" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">3</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+ 
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>(Ideally, nothing that is part of a module's public API should ever do anything that calls <code>exit</code>, and the <code>main</code>
+ method of a class should just be a small shim that invokes something 
+else that does the real work before producing the proper exit code.)</p>
+
+<p>That said, if you want to prevent <code>System.exit</code>, you can register a <code>SecurityManager</code> that converts calls to <code>System.exit</code> into <code>SecurityException</code>s or <code>Error</code>s.</p>
+
+<p><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/System.html#exit%28int%29" rel="nofollow"><code>System.exit</code></a>:</p>
+
+<blockquote>
+  <p><strong>throws</strong></p>
+  
+  <p><code>SecurityException</code> - if a security manager exists and its <code>checkExit</code> method doesn't allow exit with the specified status.</p>
+</blockquote>
+
+<p>Something like</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">System</span><span class="pun">.</span><span class="pln">setSecurityManager</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SecurityManager</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> checkExit</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> exitCode</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">SecurityException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SecurityException</span><span class="pun">(</span><span class="str">"stop that"</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<p>Then the method which is calling main methods can just catch and suppress that <code>SecurityException</code>.  You could make it more robust by creating your own <code>ExitCalledError</code> and throwing that instead and only suppressing that.</p>
+
+<p>I find this very useful for preventing unit-test runners from spuriously reporting success when the test runner is <code>exit</code>ed by code under test with a zero exit code.</p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/8730690" title="short permalink to this answer" class="short-link" id="link-post-8730690">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/8730690/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                            edited
+                             <a href="http://stackoverflow.com/posts/8730690/revisions" title="show all edits to this post"><span title="2012-01-04 17:03:42Z" class="relativetime">Jan 4 '12 at 17:03</span></a>
+
+        </div>
+        <div class="user-gravatar32">
+            
+        </div>
+        <div class="user-details">
+            <br>
+            
+        </div>
+    </div>
+    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                                    answered
+ <span title="2012-01-04 16:56:56Z" class="relativetime">Jan 4 '12 at 16:56</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/20394/mike-samuel"><div class=""><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/8a662b85e473c0c03c90a3a0ca42dff8.jpg" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/20394/mike-samuel">Mike Samuel</a><br>
+            <span class="reputation-score" title="reputation score 38672" dir="ltr">38.7k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="47 silver badges"><span class="badge2"></span><span class="badgecount">47</span></span><span title="80 bronze badges"><span class="badge3"></span><span class="badgecount">80</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-8730690" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-10871803" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Hm.  I 
+can't decide what I think about this -- I hate to use the 
+SecurityManager to do non-security things, but this is a sort of elegant
+ hack.</span> –&nbsp;<a href="http://stackoverflow.com/users/35092/charlie-martin" title="53684 reputation" class="comment-user">Charlie Martin</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(10871803, 8730690)" href="#comment10871803_8730690"><span title="2012-01-04 16:58:16Z" class="relativetime-clean">Jan 4 '12 at 16:58</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-10871979" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="cool">1</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">@CharlieMartin,
+ I agree that it's a hack.  It is fairly robust as hacks go though, and 
+some concerns, the reliability of test runner feedback, warrant it IMO. 
+ There are of course problems though -- the mere presence of a <code>SecurityManager</code> can tickle subtle bugs in library code and can affect the way the VM optimizes things.</span> –&nbsp;<a href="http://stackoverflow.com/users/20394/mike-samuel" title="38672 reputation" class="comment-user">Mike Samuel</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(10871979, 8730690)" href="#comment10871979_8730690"><span title="2012-01-04 17:05:36Z" class="relativetime-clean">Jan 4 '12 at 17:05</span></a></span><span class="edited-yes" title="this comment was edited"></span></div></td>
+    </tr>
+            
+    <tr id="comment-10878345" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Well, and I upvoted it.  Still haven't decided what I think of it though.</span> –&nbsp;<a href="http://stackoverflow.com/users/35092/charlie-martin" title="53684 reputation" class="comment-user">Charlie Martin</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(10878345, 8730690)" href="#comment10878345_8730690"><span title="2012-01-04 22:12:08Z" class="relativetime-clean">Jan 4 '12 at 22:12</span></a></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+   
+    </tbody></table>
+</div>
+
+  
+<a name="8730693"></a>
+<div id="answer-8730693" class="answer" data-answerid="8730693">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="8730693" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+ 
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>Really, the only solution is to get rid of
+ the System.exit() call.  This is why System.exit() is evil.  A good way
+ to replace them is by throwing an exception -- you can add an exception
+ handler to the system (look into adding them to ThreadGroups to add one
+ for every exception path) and then decide what you want to do.</p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/8730693" title="short permalink to this answer" class="short-link" id="link-post-8730693">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/8730693/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                                    answered
+ <span title="2012-01-04 16:57:14Z" class="relativetime">Jan 4 '12 at 16:57</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/35092/charlie-martin"><div class=""><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/a09a65597d95998ce4a4a109df80a019.jpg" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/35092/charlie-martin">Charlie Martin</a><br>
+            <span class="reputation-score" title="reputation score 53684" dir="ltr">53.7k</span><span title="8 gold badges"><span class="badge1"></span><span class="badgecount">8</span></span><span title="70 silver badges"><span class="badge2"></span><span class="badgecount">70</span></span><span title="140 bronze badges"><span class="badge3"></span><span class="badgecount">140</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-8730693" class="comments dno">
+        <table>
+        <tbody>
+        
+            <tr><td></td><td></td></tr>
+        
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+   
+    </tbody></table>
+</div>
+
+  
+<a name="8730714"></a>
+<div id="answer-8730714" class="answer" data-answerid="8730714">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="8730714" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+ 
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p><code>System.exit(0)</code> terminates the
+ currently running Java Virtual Machine. It closes all application on 
+the VM, not just the application which calls <code>System.exit(0)</code>. You need to think alternative for your functionality. Here is a link about it. <a href="http://www.javapractices.com/topic/TopicAction.do?Id=86" rel="nofollow">System.exit usage</a></p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/8730714" title="short permalink to this answer" class="short-link" id="link-post-8730714">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/8730714/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                            edited
+                             <a href="http://stackoverflow.com/posts/8730714/revisions" title="show all edits to this post"><span title="2012-01-04 17:09:41Z" class="relativetime">Jan 4 '12 at 17:09</span></a>
+
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/20394/mike-samuel"><div class=""><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/8a662b85e473c0c03c90a3a0ca42dff8.jpg" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/20394/mike-samuel">Mike Samuel</a><br>
+            <span class="reputation-score" title="reputation score 38672" dir="ltr">38.7k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="47 silver badges"><span class="badge2"></span><span class="badgecount">47</span></span><span title="80 bronze badges"><span class="badge3"></span><span class="badgecount">80</span></span>
+        </div>
+    </div>
+    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                                    answered
+ <span title="2012-01-04 16:58:21Z" class="relativetime">Jan 4 '12 at 16:58</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/1094597/nambari"><div class=""><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/d42a80b4c1210d697031449b8f86df38.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/1094597/nambari">Nambari</a><br>
+            <span class="reputation-score" title="reputation score 32223" dir="ltr">32.2k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="23 silver badges"><span class="badge2"></span><span class="badgecount">23</span></span><span title="50 bronze badges"><span class="badge3"></span><span class="badgecount">50</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-8730714" class="comments dno">
+        <table>
+        <tbody>
+        
+            <tr><td></td><td></td></tr>
+        
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+   
+    </tbody></table>
+</div>
+    <a name="new-answer"></a>
+    <form id="post-form" action="/questions/8730638/answer/submit" method="post" class="post-form">
+        <input id="post-id" value="8730638" type="hidden">
+        <h2 class="space">Your Answer</h2>
+
+
+
+    
+<script type="text/javascript">
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+         
+        prepareEditor({
+            heartbeatType: 'answer',
+            bindNavPrevention: true,
+            postfix: "",
+            onDemand: true,
+            discardSelector: ".discard-answer"
+            ,immediatelyShowMarkdownHelp:true
+        });
+        
+
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li style="left: 0px;" class="wmd-button" id="wmd-bold-button"><span style="background-position: 0px -20px;"></span></li><li style="left: 25px;" class="wmd-button" id="wmd-italic-button"><span style="background-position: -20px -20px;"></span></li><li style="left: 50px;" class="wmd-spacer" id="wmd-spacer1"><span style="background-position: -40px -20px;"></span></li><li style="left: 75px;" class="wmd-button" id="wmd-link-button"><span style="background-position: -40px -20px;"></span></li><li style="left: 100px;" class="wmd-button" id="wmd-quote-button"><span style="background-position: -60px -20px;"></span></li><li style="left: 125px;" class="wmd-button" id="wmd-code-button"><span style="background-position: -80px -20px;"></span></li><li style="left: 150px;" class="wmd-button" id="wmd-image-button"><span style="background-position: -100px -20px;"></span></li><li style="left: 175px;" class="wmd-spacer" id="wmd-spacer2"><span style="background-position: -120px -20px;"></span></li><li style="left: 200px;" class="wmd-button" id="wmd-olist-button"><span style="background-position: -120px -20px;"></span></li><li style="left: 225px;" class="wmd-button" id="wmd-ulist-button"><span style="background-position: -140px -20px;"></span></li><li style="left: 250px;" class="wmd-button" id="wmd-heading-button"><span style="background-position: -160px -20px;"></span></li><li style="left: 275px;" class="wmd-button" id="wmd-hr-button"><span style="background-position: -180px -20px;"></span></li><li style="left: 300px;" class="wmd-spacer" id="wmd-spacer3"><span style="background-position: -200px -20px;"></span></li><li style="left: 325px;" class="wmd-button" id="wmd-undo-button"><span style="background-position: -200px -20px;"></span></li><li style="left: 350px;" class="wmd-button" id="wmd-redo-button"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" value="0cdb083b4c32fbb4ca85b61e02ff8709" type="hidden">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+        <div style="position: relative;"> 
+            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://stackoverflow.com/users/login?returnurl=%2fquestions%2f8730638%2fhow-to-run-code-after-a-call-to-sytem-exit0-in-a-finally-block%23new-answer">log in</a></h3>
+                        <script type="text/javascript">
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Stack Exchange</span></p>
+                        </div>
+                    </div>
+                    <input name="manual-openid" class="manual-openid" type="hidden">
+                    <input name="use-facebook" class="use-facebook" value="false" type="hidden">
+                    <input class="submit-openid" value="Submit" style="display:none" type="button">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <script type="text/javascript">
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            </script>
+            <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" size="30" maxlength="30" tabindex="105" type="text">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" size="30" maxlength="100" tabindex="106" type="text">
+                    <span class="edit-field-overlay">required, but not shown</span>
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', '%2fquestions%2f8730638%2fhow-to-run-code-after-a-call-to-sytem-exit0-in-a-finally-block%23new-answer');
+                    }
+                );
+            </script>
+            <noscript>
+                        <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tr>
+                    <script type="text/javascript">
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            </script>
+            <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106">
+                    <span class="edit-field-overlay">required, but not shown</span>
+                </div>
+            </td>
+        </tr>
+        </table>
+    </div>
+
+            </noscript>
+        </div>
+           
+            <div class="form-submit cbt">
+            <input id="submit-button" value="Post Your Answer" tabindex="110" type="submit">
+            <a href="#" class="discard-answer dno">discard</a>
+    <p class="privacy-policy-agreement">
+        By posting your answer, you agree to the 
+        <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and 
+        <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.
+    </p>
+    <input name="legalLinksShown" value="1" type="hidden">
+        </div>
+    </form>
+
+
+
+        <h2 class="bottom-notice">
+                Not the answer you're looking for? 
+            Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a> 
+                or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.
+        </h2>
+</div>
+</div>
+<div id="sidebar" class="show-votes">
+        <div class="module question-stats">
+        <p class="label-key">tagged</p>
+        <div class="tagged"><a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a>&nbsp;<span class="item-multiplier"><span class="item-multiplier-x">×</span>&nbsp;<span class="item-multiplier-count">395310</span></span><br>
+</div>
+        <table id="qinfo">
+            <tbody><tr>
+                <td><p class="label-key">asked</p></td>
+                <td style="padding-left:10px"><p class="label-key" title="2012-01-04 16:53:47Z"><b>1 year ago</b></p></td>
+            </tr>
+            <tr>
+                <td><p class="label-key">viewed</p></td>
+
+                <td style="padding-left:10px">
+                    <p class="label-key">
+                        <b>345 times</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td><p class="label-key">active</p></td>
+                <td style="padding-left:10px"><p class="label-key"><b><a href="http://stackoverflow.com/questions/8730638/how-to-run-code-after-a-call-to-sytem-exit0-in-a-finally-block?lastactivity" class="lastactivity-link" title="2012-01-04 17:39:44Z">1 year ago</a></b></p></td>
+            </tr>
+        </tbody></table>
+    </div>
+        
+                <script type="text/javascript">
+                var scriptSrc = "http://engine.adzerk.net/z/8277/adzerk1_2_4_43,adzerk2_2_17_45,adzerk3_2_4_44?keywords=java";
+                if (document.referrer) {
+                    if (/\?/.test(scriptSrc))
+                        scriptSrc += "&";
+                    else
+                        scriptSrc += "?";
+                    scriptSrc += "xReferrer=" + document.referrer;
+                }
+                StackExchange.ready(function () {
+                    var z = document.createElement("script");
+                    z.type = "text/javascript";
+                    z.async = "true";
+                    z.src = scriptSrc;
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(z, s);
+                });
+            </script>
+        <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk2"><a href="http://engine.adzerk.net/r?e=eyJ0cyI6MTM2NTEwNDc1ODk0OSwiYXYiOjQxNCwiYXQiOjE3LCJjbSI6ODQ3LCJjaCI6MTE3OCwiY3IiOjU2MzY1LCJkbSI6MSwiZmMiOjgwNTQzLCJmbCI6MjQ0NCwia3ciOiJqYXZhIiwibnciOjIyLCJyZiI6Imh0dHA6Ly93d3cuZ29vZ2xlLmNvLmluL3VybD9zYT10IiwicnYiOjAsInByIjoxNTY4LCJzdCI6ODI3Nywiem4iOjQ1LCJkaSI6IjFmYTJhNjVkNzBhYzQ2OTliNDhmYzczZmM2OTFhOWJjIiwidXIiOiJodHRwOi8vc3RhY2tleGNoYW5nZS5jb20vYWJvdXQvaGlyaW5nIn0&amp;s=ixxwjm7uz_PDkTFqjau1mo7NFWk" rel="nofollow" target="_blank" title=""><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/83548ab0d32849899a38e743d918ed91.png" title="" alt="" border="0" height="250" width="220"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/i_002.gif" border="0" height="0px" width="0px"></div>
+    <div id="hireme"> <a href="http://careers.stackoverflow.com/jobs?a=12" class="top" target="_blank"></a> <ul class="jobs"> <li> <a href="http://careers.stackoverflow.com/jobs/32441/lead-engineer-c-sharp-and-dotnet-high-volume-web-livecareer?a=CkoCzCM" target="_blank" title="Lead Engineer - C# and dotNET - High-Volume Web Technologies at LiveCareer. Click to learn more."> Lead Engineer - C# and dotNET - High-Volume Web Technologies<br> <span class="company">LiveCareer</span> <span class="location">Noida, India</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/32728/application-developers-hackers-philosophers-thoughtworks?a=CFq4AV2" target="_blank" title="Application Developers, Hackers, Philosophers, Activists: Join Us! at ThoughtWorks. Click to learn more."> Application Developers, Hackers, Philosophers, Activists:…<br> <span class="company">ThoughtWorks</span> <span class="location">Pune, India; Chennai, India;…</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/32229/front-end-developer-premiere-digital-services?a=C4RNcpW" target="_blank" title="Front-end developer at Premiere Digital Services. Click to learn more."> Front-end developer<br> <span class="company">Premiere Digital Services</span> <span class="location">Bangalore, India / relocation</span> </a> </li> </ul> <img alt="" class="impression" src="java%20-%20How%20to%20run%20code%20after%20a%20call%20to%20Sytem.exit%280%29%20in%20a%20finally%20block%20-%20Stack%20Overflow_files/CkoCzCM-CFq4AV2-C4RNcpW-12.gif" style="display:none"></div>
+
+
+
+    
+  
+    
+    <div class="module sidebar-linked">
+        <h4 id="h-linked">Linked</h4>
+        <div class="linked" data-tracker="lq=1">
+            <div class="spacer">
+<a href="http://stackoverflow.com/q/5401281?lq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">11</div>
+</a>
+<a href="http://stackoverflow.com/questions/5401281/preventing-system-exit-from-api?lq=1" class="question-hyperlink">Preventing System.exit() from API</a>
+</div>
+
+        </div>
+    </div>
+    <div class="module sidebar-related">
+        <h4 id="h-related">Related</h4>
+        <div class="related" data-tracker="rq=1">
+            <div class="spacer">
+<a href="http://stackoverflow.com/q/516049?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">14</div>
+</a>
+<a href="http://stackoverflow.com/questions/516049/in-java-is-the-finally-block-guaranteed-to-be-called-in-the-main-method?rq=1" class="question-hyperlink">In Java, is the “finally” block guaranteed to be called (in the main method)?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/1410951?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">9</div>
+</a>
+<a href="http://stackoverflow.com/questions/1410951/how-does-javas-system-exit-work-with-try-catch-finally-blocks?rq=1" class="question-hyperlink">How does Java's System.exit() work with try/catch/finally blocks?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/1843905?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">8</div>
+</a>
+<a href="http://stackoverflow.com/questions/1843905/clean-up-code-in-finalize-or-finally?rq=1" class="question-hyperlink">Clean up code in finalize() or finally()?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/2559108?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">1</div>
+</a>
+<a href="http://stackoverflow.com/questions/2559108/java-i-have-try-catch-and-finally-in-a-java-code-and-i-want-after-try-or-catch?rq=1" class="question-hyperlink">Java: I have try,catch and finally in a java code and I want after try or catch block finally does not execute</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/3109353?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">8</div>
+</a>
+<a href="http://stackoverflow.com/questions/3109353/what-comes-first-finally-or-catch-block?rq=1" class="question-hyperlink">What comes first - finally or catch block?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/3226100?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">4</div>
+</a>
+<a href="http://stackoverflow.com/questions/3226100/understanding-the-finally-block?rq=1" class="question-hyperlink">understanding the finally block</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/4264874?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">3</div>
+</a>
+<a href="http://stackoverflow.com/questions/4264874/does-a-finally-block-run-even-if-you-throw-a-new-exception?rq=1" class="question-hyperlink">Does a finally block run even if you throw a new Exception?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/6148794?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">1</div>
+</a>
+<a href="http://stackoverflow.com/questions/6148794/nullpointerexception-thrown-after-finally-block-completes?rq=1" class="question-hyperlink">NullPointerException thrown after finally block completes</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/7378018?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">3</div>
+</a>
+<a href="http://stackoverflow.com/questions/7378018/try-catch-and-finally-blocks?rq=1" class="question-hyperlink">Try, Catch and Finally blocks</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/7880569?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">1</div>
+</a>
+<a href="http://stackoverflow.com/questions/7880569/does-jvm-gc-call-finalize-on-program-thread-exit?rq=1" class="question-hyperlink">Does JVM/GC call `finalize()` on program/thread exit?</a>
+</div>
+
+        </div>
+    </div>
+        <div class="everyonelovesstackoverflow" id="adzerk3">
+        </div>
+
+
+</div>
+
+<div id="feed-link">
+    <div id="feed-link-text"><a href="http://stackoverflow.com/feeds/question/8730638" title="feed of this question and its answers"><span class="feed-icon"></span>question feed</a></div>
+</div>
+<script type="text/javascript">
+StackExchange.ready(function(){$.get('/posts/8730638/ivc/8fe7');});
+</script>
+<noscript>
+    <div><img src="/posts/8730638/ivc/8fe7" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+
+
+        </div>
+    </div>
+    <div id="footer">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                    <a href="http://stackoverflow.com/about">about</a> |
+                <a href="http://stackoverflow.com/faq">faq</a> |
+                
+                <a href="http://blog.stackexchange.com/?blb=1">blog</a> |
+                    <a href="http://chat.stackoverflow.com/">chat</a> |
+                <a href="http://data.stackexchange.com/">data</a> |
+                <a href="http://stackexchange.com/legal">legal</a> |
+                <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a> |
+                <a href="http://stackexchange.com/about/hiring">jobs</a> |
+                <a href="http://engine.adzerk.net/redirect/0/2776/2751/0/4de3c60f719c4dfcb1a57531c7050090/0">advertising info</a> |
+
+                <a onclick='StackExchange.switchMobile("on", "/questions/8730638/how-to-run-code-after-a-call-to-sytem-exit0-in-a-finally-block")'>mobile</a> |
+
+                <b><a href="http://stackoverflow.com/help">contact us</a></b>
+                  | <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                <div id="footer-sites">
+                    <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://stackoverflow.com/">stackoverflow.com</a>&nbsp; 
+<span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://stackapps.com/">api/apps</a>&nbsp; 
+<span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://careers.stackoverflow.com/">careers&nbsp;2.0</a>&nbsp; 
+<span style="color:#E8272C;font-size:140%">■</span>&nbsp;<a href="http://serverfault.com/">serverfault.com</a>&nbsp; 
+<span style="color:#00AFEF;font-size:140%">■</span>&nbsp;<a href="http://superuser.com/">superuser.com</a>&nbsp; 
+<span style="color:#969696;font-size:140%">■</span>&nbsp;<a href="http://meta.stackoverflow.com/">meta</a>&nbsp; 
+<span style="color:#46937D;font-size:140%">■</span>&nbsp;<a href="http://area51.stackexchange.com/">area&nbsp;51</a>&nbsp; 
+<span style="color:#C0D0DC;font-size:140%">■</span>&nbsp;<a href="http://webapps.stackexchange.com/">webapps</a>&nbsp; 
+<span style="color:#000000;font-size:140%">■</span>&nbsp;<a href="http://gaming.stackexchange.com/">gaming</a>&nbsp; 
+<span style="color:#dd4814;font-size:140%">■</span>&nbsp;<a href="http://askubuntu.com/">ubuntu</a>&nbsp; 
+<span style="color:#9ce4fe;font-size:140%">■</span>&nbsp;<a href="http://webmasters.stackexchange.com/">webmasters</a>&nbsp; 
+<span style="color:#cf4d3f;font-size:140%">■</span>&nbsp;<a href="http://cooking.stackexchange.com/">cooking</a>&nbsp; 
+<span style="color:#f4f28d;font-size:140%">■</span>&nbsp;<a href="http://gamedev.stackexchange.com/">game development</a>&nbsp; 
+<span style="color:#0f3559;font-size:140%">■</span>&nbsp;<a href="http://math.stackexchange.com/">math</a>&nbsp; 
+<span style="color:#f2f2f2;font-size:140%">■</span>&nbsp;<a href="http://photo.stackexchange.com/">photography</a>&nbsp; 
+<span style="color:#037187;font-size:140%">■</span>&nbsp;<a href="http://stats.stackexchange.com/">stats</a>&nbsp; 
+<span style="color:#f1e7cc;font-size:140%">■</span>&nbsp;<a href="http://tex.stackexchange.com/">tex</a>&nbsp; 
+<span style="color:#e1cdae;font-size:140%">■</span>&nbsp;<a href="http://english.stackexchange.com/">english</a>&nbsp; 
+<span style="color:#a2d9f6;font-size:140%">■</span>&nbsp;<a href="http://cstheory.stackexchange.com/">theoretical cs</a>&nbsp; 
+<span style="color:#1b3e6c;font-size:140%">■</span>&nbsp;<a href="http://programmers.stackexchange.com/">programmers</a>&nbsp; 
+<span style="color:#293a5d;font-size:140%">■</span>&nbsp;<a href="http://unix.stackexchange.com/">unix</a>&nbsp;
+<span style="color:#bec0cb;font-size:140%">■</span>&nbsp;<a href="http://apple.stackexchange.com/">apple</a>&nbsp;
+<span style="color:#939185;font-size:140%">■</span>&nbsp;<a href="http://wordpress.stackexchange.com/">wordpress</a>&nbsp;
+<span style="color:#ebf5f5;font-size:140%">■</span>&nbsp;<a href="http://physics.stackexchange.com/">physics</a>&nbsp;
+<span style="color:#4176ab;font-size:140%">■</span>&nbsp;<a href="http://diy.stackexchange.com/">home&nbsp;improvement</a>&nbsp;
+<span style="color:#d1d8d7;font-size:140%">■</span>&nbsp;<a href="http://gis.stackexchange.com/">gis</a>&nbsp;
+<span style="color:#e5e2d3;font-size:140%">■</span>&nbsp;<a href="http://electronics.stackexchange.com/">electrical&nbsp;engineering</a>&nbsp;
+<span style="color:#a4c639;font-size:140%">■</span>&nbsp;<a href="http://android.stackexchange.com/">android</a>&nbsp;
+<span style="color:#2e4e60;font-size:140%">■</span>&nbsp;<a href="http://security.stackexchange.com/">security</a>&nbsp;
+<span style="color:#45bcb5;font-size:140%">■</span>&nbsp;<a href="http://bicycles.stackexchange.com/">bicycles</a>&nbsp;
+<span style="color:#00adee;font-size:140%">■</span>&nbsp;<a href="http://dba.stackexchange.com/">dba</a>&nbsp;
+<span style="color:#2edaf0;font-size:140%">■</span>&nbsp;<a href="http://drupal.stackexchange.com/">drupal</a>&nbsp;
+<span style="color:#213951;font-size:140%">■</span>&nbsp;<a href="http://sharepoint.stackexchange.com/">sharepoint</a>&nbsp;
+<span style="color:#73abb3;font-size:140%">■</span>&nbsp;<a href="http://scifi.stackexchange.com/">scifi&nbsp;&amp;&nbsp;fantasy</a>&nbsp;
+<span style="color:#23629F;font-size:140%">■</span>&nbsp;<a href="http://ux.stackexchange.com/">ux</a>&nbsp;
+<span style="color:#faff72;font-size:140%">■</span>&nbsp;<a href="http://skeptics.stackexchange.com/">skeptics</a>&nbsp;
+<span style="color:#623121;font-size:140%">■</span>&nbsp;<a href="http://rpg.stackexchange.com/">rpg</a>&nbsp;
+<span style="color:#e4be88;font-size:140%">■</span>&nbsp;<a href="http://judaism.stackexchange.com/">judaism</a>&nbsp;
+<span style="color:#ffecb1;font-size:140%">■</span>&nbsp;<a href="http://mathematica.stackexchange.com/">mathematica</a>&nbsp;
+<span style="color:#1b8598;font-size:140%">■</span>&nbsp;<a href="http://travel.stackexchange.com/">travel</a>&nbsp;
+                </div>
+            </div>
+            <div id="footer-flair">
+                <a class="peer1" href="http://www.peer1.com/stackoverflow"></a>  
+	            <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="cc-wiki-link"></a>
+                <div id="svnrev">rev 2013.4.4.607</div>
+                        </div>
+            <div id="copyright">
+                site design / logo © 2013 stack exchange inc; 
+                user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc-wiki</a> with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            
+
+        </div>
+    </div>
+    
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+    <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-5620270-1']);
+        _gaq.push(['_setCustomVar', 1, 'tags', '|java|']); 
+_gaq.push(['_trackPageview']);
+    var _qevents = _qevents || [];
+    (function(){
+        var s=document.getElementsByTagName('script')[0];
+        var ga=document.createElement('script');
+        ga.type='text/javascript';
+        ga.async=true;
+        ga.src='http://www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(ga,s);
+        var sc=document.createElement('script');
+        sc.type='text/javascript';
+        sc.async=true;
+        sc.src='http://edge.quantserve.com/quant.js'; 
+        s.parentNode.insertBefore(sc,s);
+    })();
+    </script>
+    <script type="text/javascript">
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+
+</body></html>

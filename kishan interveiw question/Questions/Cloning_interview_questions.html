@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!--
+Copyright: Darren Hester 2006, http://www.designsbydarren.com
+License: Released Under the "Creative Commons License", 
+http://creativecommons.org/licenses/by-nc/2.5/
+--><head>
+
+<!-- Meta Data -->
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="keywords" content="cloning interview questions,java interview questions, java cloning">
+<script src="Cloning_interview_questions_files/ga.js" async="" type="text/javascript"></script><script async="" src="Cloning_interview_questions_files/cbgapi.loaded_0"></script><script gapi_processed="true" type="text/javascript" src="Cloning_interview_questions_files/plusone.js"></script>
+<meta name="description" content="Java/J2EE questions ,Collection interview and java interview questions and java tutorials.">
+
+
+<!-- Site Title -->
+<title>Cloning Java Interview Questions</title>
+
+
+<!-- Site Title -->
+
+<!-- Link to Style External Sheet -->
+<link href="Cloning_interview_questions_files/style.css" type="text/css" rel="stylesheet">
+
+<script type="text/javascript">window.sendToApp = function(data, ctid) {var doc = window.document;var event = doc.createEvent('MessageEvent');event.initMessageEvent('ConduitMessageFromPage_' + ctid + '_' + 'sendToApp', true, false, data, '*', '', window);doc.dispatchEvent(event);}</script><script type="text/javascript">if (!conduitPage) { var conduitPage = (function () {  var registeredEvents = {},  objIndex = 0;  var listenersObj = {};  var JSON; JSON || (JSON = {});(function() { function k(a) { return a < 10 ? "0" + a : a } function o(a) { p.lastIndex = 0; return p.test(a) ? '"' + a.replace(p, function(a) { var c = r[a]; return typeof c === "string" ? c : "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4) }) + '"' : '"' + a + '"' } function l(a, j) { var c, d, h, m, g = e, f, b = j[a]; b && typeof b === "object" && typeof b.toJSON === "function" && (b = b.toJSON(a)); typeof i === "function" && (b = i.call(j, a, b)); switch (typeof b) {  case "string": return o(b); case "number": return isFinite(b) ? String(b) : "null"; case "boolean": case "null": return String(b); case "object": if (!b) return "null";  e += n; f = []; if (Object.prototype.toString.apply(b) === "[object Array]") { m = b.length; for (c = 0; c < m; c += 1) f[c] = l(c, b) || "null"; h = f.length === 0 ? "[]" : e ? "[\n" + e + f.join(",\n" + e) + "\n" + g + "]" : "[" + f.join(",") + "]"; e = g; return h } if (i && typeof i === "object") { m = i.length; for (c = 0; c < m; c += 1) typeof i[c] === "string" && (d = i[c], (h = l(d, b)) && f.push(o(d) + (e ? ": " : ":") + h)) } else for (d in b) Object.prototype.hasOwnProperty.call(b, d) && (h = l(d, b)) && f.push(o(d) + (e ? ": " : ":") + h); h = f.length === 0 ? "{}" : e ? "{\n" + e + f.join(",\n" + e) + "\n" + g + "}" : "{" + f.join(",") +"}"; e = g; return h } } if (typeof Date.prototype.toJSON !== "function") Date.prototype.toJSON = function() { return isFinite(this.valueOf()) ? this.getUTCFullYear() + "-" + k(this.getUTCMonth() + 1) + "-" + k(this.getUTCDate()) + "T" + k(this.getUTCHours()) + ":" + k(this.getUTCMinutes()) + ":" + k(this.getUTCSeconds()) + "Z" : null }, String.prototype.toJSON = Number.prototype.toJSON = Boolean.prototype.toJSON = function() { return this.valueOf() }; var q = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,p = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g, e, n, r = { "\u0008": "\\b", "\t": "\\t", "\n": "\\n", "\u000c": "\\f", "\r": "\\r", '"': '\\"', "\\": "\\\\" }, i; if (typeof JSON.stringify !== "function") JSON.stringify = function(a, j, c) { var d; n = e = ""; if (typeof c === "number") for (d = 0; d < c; d += 1) n += " "; else typeof c === "string" && (n = c); if ((i = j) && typeof j !== "function" && (typeof j !== "object" || typeof j.length !== "number")) throw Error("JSON.stringify"); return l("",{ "": a })}; if (typeof JSON.parse !== "function") JSON.parse = function(a, e) { function c(a, d) { var g, f, b = a[d]; if (b && typeof b === "object") for (g in b) Object.prototype.hasOwnProperty.call(b, g) && (f = c(b, g), f !== void 0 ? b[g] = f : delete b[g]); return e.call(a, d, b) } var d, a = String(a); q.lastIndex = 0; q.test(a) && (a = a.replace(q, function(a) { return "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4) })); if (/^[\],:{}\s]*$/.test(a.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g, ""))) return d = eval("(" + a + ")"), typeof e === "function" ? c({ "": d }, "") : d; throw new SyntaxError("JSON.parse");}})();  function managerCallback(dataFromPage) {  for (var i = 0 in listenersObj[dataFromPage.topic]) {   listenersObj[dataFromPage.topic][i](dataFromPage.data);   delete listenersObj[dataFromPage.topic][i];  }  }  function addCallback(topic, callback) {  if (!listenersObj[topic]) {   listenersObj[topic] = [];  }  listenersObj[topic].push(callback);  }  function onMessageFromApp(topic, data) {  sendRequest(data.ctid, null, topic, data.userData, function () { }, true, data.cbId);  }  this.sendMessageToApp = {  addListener: function (callback) {   onRequest(null, null, "pageSendRequest", callback);  }  };  function sendRequest(ctid, appId, topic, data, callback, fromApp, cbId) {  if (typeof (topic) !== "string" ) {   return { errorMessage: "Invalid topic, expected a string.", errorCode: 100 };  }  if (typeof (data) !== "string") {   return { errorMessage: "Invalid data, expected a string.", errorCode: 100 };  }  if (appId) topic = ctid + "_" + appId + "_tabs_" + topic;  if (!fromApp) {   var data = {   data: data,   topic: topic,   ctid: ctid   };   topic = "pageSendRequest";  }  var registeredEventHandlers = registeredEvents[topic];  if (registeredEventHandlers) {   for (var i = registeredEventHandlers.length - 1; i >= 0; i--) {   try {    if (callback && !fromApp) {    addCallback(data.topic, callback);    }    registeredEventHandlers[i].handler.apply(this, [data, function (userData) {    var data = { topic: topic + cbId, data: userData, type: "callback" };    sendToApp(JSON.stringify(data), ctid);    } ]);   } catch (error) {    ;   }   }  }  return true;  }  function onRequest(ctid, appId, topic, callback) {  if (typeof (topic) !== "string") {   return { errorMessage: "Invalid topic, expected a string.", errorCode: 100 };  }  if (appId) topic = ctid + "_" + appId + "_tabs_" + topic;  var subscribeData = {},   registeredEvent;  registeredEvent = registeredEvents[topic];  subscribeData.handler = callback;  if (!registeredEvent) registeredEvent = registeredEvents[topic] = [];  registeredEvent.push(subscribeData);  return true;  }  sendMessageToApp.addListener(function (data) {  sendToApp(JSON.stringify(data), data.ctid);  });  return {  onMessageFromApp: onMessageFromApp,  sendRequest: sendRequest,  onRequest: { addListener: onRequest },  managerCallback: managerCallback,  JSON: JSON  }; })(); }</script></head>
+
+<body>
+
+<div id="page_wrapper">
+
+<div id="header_wrapper">
+
+<div id="header">
+
+<h1>Interview<font color="#FFDF8C">Questions</font></h1>
+<h2>Java Threads,Collections,Jsp,Spring,Hibernate</h2>
+
+</div>
+
+<div id="navcontainer">
+
+<ul id="navlist">
+
+<li id="active"><a href="#" id="current">Java</a></li>
+<li><a href="http://java-questions.com/jsp_interview_questions.html">JSP</a></li>
+
+<li><a href="http://java-questions.com/tutorials.html">Tutorials</a></li>
+</ul>
+</div>
+
+</div>
+
+<div id="left_side">
+
+<h3>Interview Questions</h3>
+ <table style="border-color:Blue;font-size:15px;border-bottom-color:Blue" rules="rows" border="1" cellpadding="5px">
+<tbody><tr><td><a href="http://java-questions.com/keywords_interview_questions.html" style="letter-spacing: 1px;"><b> Java Keywords</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/keyConcepts_interview_questions.html" style="letter-spacing: 1px;"><b>Key Concepts</b></a></td></tr>
+
+<tr><td><a href="http://java-questions.com/oops_interview_questions.html" style="letter-spacing: 1px;"><b>OOPS in java</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/collections_interview_questions.html" style="letter-spacing: 1px;"><b>Java Collections#1</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/collections_interview_questions_1.html" style="letter-spacing: 1px;"><b>Java Collections #2</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/Exceptions_interview_questions.html" style="letter-spacing: 1px;"><b>Exceptions #1</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/Exceptions_interview_questions_1.html" style="letter-spacing: 1px;"><b>Exceptions #2</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/Threads_interview_questions.html" style="letter-spacing: 1px;"> <b>Threads#1</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/Threads_interview1_questions.html" style="letter-spacing: 1px;"> <b>Threads#2</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/InnerClass_interview_questions.html" style="letter-spacing: 1px;"> <b>InnerClass</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/Serialization_interview_questions.html" style="letter-spacing: 1px;"><b>Serialization</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/ImmutableClass_interview_questions.html" style="letter-spacing: 1px;"><b>Immutable Class</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/Cloning_interview_questions.html" style="letter-spacing: 1px;"><b>Cloning in Java</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/garbagecollection_interview_questions.html" style="letter-spacing: 1px;"><b>Garbage Collection</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/jsp_interview_questions_1.html" style="letter-spacing: 1px;"><b>JSP #1</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/jsp_interview_questions.html" style="letter-spacing: 1px;"><b>JSP #2</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/programming-questions1.html" style="letter-spacing: 1px;"><b>Programming Q#1</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/programming-questions2.html" style="letter-spacing: 1px;"><b>Programming Q#2</b></a></td></tr>
+<tr><td><a href="http://java-questions.com/programming-questions3.html" style="letter-spacing: 1px;"><b>Programming Q#3</b></a></td></tr>
+
+</tbody></table>
+
+<br>
+<br>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4267874373737812";
+/* left bottom */
+google_ad_slot = "7984960609";
+google_ad_width = 100;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Cloning_interview_questions_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:100px"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:100px"><iframe allowtransparency="true" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" vspace="0" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="90" scrolling="no" width="100"></iframe></ins></ins>
+
+</div>
+
+<div id="right_side">
+
+<table>
+<tbody><tr>
+<td>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4267874373737812";
+/* 1st right */
+google_ad_slot = "7954940046";
+google_ad_width = 120;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="Cloning_interview_questions_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:120px"><ins id="aswift_1_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:120px"><iframe allowtransparency="true" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" vspace="0" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" frameborder="0" height="600" scrolling="no" width="120"></iframe></ins></ins>
+</td>
+</tr>
+<tr>
+
+</tr>
+<tr>
+<td>
+
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4267874373737812";
+/* 2nd right top */
+google_ad_slot = "4368368596";
+google_ad_width = 120;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="Cloning_interview_questions_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:120px"><ins id="aswift_2_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:120px"><iframe allowtransparency="true" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" vspace="0" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;" frameborder="0" height="600" scrolling="no" width="120"></iframe></ins></ins>
+</td>
+</tr>
+</tbody></table>    
+
+</div>
+
+<div id="content">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4267874373737812";
+/* single line */
+google_ad_slot = "1619694848";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript" src="Cloning_interview_questions_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:15px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><ins id="aswift_3_anchor" style="display:block;border:none;height:15px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><iframe allowtransparency="true" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" vspace="0" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;" frameborder="0" height="15" scrolling="no" width="728"></iframe></ins></ins>
+
+<div class="featurebox_center">
+<table style="font-family:verdana;font-size:90%;" cellspacing="5" width="">
+	<tbody><tr>
+		<td>
+			<div id="___plusone_0" style="height: 24px; width: 106px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;"><iframe title="+1" allowtransparency="true" src="Cloning_interview_questions_files/fastbutton.htm" name="I0_1356590632189" id="I0_1356590632189" vspace="0" tabindex="0" style="position: static; top: 0px; width: 106px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+		</td>
+	</tr>
+	<tr>
+		<td><h1>Cloning Interview questions</h1>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+		</td>
+	</tr>
+	  <tr>
+		<td><p><strong>Q1) What are <b>different types of cloning</b> in Java?</strong></p>
+             <p> Ans) Java supports two type of cloning: - Deep and 
+shallow cloning. By  default shallow copy is used in Java. Object class 
+has a method clone() which does  shallow cloning.</p>
+		</td>
+	  </tr>
+	  <tr>
+	  	<td><p><strong>Q2) What is Shallow copy?</strong></p>
+<div id="divQ2">   <p>           Ans) In <b>shallow copy</b> the object is copied without its contained objects.<br>
+		    Shallow clone only  copies the top level structure of the object not the lower levels.<br>
+		    It is an exact bit copy of all the attributes.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+		  <p align="left"><img src="Cloning_interview_questions_files/imgCloning_clip_image002.htm" alt="Original" height="165" width="282"><br>
+		    Figure  1: Original java object obj</p>
+		  <p>The shallow copy is done for obj and new  object obj1 is created but contained objects of obj are not copied.</p>
+		  <p align="left"><img src="Cloning_interview_questions_files/imgCloning_clip_image004.htm" alt="Shallow Copy" height="169" width="423"><br>
+		    Figure  2: Shallow copy object obj1</p>
+		  <p>It can be seen that no new objects are  created for obj1 and it 
+is referring to the same old contained objects. If  either of the 
+containedObj contain any other object no new reference is  created</p>
+		 </div></td>
+	  </tr>
+	  <tr>
+	  	<td><p><strong>Q3) What is deep copy and how it can be acheived?</strong></p>
+<div id="divQ3">            <p>  Ans) In <b>deep copy</b> the object is 
+copied along with the objects it refers to. Deep  clone copies all the 
+levels of the object from top to the bottom recursively.</p>
+	  	  <p align="left"><img src="Cloning_interview_questions_files/imgCloning_clip_image002_0000.htm" alt="Original" height="168" width="289"><br>
+	  	    Figure  3 : Original Object obj</p>
+	  	  <p>When a deep copy of the object is done new  references are created.</p>
+	  	  <p align="left"><img src="Cloning_interview_questions_files/imgCloning_clip_image003.htm" alt="Deep Copy" height="173" width="420"><br>
+	  	    Figure  4: obj2 is deep copy of obj1</p>
+<p>	  	One solution is to simply implement your own custom method (e.g.,
+ deepCopy()) that returns a deep copy of an instance of one of your 
+classes. This may be the best solution if you need a complex mixture of 
+deep and shallow copies for different fields, but has a few significant 
+drawbacks:</p>
+<ul>
+<li>You must be able to modify the class (i.e., have the source code) or
+ implement a subclass. If you have a third-party class for which you do 
+not have the source and which is marked final, you are out of luck. </li>
+<li>
+You must be able to access all of the fields of the classâ&#8364;&#8482;s 
+superclasses. If significant parts of the objectâ&#8364;&#8482;s state are contained
+ in private fields of a superclass, you will not be able to access them.
+ </li>
+<li>
+You must have a way to make copies of instances of all of the other 
+kinds of objects that the object references. This is particularly 
+problematic if the exact classes of referenced objects cannot be known 
+until runtime. </li>
+<li>
+Custom deep copy methods are tedious to implement, easy to get wrong, 
+and difficult to maintain. The method must be revisited any time a 
+change is made to the class or to any of its superclasses. </li>
+</ul>
+<p>
+Other common solution to the deep copy problem is to use <strong>Java Object Serialization</strong> (JOS). The idea is simple: Write the object to an array using JOSâ&#8364;&#8482;s <strong>ObjectOutputStream</strong> and then use <strong>ObjectInputStream</strong>
+ to reconsistute a copy of the object. The result will be a completely 
+distinct object, with completely distinct referenced objects. JOS takes 
+care of all of the details: superclass fields, following object graphs, 
+and handling repeated references to the same object within the graph.
+</p><ul>
+<li>
+It will only work when the object being copied, as well as all of the 
+other objects references directly or indirectly by the object, are 
+serializable. (In other words, they must implement 
+java.io.Serializable.) Fortunately it is often sufficient to simply 
+declare that a given class implements java.io.Serializable and let 
+Javaâ&#8364;&#8482;s default serialization mechanisms do their thing. 
+Java Object Serialization is slow, and using it to make a deep copy 
+requires both serializing and deserializing.
+</li>
+</ul>
+<p> There are ways to speed it up (e.g., by pre-computing serial version
+ ids and defining custom readObject() and writeObject() methods), but 
+this will usually be the primary bottleneck. 
+The byte array stream implementations included in the java.io package 
+are designed to be general enough to perform reasonable well for data of
+ different sizes and to be safe to use in a multi-threaded environment. 
+These characteristics, however, slow down ByteArrayOutputStream and (to a
+ lesser extent) ByteArrayInputStream .</p>
+</div></td>
+	  </tr>
+	  <tr>
+	  	<td><p><strong>Q4) What is difference between deep and shallow cloning?</strong></p>
+<div id="divQ4">        <p>      Ans) The differences are as follows:</p>
+	  	  <ul type="disc">
+            <li>Consider the class:</li>
+	  	    </ul>
+	  <blockquote>	  <p>public class MyData{<br>
+	  	  String id;<br>
+	  	    Map myData;<br>
+	  	    }<br>
+The shallow copying of this object will have new id object and values as
+  &#8220;&#8221; but will point to the myData of the original object. So a change in
+ myData  by either original or cloned object will be reflected in other 
+also. But in  deep copying there will be new id object and also new 
+myData object and independent  of original object but with same values.</p></blockquote>
+	  	  <ul type="disc">
+            <li>Shallow copying is default cloning in Java which can be 
+achieved       using clone() method of Object class. For deep copying 
+some extra logic       need to be provided.</li>
+  	      </ul></div></td>
+	  </tr>
+	 <tr>
+
+	 	<td><p><strong>Q5) What are the characteristics of a shallow  clone?</strong></p>
+<div id="divQ5">         <p>   Ans) If we do a = clone(b)<br>
+1) Then b.equals(a)<br>
+2) No method of a can modify the value of b.</p>
+	 	  </div></td>
+	 </tr>
+	 <tr>
+	 	<td><p><strong>Q6) What are the disadvantages of deep cloning?</strong></p>
+<div id="divQ6">      <p>      Ans) Disadvantages of using  Serialization to achieve deep cloning &#8211;
+	 	  </p><ul>
+	 	    <li>Serialization  is more expensive than using object.clone().</li>
+	 	    <li>Not all  objects are serializable.</li>
+	 	    <li>Serialization  is not simple to implement for deep cloned object..</li>
+	 	    </ul>
+	 	    <p></p>
+	 	  </div></td>
+	 </tr>
+	</tbody></table>
+
+
+</div>
+
+<div id="footer">
+<a href="http://java-questions.com/%5Cwww.technologiquepanorama.wordpress.com">My Blog</a> | 
+<a href="http://java-questions.com/contact.html">Contact</a> | 
+<a href="http://java-questions.com/sitemap.html">SiteMap</a> | 
+<br>
+Template provided by: 
+<a href="http://www.designsbydarren.com/" target="_blank">DesignsByDarren.com</a>
+</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23729980-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+</div></body></html>

@@ -1,0 +1,2 @@
+//error code: visit is not active
+try{clearInterval(woopraTracker.pint);}catch(e){}

@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0127)http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>  Difference between HttpSessionAttributeListener and HttpSessionBindingListener</title>
+
+<link rel="stylesheet" href="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/style.css" type="text/css" media="screen">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds2.feedburner.com/QuickProgrammingTips">
+<link rel="pingback" href="http://www.quickprogrammingtips.com/xmlrpc.php">
+
+	<link rel="archives" title="November 2015" href="http://www.quickprogrammingtips.com/2015/11">
+	<link rel="archives" title="October 2015" href="http://www.quickprogrammingtips.com/2015/10">
+	<link rel="archives" title="September 2015" href="http://www.quickprogrammingtips.com/2015/09">
+	<link rel="archives" title="December 2014" href="http://www.quickprogrammingtips.com/2014/12">
+	<link rel="archives" title="June 2013" href="http://www.quickprogrammingtips.com/2013/06">
+	<link rel="archives" title="November 2012" href="http://www.quickprogrammingtips.com/2012/11">
+	<link rel="archives" title="May 2012" href="http://www.quickprogrammingtips.com/2012/05">
+	<link rel="archives" title="April 2012" href="http://www.quickprogrammingtips.com/2012/04">
+
+<link rel="alternate" type="application/rss+xml" title="Quick Programming Tips » Difference between HttpSessionAttributeListener and HttpSessionBindingListener Comments Feed" href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html/feed">
+		<script type="text/javascript" async="" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/ga.js"></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.quickprogrammingtips.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.2"}};
+			!function(a,b,c){function d(a){var c,d=b.createElement("canvas"),e=d.getContext&&d.getContext("2d"),f=String.fromCharCode;return e&&e.fillText?(e.textBaseline="top",e.font="600 32px Arial","flag"===a?(e.fillText(f(55356,56806,55356,56826),0,0),d.toDataURL().length>3e3):"diversity"===a?(e.fillText(f(55356,57221),0,0),c=e.getImageData(16,16,1,1).data.toString(),e.fillText(f(55356,57221,55356,57343),0,0),c!==e.getImageData(16,16,1,1).data.toString()):("simple"===a?e.fillText(f(55357,56835),0,0):e.fillText(f(55356,57135),0,0),0!==e.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><style type="text/css"></style><script src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/wp-emoji-release.min.js" type="text/javascript"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="https://api.w.org/" href="http://www.quickprogrammingtips.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.quickprogrammingtips.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.quickprogrammingtips.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Sum of Digits of a Number in Objective-C" href="http://www.quickprogrammingtips.com/objective-c/sum-of-digits-of-a-number-in-objective-c.html">
+<link rel="next" title="Creating Static ListView in Android" href="http://www.quickprogrammingtips.com/android/creating-static-listview-in-android.html">
+<meta name="generator" content="WordPress 4.4.2">
+<link rel="canonical" href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html">
+<link rel="shortlink" href="http://www.quickprogrammingtips.com/?p=121">
+<link rel="alternate" type="application/json+oembed" href="http://www.quickprogrammingtips.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.quickprogrammingtips.com%2Fjava-ee%2Fdifference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html">
+<link rel="alternate" type="text/xml+oembed" href="http://www.quickprogrammingtips.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.quickprogrammingtips.com%2Fjava-ee%2Fdifference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html&amp;format=xml">
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		<link rel="stylesheet" type="text/css" href="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shCore.css"><link rel="stylesheet" type="text/css" href="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shThemeDefault.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-885064-70']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+
+<div id="page">
+
+<div id="header">
+	
+	
+		<div id="header_left">
+			<h1><a href="http://www.quickprogrammingtips.com/">Quick Programming Tips</a></h1>
+			<div class="description">A collection of programming wisdom!</div>
+		</div>
+	
+		<div id="header_right">
+			<div id="subscribe">
+				<a href="http://feeds2.feedburner.com/QuickProgrammingTips" title="Subscribe to RSS feed" rel="nofollow"><img src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/rss-feed-icon.jpg" alt="Subscribe to RSS feed"></a>
+			</div>
+		</div>
+
+	
+<div class="menu">
+<ul>
+  <li><a href="http://www.quickprogrammingtips.com/">Home</a></li>
+  <li><a href="http://www.quickprogrammingtips.com/privacy-policy/">Privacy Policy</a></li>
+  <li><a href="mailto:quickprogrammer@gmail.com">Contact</a></li>
+ <!--
+  <li><a href="http://www.quickprogrammingtips.com/about/">About</a></li>
+ -->
+</ul>
+</div>	
+		<div style="clear:both;"></div>
+</div><div id="wrapper">
+
+
+	<div id="content">
+
+
+
+				
+  	
+		
+	
+		<div class="post" id="post-121">
+			<h1><a href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html" rel="bookmark" title="Permanent Link: Difference between HttpSessionAttributeListener and HttpSessionBindingListener">Difference between HttpSessionAttributeListener and HttpSessionBindingListener</a></h1>
+	
+				
+			<div class="entrytext">
+	
+
+							
+				<p>Servlet API in Java EE defines different types of event listener interfaces for watching changes in HttpSession. Two of these interfaces namely HttpSessionAttributeListener and HttpSessionBindingListener cause confusion among programmers. These interfaces enable 2 different ways of handling session changes. This article explains each listener with an example.</p>
+<p><strong>HttpSessionAttributeListener Interface</strong><br>
+A class can implement HttpSessionAttributeListener interface to listen for attributes being added or removed from a session. This class can be configured as a listener using the listener tag in web.xml deployment descriptor or using @WebListener annotation in the class file. This interface has 3 callback methods – attributeAdded, attributeDeleted and attributeReplaced.</p>
+<p><strong>HttpSessionBindingListener Interface</strong><br>
+An object which is added as session attribute can implement HttpSessionBindingListener interface. This tells the servlet container to call the HttpSessionBindingListener methods defined in the object whenever the object instance is added or removed from session. This is useful when the object itself needs to known when it is being added or removed from session. There is no need to mark this object as listener object using annotations or web.xml entry. It has 2 callback methods – valueBound, valueUnbound. </p>
+<p><strong>HttpSessionAttributeListener and HttpSessionBindingListener – Sample Program</strong><br>
+The following sample servlet program illustrates the difference between HttpSessionAttributeListener and HttpSessionBindingListener.</p>
+<p>The following sample servlet (ListenerDemoServlet) adds multiple attributes to session. One of them (MyObjectInSession) implements HttpSessionBindingListener. Whenever an attribute is added, the configured listener MySessionAttributeListener (which implements HttpSessionAttributeListener) is called. When MyObjectSession is added or removed, container calls MySessionAttributeListener methods AND HttpSessionBindingListener methods defined in MyObjectInSession.</p>
+<p><strong>ListenerDemoServlet.java</strong></p>
+<div id="highlighter_131217" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html#viewSource" title="view source" class="item viewSource" style="width: 16px; height: 16px;">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_131217_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_131217" menu="false" src="http://www.quickprogrammingtips.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/scripts/clipboard.swf"></div><a href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html#printSource" title="print" class="item printSource" style="width: 16px; height: 16px;">print</a><a href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="keyword">import</code> <code class="plain">javax.servlet.http.HttpServletRequest;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content"><code class="keyword">import</code> <code class="plain">javax.servlet.http.HttpServletResponse;</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content"><code class="keyword">import</code> <code class="plain">javax.servlet.http.HttpSession;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>5</code></td><td class="content"><code class="color1">@WebServlet</code><code class="plain">(name = </code><code class="string">"ListenerDemoServlet"</code><code class="plain">, urlPatterns = {</code><code class="string">"/ListenerDemoServlet"</code><code class="plain">})</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>6</code></td><td class="content"><code class="keyword">public</code> <code class="keyword">class</code> <code class="plain">ListenerDemoServlet </code><code class="keyword">extends</code> <code class="plain">HttpServlet {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>7</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>8</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="color1">@Override</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>9</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">protected</code> <code class="keyword">void</code> <code class="plain">doGet(HttpServletRequest request, </code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">HttpServletResponse response)</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">throws</code> <code class="plain">ServletException, IOException {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">HttpSession session = request.getSession();</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">session.setAttribute(</code><code class="string">"stringvalue1"</code><code class="plain">, </code><code class="string">"hello"</code><code class="plain">);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">session.setAttribute(</code><code class="string">"stringvalue2"</code><code class="plain">, </code><code class="string">"world"</code><code class="plain">);</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">session.setAttribute(</code><code class="string">"objvalue1"</code><code class="plain">, </code><code class="keyword">new</code> <code class="plain">MyObjectInSession());</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div></div></div>
+<p><strong>MyObjectInSession.java</strong></p>
+<div id="highlighter_91544" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html#viewSource" title="view source" class="item viewSource" style="width: 16px; height: 16px;">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_91544_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_91544" menu="false" src="http://www.quickprogrammingtips.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/scripts/clipboard.swf"></div><a href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html#printSource" title="print" class="item printSource" style="width: 16px; height: 16px;">print</a><a href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="keyword">package</code> <code class="plain">com.quickprogrammingtips.sample.articleproject;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content"><code class="keyword">import</code> <code class="plain">javax.servlet.http.HttpSessionBindingEvent;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content"><code class="keyword">import</code> <code class="plain">javax.servlet.http.HttpSessionBindingListener;</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>5</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>6</code></td><td class="content"><code class="comments">// the listener annotation is optional since container infers it from the interface</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>7</code></td><td class="content"><code class="keyword">public</code> <code class="keyword">class</code> <code class="plain">MyObjectInSession </code><code class="keyword">implements</code> <code class="plain">HttpSessionBindingListener{</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>8</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="plain">MyObjectInSession() {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>9</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="color1">@Override</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="keyword">void</code> <code class="plain">valueBound(HttpSessionBindingEvent event) {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">System.out.println(</code><code class="string">"My Object is added to session: Key is :"</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">+ event.getName());</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="color1">@Override</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="keyword">void</code> <code class="plain">valueUnbound(HttpSessionBindingEvent event) {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>19</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div></div></div>
+<p><strong>MySessionAttributeListener.java</strong></p>
+<div id="highlighter_650563" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html#viewSource" title="view source" class="item viewSource" style="width: 16px; height: 16px;">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_650563_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_650563" menu="false" src="http://www.quickprogrammingtips.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/scripts/clipboard.swf"></div><a href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html#printSource" title="print" class="item printSource" style="width: 16px; height: 16px;">print</a><a href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="keyword">package</code> <code class="plain">com.quickprogrammingtips.sample.articleproject;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content"><code class="keyword">import</code> <code class="plain">javax.servlet.annotation.WebListener;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content"><code class="keyword">import</code> <code class="plain">javax.servlet.http.HttpSessionAttributeListener;</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>5</code></td><td class="content"><code class="keyword">import</code> <code class="plain">javax.servlet.http.HttpSessionBindingEvent;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>6</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>7</code></td><td class="content"><code class="comments">// The following annotation marks this class as a listener and container automatically registers it.</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>8</code></td><td class="content"><code class="color1">@WebListener</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>9</code></td><td class="content"><code class="keyword">public</code> <code class="keyword">class</code> <code class="plain">MySessionAttributeListener </code><code class="keyword">implements</code> <code class="plain">HttpSessionAttributeListener {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="color1">@Override</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="keyword">void</code> <code class="plain">attributeAdded(HttpSessionBindingEvent event) {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">System.out.println(</code><code class="string">"Attribute added is "</code><code class="plain">+event.getName());</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="color1">@Override</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="keyword">void</code> <code class="plain">attributeRemoved(HttpSessionBindingEvent event) {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>19</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>20</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="color1">@Override</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>21</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="keyword">void</code> <code class="plain">attributeReplaced(HttpSessionBindingEvent event) {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>22</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">System.out.println(</code><code class="string">"Attribute replaced is "</code><code class="plain">+event.getName());</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>23</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>24</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div></div></div>
+<p>When the servlet is run, the following output is seen on the application server console,</p>
+<blockquote><p>Attribute added is stringvalue1<br>
+Attribute added is stringvalue2<br>
+My Object is added to session: Key is :objvalue1<br>
+Attribute added is objvalue1</p></blockquote>
+<p><strong>Summary</strong><br>
+HttpSessionAttributeListener is a generic listener for the session and is called whenever any attribute value is added or removed from a session. This enables us to keep track of all the objects that is added or removed from a session. This listener lets us know whether an attribute is added, removed or updated.</p>
+<p>HttpSessionBindingListener is a callback interface that can be implemented by classes which are intended to be added to session. Whenever an object implementing HttpSessionBindingListener is added or removed to session, the callback methods defined on the object is called. Unlike HttpSessionAttributeListener it doesn’t differentiate between adding or updating an attribute.</p>
+<p>The key difference is between HttpSessionAttributeListener and HttpSessionBindingListener is that HttpSessionAttributeListener listens for any attribute change in session while an object implementing HttpSessionBindingListener gets notified whenever the same object is added/removed from session.</p>
+	
+								
+				<div style="clear:both;"></div>
+				
+				<div>
+				<p class="postmetadata alt"><small>
+						
+							Posted in <a href="http://www.quickprogrammingtips.com/category/java-ee" rel="category tag">Java EE</a> category | <a href="http://www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html#respond">No Comments</a>												
+				</small></p>
+				</div>
+				
+				
+				
+			</div>
+			
+		</div>
+		
+		<div id="adsense_singlepost_bottom_banner">
+</div>	
+<div style="border:1px dashed black;padding:5px;font-size:90%;background-color:#F8F8F8;">
+<p>Do you have a programming problem that you are unable to solve? Please send us your problem and we will publish the solution on this site within 48 hours! <a href="mailto:quickprogrammer@gmail.com">Please email us</a>.</p>
+</div><br>
+	<script async="" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/"></script>
+<!-- qpt_bottom -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1563825908417328" data-ad-slot="7896916577" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+	
+<!-- You can start editing here. -->
+
+
+   
+		<!-- If comments are open, but there are no comments. -->
+		
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://www.quickprogrammingtips.com/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1">
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2">
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3">
+<label for="url">Website</label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: &lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;s&gt; &lt;strike&gt; &lt;strong&gt; </small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment">
+<input type="hidden" name="comment_post_ID" value="121">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="a6fc918e74"></p><p style="display: none;"></p>
+<input type="hidden" id="ak_js" name="ak_js" value="1456603772140"></form>
+
+
+	
+		
+	</div>
+	
+	<div id="sidebar">
+				
+               	
+
+
+		<div class="sidebar_right">
+
+
+			<ul>
+			
+			
+<form action="http://www.google.com/" id="cse-search-box" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-5529588696645669:8121660162">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input type="text" name="q" size="14" style="border: 1px solid rgb(126, 157, 185); padding: 2px; background: url(&quot;https://www.google.com/cse/static/en/google_custom_search_watermark.gif&quot;) 0% 50% no-repeat rgb(255, 255, 255);"><input type="submit" name="sa" value="Search">
+  </div>
+<input name="siteurl" type="hidden" value="www.quickprogrammingtips.com/java-ee/difference-between-httpsessionattributelistener-and-httpsessionbindinglistener.html"><input name="ref" type="hidden" value="www.google.co.in/"><input name="ss" type="hidden" value=""></form>
+
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/brand"></script>
+<br>
+			<!--
+				<li class="pagenav"><h2>Pages</h2><ul><li class="page_item page-item-4"><a href="http://www.quickprogrammingtips.com/privacy-policy">Privacy Policy</a></li>
+</ul></li>                  -->
+
+			       
+	
+
+
+				<li><h2>Programming Languages</h2>
+					<ul>
+<li class="cat-item"><a href="http://www.quickprogrammingtips.com/category/java" title="View all posts filed under Java">Java</a>
+</li>
+<li class="cat-item"><a href="http://www.quickprogrammingtips.com/category/objective-c" title="View all posts filed under Objective-C">Objective-C</a>
+</li>
+					
+					</ul>
+				</li>
+
+<li><h2>Web Programming</h2>
+					<ul>
+<li class="cat-item"><a href="http://www.quickprogrammingtips.com/category/java-ee" title="View all posts filed under Java EE">Java EE</a>
+</li>					
+					</ul>
+				</li>
+
+<li><h2>Code Libraries</h2>
+					<ul>
+<li class="cat-item"><a href="http://www.quickprogrammingtips.com/category/struts2" title="View all posts filed under Struts2">Struts2</a>
+</li>					
+					</ul>
+				</li>
+
+
+<li><h2>Mobile Platforms</h2>
+					<ul>
+					<li class="cat-item"><a href="http://www.quickprogrammingtips.com/category/android" title="View all posts filed under Android">Android</a>
+</li>	
+					</ul>
+				</li>
+
+<iframe src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/likebox.html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:300px;" allowtransparency="false"></iframe>	
+			
+<br><br>
+
+						</ul>
+		</div>
+		<div style="clear:both;"></div>
+	</div></div>
+
+<hr>
+<div id="footer">
+	<div id="footer_left">
+		Copyright © <a href="http://www.quickprogrammingtips.com/">Quick Programming Tips</a>. All Rights Reserved.
+	</div>
+	<div style="clear:both;"></div>
+</div>
+</div>
+
+		<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/form.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shCore.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushAS3.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushBash.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushColdFusion.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushClojure.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushCss.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushDelphi.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushDiff.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushErlang.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushFSharp.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushGroovy.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushJava.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushJavaFX.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushLatex.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushMatlabKey.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushObjC.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushPlain.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushPython.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushR.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushRuby.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushScala.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushSql.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushVb.js"></script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/shBrushXml.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://www.quickprogrammingtips.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/styles/shCore.css?ver=2.1.364";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://www.quickprogrammingtips.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/styles/shThemeDefault.css?ver=2.1.364";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.clipboardSwf = 'http://www.quickprogrammingtips.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/scripts/clipboard.swf';
+	SyntaxHighlighter.config.strings.expandSource = 'show source';
+	SyntaxHighlighter.config.strings.viewSource = 'view source';
+	SyntaxHighlighter.config.strings.copyToClipboard = 'copy to clipboard';
+	SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'The code is in your clipboard now';
+	SyntaxHighlighter.config.strings.print = 'print';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['smart-tabs'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="./Difference between HttpSessionAttributeListener and HttpSessionBindingListener_files/wp-embed.min.js"></script>
+
+
+
+
+
+
+
+
+<!-- Dynamic page generated in 0.216 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-02-27 18:31:27 -->
+
+<!-- super cache --></body></html>

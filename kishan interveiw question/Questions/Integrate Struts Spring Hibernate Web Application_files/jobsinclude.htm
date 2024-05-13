@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html><head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="description" content="JobDiesel Job Search with facebook">
+	<meta name="keywords" content="JobDiesel Profile with facebook">
+
+	<meta name="Robots" content="index,follow">
+	<meta name="GOOGLEBOT" content="INDEX, FOLLOW">
+	
+
+		
+	
+	<title>Jobs at your laptop</title>
+
+<link href="jobsinclude_data/style1.css" rel="stylesheet" type="text/css" media="screen">
+
+
+<style rel="stylesheet" type="text/css">
+
+body {
+	line-height: 20px;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+
+#container { margin:0 auto; width:500px; }
+
+#search_box { 
+	background:-moz-linear-gradient(top, #ffd73a, #ffa500); 
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#ffd73a), to(#ffa500)); 
+	border:1px solid #d28703; 
+	border-radius:5px; 
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px; 
+	-moz-box-shadow:inset 0 1px #ffff90, inset 0 -2px 5px #ffd05d, 0 0 0 4px rgba(255,255,255,0.65);
+	-webkit-box-shadow:inset 0 1px #ffff90, inset 0 -2px 5px #ffd05d, 0 0 0 4px rgba(255,255,255,0.65);
+	padding:9px;
+	width:570px;
+}
+
+#search_box .wrapper { 
+	background:#fff; 
+	border:1px solid #d28703;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	-moz-box-shadow:inset 0 1px 2px rgba(0,0,0,.3), 0 1px #ff0; 
+	-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,.3), 0 1px #ff0; 
+	height:50px;
+	padding-left:10px; 
+	position:relative;
+}
+
+#search_box input,
+#search_box input:focus { border:none; color:#333; outline:none; font:bold 24px Helvetica, Arial, sans-serif; margin:12px 0; width:510px; }
+#search_box button {
+	background:-moz-linear-gradient(top, #453e26, #000);
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#453e26), to(#000));
+	border:1px solid #000;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	-moz-box-shadow:inset 0 -2px 3px #193544, inset 0 1px #907817, 0 1px 1px rgba(0,0,0,4);
+	-webkit-box-shadow:inset 0 -2px 3px #193544, inset 0 1px #907817, 0 1px 1px rgba(0,0,0,.4);
+	cursor:pointer;
+	height:45px; 
+	position:absolute; 
+	right:2px; 
+	top:2px; 
+	width:45px;
+}
+
+h1 { margin-bottom:0; }
+.read_article { color:#fff; display:block; font-size:12px; margin-bottom:30px; }
+
+
+</style><script type="text/javascript" src="jobsinclude_data/jquery_minimized_core.js"></script><script type="text/javascript">
+
+
+
+
+	
+	function isImageFile(fileName) {
+	    if (fileName == "") {
+	        return true;
+	    }
+	
+	    var pos = fileName.lastIndexOf(".");
+	    if (pos != -1) {
+	        var ext = fileName.substring(pos + 1, fileName.length).toLowerCase();
+	        return (ext == "doc" || ext == "docx" || ext == "prf" || ext == "txt" || ext == "rtf");
+	    }
+	    return false;
+	}
+
+
+function savedata1(){
+var vemailid=document.fbJobsForm.email.value;
+	  var vfiltercri=document.fbJobsForm.jobFilter.value;
+	  var filename = document.fbJobsForm.resume.value;
+	  if(vemailid == "" || vemailid == null){
+		  alert("Email is required.");
+		  return false;
+	  }
+	  if(vfiltercri == "" || vfiltercri == null){
+		  alert("Criteria is required.");
+		  return false;
+	  }
+
+	if(filename == "" || filename == null){
+			
+		}else{
+
+			if (isImageFile(document.fbJobsForm.resume.value)) {
+	        //do nothing for now;
+	        //return true;
+	    }
+	    else {
+	        alert("Only doc, docx, pdf, txt and rtf supported.");
+	        document.fbJobsForm.resume.value="";
+			return false;
+	    }
+
+		}
+		 
+document.getElementById('progressbartable1').style.display = 'inline'; 
+ var url1 = "/talentnetwork/fbjob.do?method=savefilterout&cn=India&code=IN";
+
+document.fbJobsForm.action =url1;
+		document.fbJobsForm.submit();
+/*
+//dataString = $("#filterdata").serialize();
+$.ajax({
+	type: 'POST',
+  url: url1,
+//data: dataString,
+  success: function(data){
+		document.fbJobsForm.email.value="";
+document.fbJobsForm.jobFilter.value="";
+		alert("Your email is subscribed successfully.");
+ // $('#reguserdatasuccess').html(data);
+	
+  }
+});*/
+}
+
+
+
+
+</script></head>
+
+
+
+
+
+
+
+<body><div id="reguserdatasuccess"><div>
+<br>
+
+<form name="fbJobsForm" method="post" action="/talentnetwork/fbjob.do?method=savefilterout" enctype="multipart/form-data" id="filterdata"><table width="500px">
+<tbody><tr>
+<td valign="top">
+<font color="red">Get Jobs in your email Inbox.</font> (<font color="blue">38774</font> users subscribed.)
+</td>
+</tr>
+<tr>
+<td valign="top">
+Email : <input name="email" maxlength="300" size="40" type="text"></td>
+</tr>
+<tr>
+<td valign="top">
+Job Criteria: <input name="jobFilter" maxlength="300" size="40" type="text"><br>
+<font size="1"> ( Java J2ee etc.)
+
+</font></td>
+</tr>
+<tr>
+<td valign="top">
+Upload Resume : <input name="resume" value="" type="file"></td>
+
+</tr>
+<tr>
+<td valign="top">
+<input class="button" name="save" value="Submit" onclick="savedata1()" type="button">
+<span style="display: none;" id="progressbartable1">
+						<img src="jobsinclude_data/indicator.gif" height="20" width="40">
+						</span>
+</td>
+</tr>
+</tbody></table>
+</form><br>
+
+<table width="500px">
+<tbody><tr>
+<td valign="top">
+<ol class="commentlist group">
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=c6ac1c6d3b1f58c1&amp;search=java%20jsp%20j2ee" target="new"> Software Engineer</a><br>
+		 <font size="2">Skills Java, Apache, Struts, e-Commerce, Oracle... or 
+an MCA Work Exp: 0-2 years Skills: Java, J2EE (JSP/ Servlets/ EJB 3.0), 
+Apache Struts/ JSF 2.0... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">Pinnacle Software Solutions &amp; e-Business Services</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Gurgaon, Haryana</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 1 hour ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=2cd39c7deb4eae3d&amp;search=java%20jsp%20j2ee" target="new"> JAVA Ofbiz</a><br>
+		 <font size="2">rgb JAVA /J2EE DEVELOPER rgb · Involved in web 
+application development In ERP/SCM/CRM/SFA rgb · J2EE rgb... · Java : 
+core java ,advanced java (JDBC), JSP rgb �... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">SR IT Consultancy Services</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Bangalore, Karnataka</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 4 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=95b841ace915aeff&amp;search=java%20jsp%20j2ee" target="new"> Opening with leading IT Company</a><br>
+		 <font size="2">Core Java : Work experience (in years) : 4-5 years... 
+and understanding of Java / J2EE · Hands on Experience on Core Java 1.5,
+ JSP/Servlets, Oracle PL SQL. �... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">T And M Services Consulting Private Limited</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Mumbai, Maharashtra</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 4 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=ddfa4bc3b9969c23&amp;search=java%20jsp%20j2ee" target="new"> Excellent opening for Java Senior Software Engineer with CMMI Level 3 company for Mumbai location</a><br>
+		 <font size="2">opening for Java Senior Software Engineer with CMMi 
+Level 3 company for Mumbai location. Java experience – J2SE and 
+realistically J2EE/serverside coding... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">PES HR Services (Division of AIPL)</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Mumbai, Maharashtra</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 4 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=66beb65bbd5a863c&amp;search=java%20jsp%20j2ee" target="new"> Urgent Openings for Java Professionals @cybage(pune)</a><br>
+		 <font size="2">Skills: Experience in Core Java design and development
+ Experience in J2EE, EJB, JSP, Servlets, XML, XSLT, Struts, Hibernate, 
+Web services and Weblogic. Job... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">Cybage Software Pvt. Ltd.</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Pune, Maharashtra</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 4 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=6394f0e8ca6e1d0f&amp;search=java%20jsp%20j2ee" target="new"> Opening with MPHASIS for Pune location.</a><br>
+		 <font size="2">Java and J2EE technologies color: #222222"&amp;gt; 
+mso-bidi-font-family: Tahoma;color: #222222"&amp;gt;Responsibilities: 
+Core Java, J2EE, XML,Hibernate,Swings,JSP mso... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">Inspiration Manpower Consultancy Private Limited</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Pune, Maharashtra</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 4 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=28e1d6bc0417303c&amp;search=java%20jsp%20j2ee" target="new"> Software Engineer</a><br>
+		 <font size="2">and understanding of Java / J2EE 
+Calibri;mso-fareast... AR-SA"&amp;gt;· Hands on Experience on Core Java 
+1.5, JSP/Servlets, Oracle PL SQL. mso-fareast-font-family... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">T And M Services Consulting Private Limited</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Mumbai, Maharashtra</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 4 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=ae3e79bcfd28be90&amp;search=java%20jsp%20j2ee" target="new"> Sr. Java - JSP, Webdevelopment, J2ee - Hyderabad</a><br>
+		 <font size="2">in JAVA, Sturts, JSP, Webdevelopment, J2ee, Servlets, 
+EJB, Hibernate, Eclipse, MYSQL.Core and Advance Java... ANT, Sturts, 
+JSP, Webdevelopment, J2ee, Servlets, EJB... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">iMomentous Software Pvt Ltd</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Hyderabad, Andhra Pradesh</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 5 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=810e4071ca10b4ae&amp;search=java%20jsp%20j2ee" target="new"> Core java, JSP, servlets Specialists - Pune</a><br>
+		 <font size="2">Job Description: --J2EE (at least exp of 2yrs in any 
+of these: EJB/hibernate/web services/ JMS/SIP/Swings) --Core java, JSP, 
+servlets --Good design experience.<br>
+		<span style="font-size: 12px; background-color: #FF99FF;">Aztecsoft Technologies</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Pune, Maharashtra</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 5 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=58098289a9325ff2&amp;search=java%20jsp%20j2ee" target="new"> Java and J2EE Developers</a><br>
+		 <font size="2">* Experience in JAVA and J2EE. * Flexible to 
+working... products. Desired Profile * Experience in J2EE designs, web 
+servers, JSP, servelt, Junit and Ant and Uml... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">Infowave Technologics Ltd</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Mumbai, Maharashtra</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 5 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=81bed9e089d4900b&amp;search=java%20jsp%20j2ee" target="new"> Software Engineers Java / J2EE</a><br>
+		 <font size="2">Desired Profile: Candidates with strong Java 
+experience of 2 to 4 years in - Core JAVA, J2EE Servlets, JSP and RMI 
+Candidate must have Oracle / SQL Server DB... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">Inuva Soft</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Kolkata, West Bengal</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 5 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=bae7407e54504aa5&amp;search=java%20jsp%20j2ee" target="new"> Java/ J2EE Developers</a><br>
+		 <font size="2">applications using Java and related technologies is 
+a... application servers o Core Java, JSP, Servlets o Core Java, EJB o 
+Core Java, XML Strong database concepts... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">Celestial Technologies</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Hyderabad, Andhra Pradesh</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 5 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=6c6ce1570bc15b1c&amp;search=java%20jsp%20j2ee" target="new"> Java Developer : JSP, Servlet.JDBC,Hibernate : Hyderabad, Andhra Pradesh</a><br>
+		 <font size="2">6 yrs of Experience in Java J2EE Technologies . Job...
+ of Software Development using Java J2EE Technologies. Strong Working 
+knowledge in JSP, Servlet.JDBC... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">Neumeric Technologies</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Hyderabad, Andhra Pradesh</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 5 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=75281b8b0b05b469&amp;search=java%20jsp%20j2ee" target="new"> Core Java / J2EE Developer - Chennai</a><br>
+		 <font size="2">Core Java / J2EE Developer Must Have: Core Java- 
+Swing, RMI, Collections J2EE- JSP, Servlets, EIB Database- Mysql,Oracle 
+or SQL Server API Calls- Development... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">Maples ESM Technologies Ltd</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Chennai, Tamil Nadu</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 5 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		<li class="comment even thread-even depth-1 group" id="li-comment-10053">
+		 <div class="comment-content-others">
+		 <a href="http://www.jobdiesel.com/talentnetwork/fbjobs.do?method=jobdetailsInd&amp;id=1d7e6b9e1a9cc7de&amp;search=java%20jsp%20j2ee" target="new"> Lead designer - Java, J2ee - Hyderabad</a><br>
+		 <font size="2">Should have experience on J2ee development, good... in
+ jsp, servlets, spring, hibernate, EJB, Pl/sql Should handle a team of 
+10 members Keywords: Java, J2ee... <br>
+		<span style="font-size: 12px; background-color: #FF99FF;">Four Soft Ltd</span>
+		<span style="font-size: 12px; background-color: #CCFFCC;">Hyderabad, Andhra Pradesh</span>   <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;"></span> <span style="font-size: 12px; background-color: #CCFFCC;">
+		</span> 
+		 <font color="red">Posted 5 hours ago</font>
+		</font></div></li><font size="2">
+		
+	
+
+	  
+		</font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></ol><font size="2"><font size="2"><font size="2">	
+		<br>
+<a href="http://www.jobdiesel.com/" target="new">More Jobs &gt;&gt; </a>
+	
+</font></font></font></td>
+</tr>
+
+</tbody></table>
+
+<script language="javascript">
+
+
+
+document.getElementById('progressbartable1').style.display = 'none';  
+
+function fbloginwithjobid(jobid) { 
+
+
+ window.top.location = 'https://www.facebook.com/dialog/oauth?client_id=261997787255107&redirect_uri=http://www.jobdiesel.com/talentnetwork/talentnetwork/index.jsp?jobid='+jobid+'_java jsp j2ee&scope=email,user_checkins,user_location,user_work_history,user_education_history,friends_location,friends_work_history,friends_education_history,user_hometown,offline_access&fbconnect=1&_fb_noscript=1';
+          } 
+
+
+
+</script>
+	
+
+	  	
+
+
+	
+
+
+
+
+
+
+
+</div></div></body></html>

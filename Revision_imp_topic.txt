@@ -1,0 +1,36 @@
+Marker interfaces in java
+---------------------------------
+java.io.Serializable
+Clonable
+EventListner
+SingleThreadModel
+RandomAccess
+java.rmi.Remote
+
+Object
+|
+Trowable
+|	|
+Error	Exception
+-VMError	|	| 
+-AssertErr	|	RuntimeException
+	|		|
+	|	-ArithmaticException
+	|	-NullPointerException
+	|	-NumberFormateException
+	|
+	|
+	-IOException
+	-SQL Exception
+		
+
+Nested Inner class :
+
+- static  & non -static
+
+non-static 
+	|
+	-Member Inner class
+	-annonomus class
+	-local class
+

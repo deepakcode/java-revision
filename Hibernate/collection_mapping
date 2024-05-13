@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.scolex.hib.core.onetoone.u">
+
+<class name="Student" table="students">
+<id name="sid" type="int">
+	<generator class="increment">
+</id>
+
+<property name="sname"/>
+<property name="email" type="double" column="emailadd"/>
+
+</class>
+</hibernate-mapping>

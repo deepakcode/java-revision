@@ -1,0 +1,86 @@
+<list?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.scolex.hib.core.onetoone.u">
+<!--table per subclass mapping-->
+<class name="Student" table="mystudents">
+<id name="sid" column="sid" type="int">
+	<generator class="increment">
+</id>
+<property name="sname"/>
+<property name="city"/>
+<property name="status"/>
+<property name="totalfee" type="double"/>
+<joined-subclass name="CurrentStudent" table="csstudent">
+	<key column="sid"/>
+	<property name="feebal" type="double">
+	<property name="timings">
+	<property name="branch">
+		<joined-subclass name="RegularStudent" table="rsstudent">
+		<key column="sid"/>
+		<property name="qualification" type="double"/>
+		<property name="timings"/>
+		<property name="branch"/>
+		</joined-subclass>
+		
+		<joined-subclass name="RegularStudent" table="rsstudent">
+		<key column="sid"/>
+		<property name="qualification" type="double"/>
+		<property name="timings"/>
+		<property name="branch"/>
+		</joined-subclass>
+		
+	</joined-subclass>
+
+</class>
+</hibernate-mapping>
+<!--table per class mapping-->
+table : 
+sid, studentType,sname,city,status,totalfee,- feebal,timing,branch,-company,email,ctc,-qualification,percentage,yoe
+company,email,ctc
+<hibernate-mapping>
+<class name="student" table="myallstudents" discriminator-value="stu">
+<id name="sid" column="sid" type="int">
+<generator class="increment">
+</id>
+<discriminator column="stutype"/>
+<property name="sname">
+..................city....
+..................status....
+.................totalfee...
+<subclass name="CurrentSudent" discriminator-value="currentstudent">
+<property name="feebal"/>
+................timing...
+................branch...
+	<subclass name="RegulrSudent" discriminator-value="regularstudent">
+	<property name="qualification"/>
+	................percentage...
+	................yoe...
+	</subclass>
+	
+	<subclass name="WeekendSudent" discriminator-value="weekendstudent">
+	<property name="company"/>
+	................cemail...
+	................ctc...
+	</subclass>
+</subclass>	
+
+<subclass name="OldSudent" discriminator-value="oldstudent">
+<property name="company"/>
+................cemail...
+................branch...
+.....................
+</subclass>	
+</class>
+<>
+
+
+
+</hibernate-mapping>
+<!--table per  cibcrete class mapping-->
+<hibernate-mapping>
+
+</hibernate-mapping>
+

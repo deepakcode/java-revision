@@ -1,0 +1,309 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <style>
+    html, body{
+      margin:0;
+      padding:0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:12px;
+    }
+
+    div{
+      margin:0;
+      padding:0;
+    }
+
+    #simplereach-slide-element {
+      border: none;
+      padding: 0 30px 2px 0;
+      border-right:none;
+      overflow:visible;
+      background-color:#FFF;
+    }
+
+    #simplereach-slide-header {
+      height:30px;
+    }
+
+    #simplereach-slide-title,#simplereach-slide-help-header {
+      float:left;
+      font-size:10px;
+      font-weight:bold;
+      padding:10px;
+    }
+
+    #simplereach-slide-menu {
+      float:right;
+      width:45px;
+      color:#6F6F6F;
+      font-weight:bold;
+      margin:5px;
+    }
+
+    #simplereach-slide-help-button,#simplereach-slide-close-button,#simplereach-slide-open-button{
+      border:1px solid #EEE;
+      cursor:pointer;
+    }
+
+    #simplereach-slide-help-button {
+      float:left;
+      width:13px;
+      height:15px;
+      padding:2px 0 0 5px;
+    }
+
+    #simplereach-slide-close-button, #simplereach-slide-open-button {
+      float:right;
+      font-size:17px;
+      width:14px;
+      padding-left:4px;
+      height:18px;
+    }
+
+    #simplereach-slide-open-button { display:none; }
+
+    #simplereach-slide-content {
+      height: 35px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      padding: 0 10px;
+      width: 368px;
+    }
+
+    #icon-link {
+      display:none;
+      border:none;
+      float:left;
+      text-decoration:none;
+    }
+
+    #simplereach-slide-image {
+      border:1px solid #999;
+      width:45px;
+      height:45px;
+      margin-right:10px;
+    }
+
+    #simplereach-slide-link{
+      float:left;
+      width:310px;
+      font-size:14px;
+      color:#FE3F10;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    #simplereach-slide-footer{
+      overflow:hidden;
+      margin:0 5px 5px 0;
+      height: 22px;
+    }
+
+    #fb-root,#tw-root,#goog-root,#logo{
+      display:none;
+      padding:1px 0 1px 3px;
+      overflow:visible;
+      float:right;
+      height:20px;
+    }
+
+    #tw-root{
+      width:113px;
+    }
+
+    #fb-root,#goog-root{
+      width:90px;
+    }
+
+    #logo{
+      width:76px;
+    }
+
+    #logo-link img,#logo-f img{
+      border:none;
+    }
+
+    #simplereach-slide-help{
+      display:none;
+      height:105px;
+      clear:both;
+      overflow:hidden;
+    }
+
+    #simplereach-slide-help-header{
+      display:none;
+    }
+
+    #simplereach-slide-help label{
+      display:block;
+      float:left;
+      margin:0 10px;
+    }
+
+    #opt-foot{
+      overflow:hidden;
+      clear:both;
+    }
+
+    #save-btn{
+      float:left;
+    }
+
+    #save{
+      font-size:12px;
+      color:#fff;
+      padding:5px 20px;
+      margin:18px 10px;
+      background-color:#fe3f10;
+      border:1px solid #bf2601;
+      display:block;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    #logo-f{
+      float:right;
+      margin:25px 7px;
+    }
+
+    .fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr {
+      display: none !important;
+    }
+
+  </style>
+  <!--[if lte IE 8]>
+    <style>
+      #simplereach-slide-element{
+        position:absolute;
+        margin:3px 0 0 0;
+        padding-right:6px;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(color='#666666', Direction=315, Strength=8)";
+        filter:progid:DXImageTransform.Microsoft.Shadow(color='#666666', Direction=315, Strength=8);
+        top: 0;
+      }
+
+      #simplereach-slide-help-button{
+        padding:2px 6px;
+      }
+
+      #simplereach-slide-close-button, #simplereach-slide-open-button{
+        padding:0 4px;
+      }
+
+      #simplereach-slide-footer{
+        height:20px;
+      }
+
+      #simplereach-slide-title{
+        padding:8px 10px;
+      }
+
+      #simplereach-slide-menu{
+        margin-top:3px;
+      }
+
+      #simplereach-slide-help label{
+        float:none;
+      }
+
+      #save{
+        margin-top:15px;
+      }
+    </style>
+  <![endif]-->
+  <!--[if lte IE 7]>
+  <style type="text/css">
+    #simplereach-slide-help-button {
+      padding: 2px 4px;
+    }
+    #simplereach-slide-link{width:300px;}
+  </style>
+  <![endif]-->
+  <script src="why-non-static-variable-cannot-be_files/slide.js"></script>
+  <script type="text/javascript">
+    (function() {
+      var start = { right:'-420px', bottom:'0', width:'420px', height:'110px' },
+          shadow = "0px 0px 10px #000",
+          shadowProp = SPR.DOM.getsupportedprop(['boxShadow','MozBoxShadow','WebkitBoxShadow']);
+
+      // start[shadowProp] = shadow;
+      SPR.Slide.fx.start = start;
+    })();
+
+    SPR.Slide.fx.slideIn = [{type: 'right', fx:'bounce', from:-420, to:-30, duration:1.0}];
+
+    SPR.Slide.fx.slideHelp = [{type: 'width', fx:'ease', to:470, duration:0.7},
+                              {type: 'height', fx:'ease', to:135, duration:0.7}];
+
+    SPR.Slide.fx.slideOpen = [{type: 'width', fx:'ease', to:420, duration:0.7},
+                              {type: 'height', fx:'ease', to:110, duration:0.7}];
+
+    SPR.Slide.fx.slideClose = [{type: 'width', fx:'ease', to:300, duration:0.7},
+                              {type: 'height', fx:'ease', to:30, duration:0.7}];
+  </script>
+  <!--[if lte IE 8]>
+  <script type="text/javascript">
+    SPR.Slide.fx.start.bottom = '-5px';
+    SPR.Slide.fx.slideIn = [{type: 'right', fx:'bounce', from:-430, to:0, duration:1.0}];
+  </script>
+  <![endif]-->
+  <script>
+    SPR.XD.send(SPR.Slide.remote, {host: SPR.Slide.domain, hash: SPR.Slide.hash,location: SPR.Slide.location}, 'slide-init', SPR.Slide.fx);
+  </script>
+</head>
+
+<body>
+  <div id="simplereach-slide-element">
+    <div id="simplereach-slide-header">
+      <div id="simplereach-slide-title">RECOMMENDED FOR YOU</div>
+      <div id="simplereach-slide-help-header">OPTIONS</div>
+      <div id="simplereach-slide-menu">
+        <div id="simplereach-slide-help-button">?</div>
+        <div id="simplereach-slide-close-button">×</div>
+        <div id="simplereach-slide-open-button">+</div>
+      </div>
+    </div>
+
+    <div id="simplereach-slide-content">
+      <a href="#" id="icon-link" target="_parent">
+        <img src="" id="simplereach-slide-image">
+      </a>
+
+      <a href="http://javarevisited.blogspot.fr/2012/12/what-is-type-casting-in-java-class-interface-example.html" id="simplereach-slide-link" target="_parent">What is Type Casting in Java  - Casting one Class to other class or interface Example</a>
+    </div>
+
+    <div id="simplereach-slide-footer">
+      <div id="logo" style="display: block;">
+        <a href="http://simplereach.com/?ref=javarevisited.blogspot.in" id="logo-link" target="_blank">
+          <img src="slide_data/slide.gif" alt="The Slide by SimpleReach">
+        </a>
+      </div>
+
+      <div id="simplereach-slide-twitter"><div id="tw-root"></div></div>
+      <div id="simplereach-slide-facebook"><div id="fb-root"></div></div>
+      <div id="simplereach-slide-google"><div id="goog-root"></div></div>
+    </div>
+
+    <div id="simplereach-slide-help">
+      <label>
+        <input checked="checked" id="opt-out-y" name="opt-out" type="radio">
+        <span>I would like to see recommendations from this site.</span>
+      </label>
+      <label>
+        <input id="opt-out-n" name="opt-out" type="radio">
+        <span>I would like to opt out of recommendations (if you clear your cookies you will have to opt-out again)</span>
+      </label>
+      <div id="opt-foot">
+        <div id="save-btn">
+          <button id="save">SAVE</button>
+        </div>
+        <div id="logo-f">
+          <a href="http://simplereach.com/?ref=javarevisited.blogspot.in" id="logo-link-f" target="_blank" style="display:none">
+            <img src="slide_data/slide.gif" alt="The Slide by SimpleReach">
+          </a>
+        </div>
+      </div>
+    </div>
+  <div>
+
+</div></div></body></html>

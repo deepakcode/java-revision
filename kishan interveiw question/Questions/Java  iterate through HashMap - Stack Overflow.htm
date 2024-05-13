@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        
+    <title>Java: iterate through HashMap - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    
+    <script src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/adzerk1_2_4_43adzerk2_2_17_45adzerk3_2_4_44" async="" type="text/javascript"></script><script src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/ga.js" async="" type="text/javascript"></script><script src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/quant.js" async="" type="text/javascript"></script><script type="text/javascript" src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script type="text/javascript" src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/all.css">
+    
+    <meta name="relativepagescore" content="302503">
+    <link rel="canonical" href="http://stackoverflow.com/questions/1066589/java-iterate-through-hashmap">
+    <script type="text/javascript">
+        
+        StackExchange.ready(function () {
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({showAnswerHelp:true,totalCommentCount:5,shownCommentCount:5,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:1066589});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '1066589');
+            
+                
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        StackExchange.init({"stackAuthUrl":"https://stackauth.com","serverTime":1363090093,"styleCode":true,"enableUserHovercards":true,"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","enableSocialMediaInSharePopup":true,"useNewImageUploader":true},"user":{"fkey":"a490e524a73a539e3e67e7dab0f8dca5","isAnonymous":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.js":"c862bf93b3ec","js/moderator.js":"81010b001b1a","js/full-anon.js":"f2e5223c76a0","js/full.js":"6c690b307479","js/wmd.js":"440e70aef0df","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/mobile.js":"6eb68240242f","js/help.js":"fc9fb0517db2","js/tageditor.js":"450c9e8426fc","js/tageditornew.js":"b6c68ad4c7dd","js/inline-tag-editing.js":"8e84e8a137f7","js/revisions.js":"7273bb714bba","js/review.js":"51a50e83c754","js/tagsuggestions.js":"aa48ef6154df","js/post-validation.js":"c7212bad9b79"});
+        
+    </script>
+
+
+    <script type="text/javascript">
+        StackExchange.using(
+            "gps",
+            function () {
+                StackExchange.gps.init(false);
+            }
+        );
+    </script>
+
+<script src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/full-anon.js" type="text/javascript" async=""></script><script src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/post-validation.js" type="text/javascript" async=""></script><script src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/prettify-full.js" type="text/javascript" async=""></script><script src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/adFeedback.js" type="text/javascript"></script><link href="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/adFeedback.css" rel="stylesheet"><link rel="stylesheet" type="text/css" href="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/sidebar.css"></head>
+<body class="question-page">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+    <div class="container">
+        <div id="header">
+            <div id="portalLink">
+                <a class="genu" onclick="StackExchange.ready(function(){genuwine.click();});return false;">Stack Exchange</a>
+            </div>
+            <div id="topbar">
+                <div id="hlinks">
+                    
+
+
+
+
+
+
+
+
+
+<span id="hlinks-user">
+
+</span>
+<span id="hlinks-nav">
+                   <a href="http://stackoverflow.com/users/login?returnurl=%2fquestions%2f1066589%2fjava-iterate-through-hashmap">log in</a>
+
+ <span class="lsep">|</span>
+                    <a href="http://careers.stackoverflow.com/">careers 2.0</a>
+
+ <span class="lsep">|</span>
+
+</span>
+<span id="hlinks-custom">
+        <a href="http://chat.stackoverflow.com/">chat</a>
+
+ <span class="lsep">|</span>
+            <a href="http://meta.stackoverflow.com/">meta</a>
+
+ <span class="lsep">|</span>
+        <a href="http://stackoverflow.com/about">about</a>
+
+ <span class="lsep">|</span>
+    <a href="http://stackoverflow.com/faq">faq</a>
+
+</span>
+                </div>
+                <div id="hsearch">
+                    <form id="search" action="/search" method="get" autocomplete="off">
+                    <div>
+                        <input autocomplete="off" name="q" class="textbox" placeholder="search" tabindex="1" maxlength="240" size="28" type="text">
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">Stack Overflow</a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+
+        <div id="content">
+            
+
+<div itemscope="" itemtype="http://schema.org/Article">
+<link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+<div id="question-header">
+    <h1 itemprop="name"><a href="http://stackoverflow.com/questions/1066589/java-iterate-through-hashmap" class="question-hyperlink">Java: iterate through HashMap [duplicate]</a></h1>
+</div>
+<div id="mainbar">
+
+
+
+<div class="question" data-questionid="1066589" id="question">
+    
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1"><a href="http://engine.adzerk.net/r?e=eyJ0cyI6MTM2MzA3Njg3NDc4NSwiYXYiOjQxNCwiYXQiOjQsImNtIjoyOTExLCJjaCI6MTE3OCwiY3IiOjU5MTksImRtIjoxLCJmYyI6MTAxODQsImZsIjo3NDcyLCJrdyI6ImphdmEsaGFzaG1hcCIsIm53IjoyMiwicmYiOiJodHRwOi8vd3d3Lmdvb2dsZS5jby5pbi91cmw_c2E9dCIsInJ2IjowLCJwciI6MTYwNCwic3QiOjgyNzcsInpuIjo0MywiZGkiOiIwZTk1YjYyM2I3N2E0MDljODAyZWRlNDQxMjBlMWY0MiIsInVyIjoiaHR0cDovL2NhcmVlcnMuc3RhY2tvdmVyZmxvdy5jb20vIn0&amp;s=1tLXQgMuj4pRGYSF0YgVhayxdYo" rel="nofollow" target="_blank" title=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/4c4f1be011a447efbce49c1811022e7a.png" title="" alt="" border="0" height="90" width="728"></a><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/i_003.gif" height="0px" width="0px"></div>
+
+
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="1066589" type="hidden">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear (click again to undo)">up vote</a>
+    <span class="vote-count-post ">412</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful (click again to undo)">down vote</a>
+    
+    <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b>200</b></div>   
+
+ 
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="description">
+        <blockquote>
+  <p><strong>Possible Duplicate:</strong><br>
+  <a href="http://stackoverflow.com/questions/46898/how-do-i-iterate-over-each-entry-in-a-collection-map">How do I iterate over each Entry in a Collection Map?</a>  </p>
+</blockquote>
+
+
+
+<p>What is the best way to iterate through a <code>HashMap</code>?</p>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/hashmap" class="post-tag" title="show questions tagged 'hashmap'" rel="tag">hashmap</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/q/1066589" title="short permalink to this question" class="short-link" id="link-post-1066589">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1066589/edit" class="suggest-edit-post" title="">improve this question</a></div>            </td>
+    <td class="post-signature" align="right">
+
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                            edited
+                             <a href="http://stackoverflow.com/posts/1066589/revisions" title="show all edits to this post"><span title="2011-12-08 14:31:45Z" class="relativetime">Dec 8 '11 at 14:31</span></a>
+
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/738746/bhesh-gurung"><div class=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/7d260ddfd470d93200b58a8dcf9bc313.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/738746/bhesh-gurung">Bhesh Gurung</a><br>
+            <span class="reputation-score" title="reputation score 14936" dir="ltr">14.9k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="15 silver badges"><span class="badge2"></span><span class="badgecount">15</span></span><span title="46 bronze badges"><span class="badge3"></span><span class="badgecount">46</span></span>
+        </div>
+    </div>
+    </td>
+    <td class="post-signature owner">
+        
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                    asked
+ <span title="2009-06-30 23:24:14Z" class="relativetime">Jun 30 '09 at 23:24</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/84916/burntsugar"><div class=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/25711b9a8703fd83f2838a665447dcc4.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/84916/burntsugar">burntsugar</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">2,870</span><span title="11 gold badges"><span class="badge1"></span><span class="badgecount">11</span></span><span title="18 silver badges"><span class="badge2"></span><span class="badgecount">18</span></span><span title="33 bronze badges"><span class="badge3"></span><span class="badgecount">33</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-1066589" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-878958" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="warm">7</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">In what way "best" and trying to achieve exactly what?</span> –&nbsp;<a href="http://stackoverflow.com/users/4725/tom-hawtin-tackline" title="63949 reputation" class="comment-user">Tom Hawtin - tackline</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(878958, 0)" href="#comment878958_1066589"><span title="2009-06-30 23:55:07Z" class="relativetime-clean">Jun 30 '09 at 23:55</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-878962" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="warm">6</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">And why HashMap, not just any old Map?</span> –&nbsp;<a href="http://stackoverflow.com/users/4725/tom-hawtin-tackline" title="63949 reputation" class="comment-user">Tom Hawtin - tackline</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(878962, 0)" href="#comment878962_1066589"><span title="2009-06-30 23:55:41Z" class="relativetime-clean">Jun 30 '09 at 23:55</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-878987" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">I need to get the keys and values and add them to a multidimensional array</span> –&nbsp;<a href="http://stackoverflow.com/users/84916/burntsugar" title="2870 reputation" class="comment-user owner">burntsugar</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(878987, 0)" href="#comment878987_1066589"><span title="2009-07-01 00:05:54Z" class="relativetime-clean">Jul 1 '09 at 0:05</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-4672704" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">yes this is duplicate</span> –&nbsp;<a href="http://stackoverflow.com/users/37298/shervin" title="6466 reputation" class="comment-user">Shervin</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(4672704, 0)" href="#comment4672704_1066589"><span title="2010-11-29 13:19:56Z" class="relativetime-clean">Nov 29 '10 at 13:19</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-5432031" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Want to 'sorted keys' or 'sorted values' to the quetsion ...</span> –&nbsp;<a href="http://stackoverflow.com/users/414441/vardhan-varma" title="1629 reputation" class="comment-user">Vardhan Varma</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(5432031, 0)" href="#comment5432031_1066589"><span title="2011-02-03 08:10:58Z" class="relativetime-clean">Feb 3 '11 at 8:10</span></a></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>            </tbody></table>    
+</div>
+
+
+    <div class="question-status">
+        <h2><strong>marked</strong> as duplicate by <a href="http://stackoverflow.com/users/552792/jmort253">jmort253</a>, <a href="http://stackoverflow.com/users/50776/casperone">casperOne</a><span class="mod-flair" title="moderator">♦</span> <span title="2012-01-10 21:09:48Z" class="relativetime">Jan 10 '12 at 21:09</span></h2>
+        <p>This question has been asked before and already has an answer.
+If those answers do not fully address your question, please <a href="http://stackoverflow.com/questions/ask">ask a new question</a>.</p>
+    </div>
+    
+
+
+<div id="answers">
+
+    <a name="tab-top"></a>
+    <div id="answers-header">
+        <div class="subheader answers-subheader">
+            <h2>
+                    7 Answers
+            </h2>
+            <div id="tabs">
+                <a href="http://stackoverflow.com/questions/1066589/java-iterate-through-hashmap?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+<a href="http://stackoverflow.com/questions/1066589/java-iterate-through-hashmap?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+<a class="youarehere" href="http://stackoverflow.com/questions/1066589/java-iterate-through-hashmap?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+
+            </div>
+        </div>    
+    </div>    
+
+
+
+
+  
+<a name="1066603"></a>
+<div id="answer-1066603" class="answer accepted-answer" data-answerid="1066603">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="1066603" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">395</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+            <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+ 
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>Iterate through the <a href="http://www.java2s.com/Code/JavaAPI/java.util/HashtableentrySet.htm"><code>entrySet</code></a> like so:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> printMap</span><span class="pun">(</span><span class="typ">Map</span><span class="pln"> mp</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Iterator</span><span class="pln"> it </span><span class="pun">=</span><span class="pln"> mp</span><span class="pun">.</span><span class="pln">entrySet</span><span class="pun">().</span><span class="pln">iterator</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">while</span><span class="pln"> </span><span class="pun">(</span><span class="pln">it</span><span class="pun">.</span><span class="pln">hasNext</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pln"> pairs </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pun">)</span><span class="pln">it</span><span class="pun">.</span><span class="pln">next</span><span class="pun">();</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">pairs</span><span class="pun">.</span><span class="pln">getKey</span><span class="pun">()</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> pairs</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">());</span><span class="pln">
+        it</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">();</span><span class="pln"> </span><span class="com">// avoids a ConcurrentModificationException</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Read more on <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Map.html"><code>Map</code></a></p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/1066603" title="short permalink to this answer" class="short-link" id="link-post-1066603">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1066603/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                            edited
+                             <a href="http://stackoverflow.com/posts/1066603/revisions" title="show all edits to this post"><span title="2011-12-08 14:30:12Z" class="relativetime">Dec 8 '11 at 14:30</span></a>
+
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/738746/bhesh-gurung"><div class=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/7d260ddfd470d93200b58a8dcf9bc313.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/738746/bhesh-gurung">Bhesh Gurung</a><br>
+            <span class="reputation-score" title="reputation score 14936" dir="ltr">14.9k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="15 silver badges"><span class="badge2"></span><span class="badgecount">15</span></span><span title="46 bronze badges"><span class="badge3"></span><span class="badgecount">46</span></span>
+        </div>
+    </div>
+    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                                    answered
+ <span title="2009-06-30 23:27:25Z" class="relativetime">Jun 30 '09 at 23:27</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/70393/karim79"><div class="gravatar-wrapper-32"><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/3v2xo.jpg" alt=""></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/70393/karim79">karim79</a><br>
+            <span class="reputation-score" title="reputation score 125723" dir="ltr">126k</span><span title="17 gold badges"><span class="badge1"></span><span class="badgecount">17</span></span><span title="176 silver badges"><span class="badge2"></span><span class="badgecount">176</span></span><span title="212 bronze badges"><span class="badge3"></span><span class="badgecount">212</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-1066603" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-4872024" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="warm">6</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">Though 
+old style, this will help avoid ConcurrentModificationExceptions over 
+the new foreach style in the answers below.  You can for instance remove
+ via the seperate iterator.</span> –&nbsp;<a href="http://stackoverflow.com/users/247573/benjamin-wootton" title="925 reputation" class="comment-user">Benjamin Wootton</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(4872024, 1066603)" href="#comment4872024_1066603"><span title="2010-12-16 09:22:02Z" class="relativetime-clean">Dec 16 '10 at 9:22</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-9625527" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="supernova">37</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">@karim79 what do you think about the following way: <code>Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, Integer&gt;();
+for (Map.Entry&lt;Integer, Integer&gt; entry : map.entrySet()) {
+    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+}</code></span> –&nbsp;<a href="http://stackoverflow.com/users/1000194/fresh-dev" title="677 reputation" class="comment-user">fresh_dev</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(9625527, 1066603)" href="#comment9625527_1066603"><span title="2011-10-25 08:56:58Z" class="relativetime-clean">Oct 25 '11 at 8:56</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-10980396" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="cool">1</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">by 
+calling 'it.remove(); ' you are emptying the map making it not reusable 
+if this map was a class variable. Do you have any solution to that?</span> –&nbsp;<a href="http://stackoverflow.com/users/540128/vimukthi" title="445 reputation" class="comment-user">vimukthi</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(10980396, 1066603)" href="#comment10980396_1066603"><span title="2012-01-10 09:47:08Z" class="relativetime-clean">Jan 10 '12 at 9:47</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-11315538" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="cool">4</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">@vimukthi what do you mean a solution to that? Just remove the <code>it.remove();</code> line.</span> –&nbsp;<a href="http://stackoverflow.com/users/597419/danny" title="1428 reputation" class="comment-user">Danny</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(11315538, 1066603)" href="#comment11315538_1066603"><span title="2012-01-26 19:07:51Z" class="relativetime-clean">Jan 26 '12 at 19:07</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-11350809" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="warm">8</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">The for <code>(Map.Entry&lt;String, Object&gt; cursor : map.entrySet()) {...}</code> syntax is much better.</span> –&nbsp;<a href="http://stackoverflow.com/users/48839/chad-okere" title="2852 reputation" class="comment-user">Chad Okere</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(11350809, 1066603)" href="#comment11350809_1066603"><span title="2012-01-28 17:29:43Z" class="relativetime-clean">Jan 28 '12 at 17:29</span></a></span><span class="edited-yes" title="this comment was edited"></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    <a id="comments-link-1066603" class="comments-link" data-comments-count="2" title="expand to show all comments on this post">show <b>2</b> more comments</a>
+</td>
+</tr>
+   
+    
+    </tbody></table>
+</div>
+        <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk3"><a href="http://engine.adzerk.net/r?e=eyJ0cyI6MTM2MzA3Njg3NDc4OCwiYXYiOjQxNCwiYXQiOjQsImNtIjo4NDcsImNoIjoxMTc4LCJjciI6NTkxOSwiZG0iOjEsImZjIjo4ODA1LCJmbCI6MjQ0NCwia3ciOiJqYXZhLGhhc2htYXAiLCJudyI6MjIsInJmIjoiaHR0cDovL3d3dy5nb29nbGUuY28uaW4vdXJsP3NhPXQiLCJydiI6MCwicHIiOjE1NjgsInN0Ijo4Mjc3LCJ6biI6NDQsImRpIjoiMmE4Y2MxZWI5YmJlNDlkY2FlODlmZTI4Y2U4YjZhZWIiLCJ1ciI6Imh0dHA6Ly9jYXJlZXJzLnN0YWNrb3ZlcmZsb3cuY29tLyJ9&amp;s=qNOwPzvcubphbo2gIg_G0T1hRR8" rel="nofollow" target="_blank" title=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/4c4f1be011a447efbce49c1811022e7a.png" title="" alt="" border="0" height="90" width="728"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/i_002.gif" height="0px" width="0px"></div>
+
+
+
+  
+<a name="1066607"></a>
+<div id="answer-1066607" class="answer" data-answerid="1066607">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="1066607" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">773</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+ 
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>If you're only interested in the keys, you can iterate through the <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html#keySet%28%29"><code>keySet()</code></a> of the map:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Map</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln"> map </span><span class="pun">=</span><span class="pln"> </span><span class="pun">...;</span><span class="pln">
+
+</span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">String</span><span class="pln"> key </span><span class="pun">:</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">keySet</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// ...</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>If you only need the values, use <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html#values%28%29"><code>values()</code></a>:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Object</span><span class="pln"> value </span><span class="pun">:</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">values</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// ...</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Finally, if you want both the key and value, use <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html#entrySet%28%29"><code>entrySet()</code></a>:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln"> entry </span><span class="pun">:</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">entrySet</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">String</span><span class="pln"> key </span><span class="pun">=</span><span class="pln"> entry</span><span class="pun">.</span><span class="pln">getKey</span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">Object</span><span class="pln"> value </span><span class="pun">=</span><span class="pln"> entry</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">();</span><span class="pln">
+    </span><span class="com">// ...</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>One caveat: if you want to remove items mid-iteration, you'll need to do so via an Iterator (see <a href="http://stackoverflow.com/questions/1066589/java-iterate-through-hashmap/1066603#1066603">karim79's answer</a>). However, changing item values is OK (see <a href="http://download.oracle.com/javase/6/docs/api/java/util/Map.Entry.html"><code>Map.Entry</code></a>).</p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/1066607" title="short permalink to this answer" class="short-link" id="link-post-1066607">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1066607/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                            edited
+                             <a href="http://stackoverflow.com/posts/1066607/revisions" title="show all edits to this post"><span title="2011-10-05 23:13:30Z" class="relativetime">Oct 5 '11 at 23:13</span></a>
+
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/32453/rogerdpack"><div class=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/9887130ab70f6e66b50f2c5e19272c67.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/32453/rogerdpack">rogerdpack</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">7,642</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="27 silver badges"><span class="badge2"></span><span class="badgecount">27</span></span><span title="35 bronze badges"><span class="badge3"></span><span class="badgecount">35</span></span>
+        </div>
+    </div>
+    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                                    answered
+ <span title="2009-06-30 23:28:27Z" class="relativetime">Jun 30 '09 at 23:28</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/86463/harto"><div class=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/7f3df7269d897d0e9798b29cbe768ebc.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/86463/harto">harto</a><br>
+            <span class="reputation-score" title="reputation score 14656" dir="ltr">14.7k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="18 silver badges"><span class="badge2"></span><span class="badgecount">18</span></span><span title="44 bronze badges"><span class="badge3"></span><span class="badgecount">44</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-1066607" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-878887" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="hot">18</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">According to the documentation, it's more efficient to iterate through the entrySet.</span> –&nbsp;<a href="http://stackoverflow.com/users/10165/chochos" title="3009 reputation" class="comment-user">Chochos</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(878887, 1066607)" href="#comment878887_1066607"><span title="2009-06-30 23:29:25Z" class="relativetime-clean">Jun 30 '09 at 23:29</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-878904" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">@Chochos thanks - updated accordingly.</span> –&nbsp;<a href="http://stackoverflow.com/users/86463/harto" title="14656 reputation" class="comment-user">harto</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(878904, 1066607)" href="#comment878904_1066607"><span title="2009-06-30 23:33:39Z" class="relativetime-clean">Jun 30 '09 at 23:33</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-878921" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="warm">10</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">+1. I've deleted my post, since you've extended yours. :)</span> –&nbsp;<a href="http://stackoverflow.com/users/73772/emil-h" title="18998 reputation" class="comment-user">Emil H</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(878921, 1066607)" href="#comment878921_1066607"><span title="2009-06-30 23:43:28Z" class="relativetime-clean">Jun 30 '09 at 23:43</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-6619920" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="supernova">39</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">+1 This should be the accepted answer.</span> –&nbsp;<a href="http://stackoverflow.com/users/238033/gnarly" title="499 reputation" class="comment-user">gnarly</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(6619920, 1066607)" href="#comment6619920_1066607"><span title="2011-04-25 10:30:45Z" class="relativetime-clean">Apr 25 '11 at 10:30</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-9320128" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="cool">2</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">It's 
+only more efficient to use entrySet when you need both keys and values. 
+ If you only need one or the other then just use that one: <a href="http://stackoverflow.com/questions/3870064/performance-considerations-for-keyset-and-entryset-of-map/6927754#6927754" title="performance considerations for keyset and entryset of map">stackoverflow.com/questions/3870064/…</a></span> –&nbsp;<a href="http://stackoverflow.com/users/32453/rogerdpack" title="7642 reputation" class="comment-user">rogerdpack</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(9320128, 1066607)" href="#comment9320128_1066607"><span title="2011-10-05 23:14:32Z" class="relativetime-clean">Oct 5 '11 at 23:14</span></a></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    <a id="comments-link-1066607" class="comments-link" data-comments-count="3" title="expand to show all comments on this post">show <b>3</b> more comments</a>
+</td>
+</tr>
+   
+    
+    </tbody></table>
+</div>
+
+  
+<a name="8432400"></a>
+<div id="answer-8432400" class="answer" data-answerid="8432400">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="8432400" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">71</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+ 
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>Extracted from Reference link: <a href="http://www.sergiy.ca/how-to-iterate-over-a-map-in-java">How to Iterate Over a Map in Java</a></p>
+
+<p>There are several ways of iterating over a <code>Map</code> in Java. 
+Lets go over the most common methods and review their advantages and 
+disadvantages. Since all maps in Java implement Map interface, following
+ techniques will work for any map implementation (<code>HashMap</code>, <code>TreeMap</code>, <code>LinkedHashMap</code>, <code>Hashtable</code>, etc.)</p>
+
+<p><strong>Method #1</strong>: Iterating over entries using For-Each loop.</p>
+
+<p>This is the most common method and is preferable in most cases. Should be used if you need both map keys and values in the loop.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Map</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> map </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">HashMap</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;();</span><span class="pln">
+</span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> entry </span><span class="pun">:</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">entrySet</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Key = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> entry</span><span class="pun">.</span><span class="pln">getKey</span><span class="pun">()</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">", Value = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> entry</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Note that For-Each loop was introduced in Java 5 so this method is 
+working only in newer versions of the language. Also For-Each loop will 
+throw <code>NullPointerException</code> if you try to iterate over a map that is null, so before iterating you should always check for null references.</p>
+
+<p><strong>Method #2</strong>: Iterating over keys or values using For-Each loop.</p>
+
+<p>If you need only keys or values from the map, you can iterate over keySet or values instead of entrySet.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Map</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> map </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">HashMap</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;();</span><span class="pln">
+
+</span><span class="com">//iterating over keys only</span><span class="pln">
+</span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Integer</span><span class="pln"> key </span><span class="pun">:</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">keySet</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Key = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> key</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="com">//iterating over values only</span><span class="pln">
+</span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Integer</span><span class="pln"> value </span><span class="pun">:</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">values</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Value = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> value</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>This method gives slight performance advantage over <code>entrySet</code> iteration (about 10% faster) and is more clean.</p>
+
+<p><strong>Method #3</strong>: Iterating using Iterator.</p>
+
+<p>Using Generics:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Map</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> map </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">HashMap</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;();</span><span class="pln">
+</span><span class="typ">Iterator</span><span class="pun">&lt;</span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;&gt;</span><span class="pln"> entries </span><span class="pun">=</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">entrySet</span><span class="pun">().</span><span class="pln">iterator</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">while</span><span class="pln"> </span><span class="pun">(</span><span class="pln">entries</span><span class="pun">.</span><span class="pln">hasNext</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> entry </span><span class="pun">=</span><span class="pln"> entries</span><span class="pun">.</span><span class="pln">next</span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Key = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> entry</span><span class="pun">.</span><span class="pln">getKey</span><span class="pun">()</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">", Value = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> entry</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Without Generics:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Map</span><span class="pln"> map </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">HashMap</span><span class="pun">();</span><span class="pln">
+</span><span class="typ">Iterator</span><span class="pln"> entries </span><span class="pun">=</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">entrySet</span><span class="pun">().</span><span class="pln">iterator</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">while</span><span class="pln"> </span><span class="pun">(</span><span class="pln">entries</span><span class="pun">.</span><span class="pln">hasNext</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pln"> entry </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pun">)</span><span class="pln"> entries</span><span class="pun">.</span><span class="pln">next</span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">Integer</span><span class="pln"> key </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Integer</span><span class="pun">)</span><span class="pln">entry</span><span class="pun">.</span><span class="pln">getKey</span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">Integer</span><span class="pln"> value </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Integer</span><span class="pun">)</span><span class="pln">entry</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Key = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> key </span><span class="pun">+</span><span class="pln"> </span><span class="str">", Value = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> value</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>You can also use same technique to iterate over <code>keySet</code> or values.</p>
+
+<p>This method might look redundant but it has its own advantages. First
+ of all it is the only way to iterate over a map in older versions of 
+Java. The other important feature is that it is the only method that 
+allows you to remove entries from the map during iteration by calling 
+iterator.remove(). If you try to do this during For-Each iteration you 
+will get "unpredictable results" according to javadoc.</p>
+
+<p>From performance point of view this method is equal to For-Each iteration.</p>
+
+<p><strong>Method #4</strong>: Iterating over keys and searching for values (inefficient).</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Map</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> map </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">HashMap</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">&gt;();</span><span class="pln">
+</span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Integer</span><span class="pln"> key </span><span class="pun">:</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">keySet</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Integer</span><span class="pln"> value </span><span class="pun">=</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">get</span><span class="pun">(</span><span class="pln">key</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Key = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> key </span><span class="pun">+</span><span class="pln"> </span><span class="str">", Value = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> value</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>This might look like a cleaner alternative for method #1 but in 
+practice it is pretty slow and inefficient as getting values by a key 
+might be time consuming (this method in different Map implementations is
+ 20%-200% slower than method #1). If you have FindBugs installed, it 
+will detect this and warn you about inefficient iteration. This method 
+should be avoided.</p>
+
+<p>Conclusion</p>
+
+<p>If you need only keys or values from the map use method #2. If you 
+are stuck with older version of Java (less than 5) or planning to remove
+ entries during iteration you have to use method #3. Otherwise use 
+method #1.</p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/8432400" title="short permalink to this answer" class="short-link" id="link-post-8432400">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/8432400/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                            edited
+                             <a href="http://stackoverflow.com/posts/8432400/revisions" title="show all edits to this post"><span title="2011-12-08 14:28:26Z" class="relativetime">Dec 8 '11 at 14:28</span></a>
+
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/738746/bhesh-gurung"><div class=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/7d260ddfd470d93200b58a8dcf9bc313.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/738746/bhesh-gurung">Bhesh Gurung</a><br>
+            <span class="reputation-score" title="reputation score 14936" dir="ltr">14.9k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="15 silver badges"><span class="badge2"></span><span class="badgecount">15</span></span><span title="46 bronze badges"><span class="badge3"></span><span class="badgecount">46</span></span>
+        </div>
+    </div>
+    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                    answered
+ <span title="2011-12-08 14:19:20Z" class="relativetime">Dec 8 '11 at 14:19</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/1087918/arvind"><div class=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/8370c8c0859447b1a297308c5d5ee5e1.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/1087918/arvind">arvind</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">711</span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-8432400" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-19925178" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">+1 This should be the accepted answer</span> –&nbsp;<a href="http://stackoverflow.com/users/24949/sudar" title="1938 reputation" class="comment-user">Sudar</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(19925178, 8432400)" href="#comment19925178_8432400"><span title="2013-01-15 10:53:16Z" class="relativetime-clean">Jan 15 at 10:53</span></a></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+   
+    
+    </tbody></table>
+</div>
+
+  
+<a name="3457226"></a>
+<div id="answer-3457226" class="answer" data-answerid="3457226">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="3457226" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">22</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+ 
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>Smarter:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">String</span><span class="pln"> key </span><span class="pun">:</span><span class="pln"> hashMap</span><span class="pun">.</span><span class="pln">keySet</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Key: "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> key </span><span class="pun">+</span><span class="pln"> </span><span class="str">", Value: "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">get</span><span class="pun">(</span><span class="pln">key</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/3457226" title="short permalink to this answer" class="short-link" id="link-post-3457226">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/3457226/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                    answered
+ <span title="2010-08-11 10:01:04Z" class="relativetime">Aug 11 '10 at 10:01</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/417084/jkarretero"><div class=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/d4945cbb1901b353aa90b0b636895a97.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/417084/jkarretero">jkarretero</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">239</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-3457226" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-9319744" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="cool">4</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">this 
+actually depends on whether or not you need the keys.  if not, it's more
+ efficient to use entrySet() as hashCode() does not get called.</span> –&nbsp;<a href="http://stackoverflow.com/users/542395/icfantv" title="174 reputation" class="comment-user">icfantv</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(9319744, 3457226)" href="#comment9319744_3457226"><span title="2011-10-05 22:33:49Z" class="relativetime-clean">Oct 5 '11 at 22:33</span></a></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+   
+    
+    </tbody></table>
+</div>
+
+  
+<a name="1066654"></a>
+<div id="answer-1066654" class="answer" data-answerid="1066654">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="1066654" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">14</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+ 
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>You can iterate through the entries in a <a href="http://java.sun.com/javase/6/docs/api/java/util/Map.html">Map</a> in several ways. Getting each key and value like this:    </p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Map</span><span class="pun">&lt;?,?&gt;</span><span class="pln"> map </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">HashMap</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">&gt;();</span><span class="pln">
+</span><span class="kwd">for</span><span class="pun">(</span><span class="typ">Entry</span><span class="pun">&lt;?,</span><span class="pln"> </span><span class="pun">?&gt;</span><span class="pln"> e</span><span class="pun">:</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">entrySet</span><span class="pun">()){</span><span class="pln">
+	</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Key "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">getKey</span><span class="pun">());</span><span class="pln">
+	</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Value "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Or you can get the list of keys with</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Collection</span><span class="pun">&lt;?&gt;</span><span class="pln"> keys </span><span class="pun">=</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">keySet</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">for</span><span class="pun">(</span><span class="typ">Object</span><span class="pln"> key</span><span class="pun">:</span><span class="pln"> keys</span><span class="pun">){</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Key "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> key</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Value "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">get</span><span class="pun">(</span><span class="pln">key</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>If you just want to get all of the values, and aren't concerned with the keys, you can use:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="typ">Collection</span><span class="pun">&lt;?&gt;</span><span class="pln"> values </span><span class="pun">=</span><span class="pln"> map</span><span class="pun">.</span><span class="pln">values</span><span class="pun">();</span></code></pre>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/1066654" title="short permalink to this answer" class="short-link" id="link-post-1066654">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1066654/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                    answered
+ <span title="2009-06-30 23:43:21Z" class="relativetime">Jun 30 '09 at 23:43</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/130516/cyates"><div class=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/fc7ce8b920e2b948c658afd3a18125d9.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/130516/cyates">cyates</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">519</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-1066654" class="comments dno">
+        <table>
+        <tbody>
+        
+            <tr><td></td><td></td></tr>
+        
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+   
+    
+    </tbody></table>
+</div>
+
+  
+<a name="6797672"></a>
+<div id="answer-6797672" class="answer" data-answerid="6797672">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="6797672" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">5</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+ 
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> item </span><span class="pun">:</span><span class="pln"> params</span><span class="pun">.</span><span class="pln">entrySet</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> key </span><span class="pun">=</span><span class="pln"> item</span><span class="pun">.</span><span class="pln">getKey</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">String</span><span class="pln"> value </span><span class="pun">=</span><span class="pln"> item</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/6797672" title="short permalink to this answer" class="short-link" id="link-post-6797672">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/6797672/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                    answered
+ <span title="2011-07-23 01:28:51Z" class="relativetime">Jul 23 '11 at 1:28</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/838228/gabor"><div class=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/65040e3cb750f3035553290dcc8feede.jpg" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/838228/gabor">gabor</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">222</span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="9 bronze badges"><span class="badge3"></span><span class="badgecount">9</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-6797672" class="comments dno">
+        <table>
+        <tbody>
+        
+            <tr><td></td><td></td></tr>
+        
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+   
+    
+    </tbody></table>
+</div>
+
+  
+<a name="1066614"></a>
+<div id="answer-1066614" class="answer" data-answerid="1066614">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="1066614" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">3</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+ 
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>Depends. If you know you're going to need 
+both the key and the value of every entry, then go through the entrySet.
+ If you just need the values, then there's the values() method. And if 
+you just need the keys, then use keyset().
+A bad practice would be to iterate through all of the keys, and then 
+within the loop, always do map.get(key) to get the value. If you're 
+doing that, then the first option I wrote is for you.</p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/1066614" title="short permalink to this answer" class="short-link" id="link-post-1066614">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1066614/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                    answered
+ <span title="2009-06-30 23:29:10Z" class="relativetime">Jun 30 '09 at 23:29</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/17967/gary-kephart"><div class=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/e01de5ecac09ce74630607127ba2a993.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/17967/gary-kephart">Gary Kephart</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">1,572</span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="33 bronze badges"><span class="badge3"></span><span class="badgecount">33</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-1066614" class="comments dno">
+        <table>
+        <tbody>
+        
+            <tr><td></td><td></td></tr>
+        
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+   
+    
+    </tbody></table>
+</div>
+
+
+
+        <h2 class="bottom-notice">
+                Not the answer you're looking for? 
+            Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/hashmap" class="post-tag" title="show questions tagged 'hashmap'" rel="tag">hashmap</a> 
+                or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.
+        </h2>
+</div>
+</div>
+<div id="sidebar">
+
+
+
+     <script type="text/javascript">
+        window.showNewUser = true;
+
+            
+                (function(){
+                    var cs = window.sessionStorage && window.sessionStorage['tNewsletter'];
+                    var m = /:\/\/([^\/]*)/.exec(document.referrer);
+                    var h = {'www.reddit.com':1,'news.ycombinator.com':1};
+                    if(window.sessionStorage && (cs || (m && m.length == 2 && h[m[1]]))){
+                        showNewUser = false;
+                        StackExchange.ready(function(){
+                            StackExchange.newsletterAd.loader(m[1], cs);
+                        });
+                    }
+                    if (window.localStorage && showNewUser){
+                        var c = parseInt(localStorage['nuCounter'],10); 
+                        c = isNaN(c) ? 1 : c+1;
+                        window.localStorage['nuCounter'] = c; 
+                        showNewUser = c < 10;
+                    }
+                })()
+            
+     </script>
+    <div class="module newuser newuser-greeting" id="newuser-box" style="display:none;">
+        <h4>Hello World!</h4>
+        <div>
+            <p>This is a collaboratively edited question and answer site for <b>professional and enthusiast programmers</b>. It's 100% free, no registration required.</p>
+            <p class="ar">
+                    <a href="http://stackoverflow.com/about?mnu=1">about »</a>&nbsp;&nbsp;&nbsp;
+                <a href="http://stackoverflow.com/faq?mnu=1">faq »</a>
+            </p>
+        </div>
+    </div>
+     <script type="text/javascript">
+        if (showNewUser) {
+            document.getElementById('newuser-box').style.display = '';
+        }
+     </script>
+        <div class="module question-stats">
+        <p class="label-key">tagged</p>
+        <div class="tagged"><a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a>&nbsp;<span class="item-multiplier"><span class="item-multiplier-x">×</span>&nbsp;<span class="item-multiplier-count">381451</span></span><br>
+<a href="http://stackoverflow.com/questions/tagged/hashmap" class="post-tag" title="show questions tagged 'hashmap'" rel="tag">hashmap</a>&nbsp;<span class="item-multiplier"><span class="item-multiplier-x">×</span>&nbsp;<span class="item-multiplier-count">2484</span></span><br>
+</div>
+        <table id="qinfo">
+            <tbody><tr>
+                <td><p class="label-key">asked</p></td>
+                <td style="padding-left:10px"><p class="label-key" title="2009-06-30 23:24:14Z"><b>3 years ago</b></p></td>
+            </tr>
+            <tr>
+                <td><p class="label-key">viewed</p></td>
+
+                <td style="padding-left:10px">
+                    <p class="label-key">
+                        <b>435197 times</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td><p class="label-key">active</p></td>
+                <td style="padding-left:10px"><p class="label-key"><b><a href="http://stackoverflow.com/questions/1066589/java-iterate-through-hashmap?lastactivity" class="lastactivity-link" title="2012-01-10 19:15:59Z">1 year ago</a></b></p></td>
+            </tr>
+        </tbody></table>
+    </div>
+    
+<div class="module community-bulletin" data-tracker="cb=1">
+    <h4>Community Bulletin</h4>
+    <div class="related">
+        <div class="spacer bulletin-item-important">
+            <div class="bulletin-item-type event-date">event</div>
+            <div class="bulletin-item-content">
+                <a href="http://stackoverflow.com/election?cb=1" class="question-hyperlink" target="_blank">2013 Community Moderator Election</a> <span class="event-date" style="white-space: nowrap;">– ends <span title="2013-03-12 20:00:00Z" class="relativetime">in 7 hours</span></span>
+            </div>
+            <br class="cbt">
+        </div>
+
+    </div>
+</div>    
+                <script type="text/javascript">
+                var scriptSrc = "http://engine.adzerk.net/z/8277/adzerk1_2_4_43,adzerk2_2_17_45,adzerk3_2_4_44?keywords=java,hashmap";
+                if (document.referrer) {
+                    if (/\?/.test(scriptSrc))
+                        scriptSrc += "&";
+                    else
+                        scriptSrc += "?";
+                    scriptSrc += "xReferrer=" + document.referrer;
+                }
+                StackExchange.ready(function () {
+                    var z = document.createElement("script");
+                    z.type = "text/javascript";
+                    z.async = "true";
+                    z.src = scriptSrc;
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(z, s);
+                });
+            </script>
+        <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk2"><a href="http://engine.adzerk.net/r?e=eyJ0cyI6MTM2MzA3Njg3NDc4NywiYXYiOjQxNCwiYXQiOjE3LCJjbSI6ODQ3LCJjaCI6MTE3OCwiY3IiOjgyMTEsImRtIjoxLCJmYyI6MTMwMzksImZsIjoyNDQ0LCJrdyI6ImphdmEsaGFzaG1hcCIsIm53IjoyMiwicmYiOiJodHRwOi8vd3d3Lmdvb2dsZS5jby5pbi91cmw_c2E9dCIsInJ2IjowLCJwciI6MTU2OCwic3QiOjgyNzcsInpuIjo0NSwiZGkiOiI0YmMzNDVjNGI0NDI0YjM1YmYxYTI2MzIxMzZhZGRhMyIsInVyIjoiaHR0cDovL2NhcmVlcnMuc3RhY2tvdmVyZmxvdy5jb20vIn0&amp;s=AYIf4v4UEVlRrBPhQYrGrjMM-kc" rel="nofollow" target="_blank" title=""><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/bd294ce7ff4c43b6aad4aa4169fb819b.jpg" title="" alt="" border="0" height="250" width="220"></a><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/i.gif" height="0px" width="0px"></div>
+    <div id="hireme"> <a href="http://careers.stackoverflow.com/jobs?a=12" class="top" target="_blank"></a> <ul class="jobs"> <li> <a href="http://careers.stackoverflow.com/jobs/30920/javascript-application-developer-a-decade-old-fusioncharts?a=Ax13Jba" target="_blank" title="JavaScript Application Developer for a decade-old bootstrapped company at FusionCharts. Click to learn more."> JavaScript Application Developer for a decade-old…<br> <span class="company">FusionCharts</span> <span class="location">Bangalore, India / relocation</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/30609/cakephp-developer-ophio?a=AackqVG" target="_blank" title="CakePHP Developer at Ophio. Click to learn more."> CakePHP Developer<br> <span class="company">Ophio</span> <span class="location">Noida, India / relocation</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/30980/php-redis-mongo-massive-scaling-project-at-a-stockopedia?a=ABnhR0A" target="_blank" title="PHP Redis Mongo - massive scaling project at a profitable stock-market startup at Stockopedia. Click to learn more."> PHP Redis Mongo - massive scaling project at a profitable…<br> <span class="company">Stockopedia</span> <span class="location">Bangalore, India / telecommute …</span> </a> </li> <li class="city"><a href="http://careers.stackoverflow.com/jobs/location/bangalore%2c%20india?a=vYY">More jobs near Bangalore...</a></li> </ul> <img alt="" class="impression" src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/Ax13Jba-AackqVG-ABnhR0A-12-vYY.gif" style="display:none"></div>
+
+
+
+      
+    
+    <div class="module sidebar-linked">
+        <h4 id="h-linked">Linked</h4>
+        <div class="linked" data-tracker="lq=1">
+            <div class="spacer">
+<a href="http://stackoverflow.com/questions/46898/how-do-i-iterate-over-each-entry-in-a-map?lq=1" class="question-hyperlink">How do I iterate over each Entry in a Map?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3870064/performance-considerations-for-keyset-and-entryset-of-map?lq=1" class="question-hyperlink">Performance considerations for keySet() and entrySet() of Map</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/8909810/how-to-print-all-key-and-values-from-hashmap-in-android?lq=1" class="question-hyperlink">How to print all key and values from HashMap in Android?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/8689725/map-entry-how-to-use-it?lq=1" class="question-hyperlink">Map.Entry : How to use it?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/11258969/how-to-get-value-stored-in-arraylisthashmapkey-value?lq=1" class="question-hyperlink">How to get value stored in ArrayList&lt;HashMap&lt;key,value&gt;&gt;?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/8297390/java-hashmap-concurrent-modification-exception?lq=1" class="question-hyperlink">java hashMap concurrent modification exception</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/10739243/how-to-effectively-replace-java-hashmap-with-boolean-values?lq=1" class="question-hyperlink">How to effectively replace Java HashMap with boolean values</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/8685431/javas-hashtable-how-to-get-any-entry?lq=1" class="question-hyperlink">Java's Hashtable - How to get any entry</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/7173222/why-hashmap-doesnt-have-key-method?lq=1" class="question-hyperlink">Why HashMap doesn't have .key method?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5398774/how-to-remove-warnings-java?lq=1" class="question-hyperlink">How to remove warnings java</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4709334/modifying-member-of-object-in-map?lq=1" class="question-hyperlink">Modifying member of object in Map</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/12177889/java-util-concurrentmodificationexception-while-accessing-hashmap?lq=1" class="question-hyperlink">java.util.ConcurrentModificationException while accessing hashmap </a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/8682299/java-regex-to-replace-a-string-where-the-beginning-and-end-part-match-a-specific?lq=1" class="question-hyperlink">Java RegEx to replace a string where the beginning and end part match a specific pattern</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/7994976/how-to-get-content-of-hashmap-and-displat-it-on-android?lq=1" class="question-hyperlink">How to get content of HashMap and displat it on Android?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/13179172/java-how-to-iterate-mapstring-device?lq=1" class="question-hyperlink">Java how to iterate Map&lt;String, Device&gt;</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/7815926/how-to-iterate-through-all-the-employee-objects-contained-in-this-treemap-and-pr?lq=1" class="question-hyperlink">how to iterate through all the Employee objects contained in this treeMap and print it out to the screen?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/13007778/access-values-of-hashmap?lq=1" class="question-hyperlink">Access values of hashmap</a>
+</div>
+
+        </div>
+    </div>
+    <div class="module sidebar-related">
+        <h4 id="h-related">Related</h4>
+        <div class="related" data-tracker="rq=1">
+            <div class="spacer">
+<a href="http://stackoverflow.com/questions/537921/efficiently-iterate-through-all-matching-keys-in-a-hashmap?rq=1" class="question-hyperlink">Efficiently iterate through all MATCHING keys in a hashmap?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/1436268/java-hashmap-iteration-look-at-two-values-at-once?rq=1" class="question-hyperlink">Java Hashmap Iteration: Look at two values at once?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/1882762/is-the-java-hashmap-keyset-iteration-order-consistent?rq=1" class="question-hyperlink">is the Java HashMap keySet() iteration order consistent?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2051677/how-to-create-an-iterable-wrapper-for-treemap-and-hashmap-java?rq=1" class="question-hyperlink">How to create an iterable wrapper for TreeMap and HashMap (Java)?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3254072/iterating-over-a-hashmap-of-hashmaps-in-java-or-scala?rq=1" class="question-hyperlink">Iterating over a HashMap of HashMaps in Java (or Scala)</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3344734/java-hashmap-key-iteration?rq=1" class="question-hyperlink">java hashmap key iteration</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4767249/iterating-through-hashmap-by-values?rq=1" class="question-hyperlink">Iterating through HashMap by values</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5066440/hashmap-in-java?rq=1" class="question-hyperlink">hashMap in Java</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5826384/java-iteration-through-a-hashmap-which-is-more-efficient?rq=1" class="question-hyperlink">Java : Iteration through a HashMap, which is more efficient?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/6847535/java-iteration-hashtable-vs-hashmap?rq=1" class="question-hyperlink">Java Iteration: Hashtable vs HashMap</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/7970762/java-iterate-over-hashmap-2-levels?rq=1" class="question-hyperlink">Java iterate over hashmap 2 levels</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/8947545/how-to-delete-another-itemnot-the-one-you-are-holding-while-iterating-the-hash?rq=1" class="question-hyperlink">How to delete another item(not the one you are holding) while Iterating the HashMap</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/9300597/java-iteration-over-hashmap-replacing-arraylist?rq=1" class="question-hyperlink">Java - Iteration over HashMap replacing ArrayList</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/9337536/iterate-recursively-through-deep-hashmap?rq=1" class="question-hyperlink">Iterate recursively through deep HashMap</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/9588959/difference-between-hashmap-and-map-in-java?rq=1" class="question-hyperlink">Difference between HashMap and Map in Java..?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/10562834/how-to-iterate-hashmap-with-containing-arraylist?rq=1" class="question-hyperlink">How to iterate Hashmap with containing arraylist</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/10596132/how-to-iterate-hashmap-in-reverse-order-in-java?rq=1" class="question-hyperlink">How to iterate hashmap in reverse order in Java</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/11782719/iteration-over-hashmap-list?rq=1" class="question-hyperlink">iteration over hashmap list</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/13896528/iterating-through-hashmap-and-creating-unique-objects-trying-to-prevent-duplic?rq=1" class="question-hyperlink">Iterating through hashmap and creating unique objects - trying to prevent duplicates</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/13898000/iterating-through-hashmap-exception-being-thrown?rq=1" class="question-hyperlink">Iterating through hashmap - exception being thrown</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/14156580/iterate-list-of-hashmap-in-java?rq=1" class="question-hyperlink">iterate list of hashmap in java</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/14301455/iterating-over-hashmap?rq=1" class="question-hyperlink">Iterating over hashmap</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/14425590/how-to-iterate-through-hashmap-and-store-entities-into-mysql?rq=1" class="question-hyperlink">how to iterate through hashmap and store entities into mysql</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/14629496/how-to-split-an-hashmap-in-java?rq=1" class="question-hyperlink">How to split an HashMap in Java</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/15181218/hashmap-iteration-deletion?rq=1" class="question-hyperlink">HashMap iteration/Deletion</a>
+</div>
+
+        </div>
+    </div>
+        <div class="everyonelovesstackoverflow" id="adzerk3">
+        </div>
+
+
+</div>
+<script type="text/javascript">
+StackExchange.ready(function(){$.get('/posts/1066589/ivc/fd2f');});
+</script>
+<noscript>
+    <div><img src="/posts/1066589/ivc/fd2f" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                    <a href="http://stackoverflow.com/about">about</a> |
+                <a href="http://stackoverflow.com/faq">faq</a> |
+                <a href="http://blog.stackexchange.com/?blb=1">blog</a> |
+                    <a href="http://chat.stackoverflow.com/">chat</a> |
+                <a href="http://data.stackexchange.com/">data</a> |
+                <a href="http://stackexchange.com/legal">legal</a> |
+                <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a> |
+                <a href="http://stackexchange.com/about/hiring">jobs</a> |
+                <a href="http://engine.adzerk.net/redirect/0/2776/2751/0/4de3c60f719c4dfcb1a57531c7050090/0">advertising info</a> |
+
+                <a onclick='StackExchange.switchMobile("on", "/questions/1066589/java-iterate-through-hashmap")'>mobile</a> |
+
+                <b><a href="http://stackoverflow.com/help">contact us</a></b>
+                  | <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                <div id="footer-sites">
+                    
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://stackoverflow.com/">stackoverflow.com</a>&nbsp; 
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://stackapps.com/">api/apps</a>&nbsp; 
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://careers.stackoverflow.com/">careers 2.0</a>&nbsp; 
+                        <span style="color:#E8272C;font-size:140%">■</span>&nbsp;<a href="http://serverfault.com/">serverfault.com</a>&nbsp; 
+                        <span style="color:#00AFEF;font-size:140%">■</span>&nbsp;<a href="http://superuser.com/">superuser.com</a>&nbsp; 
+                        <span style="color:#969696;font-size:140%">■</span>&nbsp;<a href="http://meta.stackoverflow.com/">meta</a>&nbsp; 
+                        <span style="color:#46937D;font-size:140%">■</span>&nbsp;<a href="http://area51.stackexchange.com/">area&nbsp;51</a>&nbsp; 
+                        <span style="color:#C0D0DC;font-size:140%">■</span>&nbsp;<a href="http://webapps.stackexchange.com/">webapps</a>&nbsp; 
+                        <span style="color:#000000;font-size:140%">■</span>&nbsp;<a href="http://gaming.stackexchange.com/">gaming</a>&nbsp; 
+                        <span style="color:#dd4814;font-size:140%">■</span>&nbsp;<a href="http://askubuntu.com/">ubuntu</a>&nbsp; 
+                        <span style="color:#9ce4fe;font-size:140%">■</span>&nbsp;<a href="http://webmasters.stackexchange.com/">webmasters</a>&nbsp; 
+                        <span style="color:#cf4d3f;font-size:140%">■</span>&nbsp;<a href="http://cooking.stackexchange.com/">cooking</a>&nbsp; 
+                        <span style="color:#f4f28d;font-size:140%">■</span>&nbsp;<a href="http://gamedev.stackexchange.com/">game development</a>&nbsp; 
+                        <span style="color:#0f3559;font-size:140%">■</span>&nbsp;<a href="http://math.stackexchange.com/">math</a>&nbsp; 
+                        <span style="color:#f2f2f2;font-size:140%">■</span>&nbsp;<a href="http://photo.stackexchange.com/">photography</a>&nbsp; 
+                        <span style="color:#037187;font-size:140%">■</span>&nbsp;<a href="http://stats.stackexchange.com/">stats</a>&nbsp; 
+                        <span style="color:#f1e7cc;font-size:140%">■</span>&nbsp;<a href="http://tex.stackexchange.com/">tex</a>&nbsp; 
+                        <span style="color:#e1cdae;font-size:140%">■</span>&nbsp;<a href="http://english.stackexchange.com/">english</a>&nbsp; 
+                        <span style="color:#a2d9f6;font-size:140%">■</span>&nbsp;<a href="http://cstheory.stackexchange.com/">theoretical cs</a>&nbsp; 
+                        <span style="color:#1b3e6c;font-size:140%">■</span>&nbsp;<a href="http://programmers.stackexchange.com/">programmers</a>&nbsp; 
+                        <span style="color:#293a5d;font-size:140%">■</span>&nbsp;<a href="http://unix.stackexchange.com/">unix</a>&nbsp;
+                        <span style="color:#bec0cb;font-size:140%">■</span>&nbsp;<a href="http://apple.stackexchange.com/">apple</a>&nbsp;
+                        <span style="color:#939185;font-size:140%">■</span>&nbsp;<a href="http://wordpress.stackexchange.com/">wordpress</a>&nbsp;
+                        <span style="color:#ebf5f5;font-size:140%">■</span>&nbsp;<a href="http://physics.stackexchange.com/">physics</a>&nbsp;
+                        <span style="color:#4176ab;font-size:140%">■</span>&nbsp;<a href="http://diy.stackexchange.com/">home&nbsp;improvement</a>&nbsp;
+                        <span style="color:#d1d8d7;font-size:140%">■</span>&nbsp;<a href="http://gis.stackexchange.com/">gis</a>&nbsp;
+                        <span style="color:#e5e2d3;font-size:140%">■</span>&nbsp;<a href="http://electronics.stackexchange.com/">electrical&nbsp;engineering</a>&nbsp;
+                        <span style="color:#a4c639;font-size:140%">■</span>&nbsp;<a href="http://android.stackexchange.com/">android</a>&nbsp;
+                        <span style="color:#2e4e60;font-size:140%">■</span>&nbsp;<a href="http://security.stackexchange.com/">security</a>&nbsp;
+                        <span style="color:#45bcb5;font-size:140%">■</span>&nbsp;<a href="http://bicycles.stackexchange.com/">bicycles</a>&nbsp;
+                        <span style="color:#00adee;font-size:140%">■</span>&nbsp;<a href="http://dba.stackexchange.com/">dba</a>&nbsp;
+                        <span style="color:#2edaf0;font-size:140%">■</span>&nbsp;<a href="http://drupal.stackexchange.com/">drupal</a>&nbsp;
+                        <span style="color:#213951;font-size:140%">■</span>&nbsp;<a href="http://sharepoint.stackexchange.com/">sharepoint</a>&nbsp;
+                        <span style="color:#73abb3;font-size:140%">■</span>&nbsp;<a href="http://scifi.stackexchange.com/">scifi&nbsp;&amp;&nbsp;fantasy</a>&nbsp;
+                        <span style="color:#23629F;font-size:140%">■</span>&nbsp;<a href="http://ux.stackexchange.com/">user&nbsp;experience</a>&nbsp;
+                        <span style="color:#faff72;font-size:140%">■</span>&nbsp;<a href="http://skeptics.stackexchange.com/">skeptics</a>&nbsp;
+                        <span style="color:#623121;font-size:140%">■</span>&nbsp;<a href="http://rpg.stackexchange.com/">rpg</a>&nbsp;
+                        <span style="color:#e4be88;font-size:140%">■</span>&nbsp;<a href="http://judaism.stackexchange.com/">judaism</a>&nbsp;
+                        <span style="color:#ffecb1;font-size:140%">■</span>&nbsp;<a href="http://mathematica.stackexchange.com/">mathematica</a>&nbsp;
+                        <span style="color:#1b8598;font-size:140%">■</span>&nbsp;<a href="http://travel.stackexchange.com/">travel</a>&nbsp;
+                </div>
+            </div>
+            <div id="footer-flair">
+                <a class="peer1" href="http://www.peer1.com/stackoverflow"></a>  
+	            <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="cc-wiki-link"></a>
+                <div id="svnrev">rev 2013.3.11.549</div>
+                        </div>
+            <div id="copyright">
+                site design / logo © 2013 stack exchange inc; 
+                user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc-wiki</a> with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            
+
+        </div>
+    <iframe id="global-auth-frame" style="display:none" src="Java%20%20iterate%20through%20HashMap%20-%20Stack%20Overflow_files/read.htm"></iframe></div>
+    
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+    <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-5620270-1']);
+        _gaq.push(['_setCustomVar', 1, 'tags', '|java|hashmap|']); 
+_gaq.push(['_trackPageview']);
+    var _qevents = _qevents || [];
+    (function(){
+        var s=document.getElementsByTagName('script')[0];
+        var ga=document.createElement('script');
+        ga.type='text/javascript';
+        ga.async=true;
+        ga.src='http://www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(ga,s);
+        var sc=document.createElement('script');
+        sc.type='text/javascript';
+        sc.async=true;
+        sc.src='http://edge.quantserve.com/quant.js'; 
+        s.parentNode.insertBefore(sc,s);
+    })();
+    </script>
+    <script type="text/javascript">
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+
+</body></html>

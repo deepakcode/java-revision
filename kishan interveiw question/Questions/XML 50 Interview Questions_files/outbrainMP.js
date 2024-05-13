@@ -1,0 +1,1 @@
+var OB_isMP=true,OB_widgetId="MP_1";if(typeof OB_ads_only=="boolean")OB_widgetId="AD_1";if(typeof OB_Script==="boolean"&&document.readyState!="complete")OutbrainStart();else if(document.readyState!="complete"){var OB_Script=true;document.write(unescape("%3Cscript src='http://widgets.outbrain.com/OutbrainRater.js' type='text/javascript'%3E%3C/script%3E"))};

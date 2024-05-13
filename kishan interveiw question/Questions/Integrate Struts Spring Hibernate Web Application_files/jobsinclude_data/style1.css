@@ -1,0 +1,236 @@
+article a {
+	padding: 0px 1px; color: rgb(75, 141, 181); border-bottom-color: rgb(157, 196, 37); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+
+.Message a {
+	padding: 0px 1px; color: rgb(75, 141, 181); border-bottom-color: rgb(157, 196, 37); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.comment a {
+	color: blue; 
+}
+
+article a:hover {
+	color: rgb(35, 130, 197); border-bottom-color: rgb(35, 130, 197); border-bottom-width: 1px; border-bottom-style: solid; background-color: rgb(217, 239, 255);
+}
+.commentlist .comment a:hover {
+	background-color: rgb(217, 239, 255);
+}
+.Message a:hover {
+	color: rgb(35, 130, 197); border-bottom-color: rgb(35, 130, 197); border-bottom-width: 1px; border-bottom-style: solid; background-color: rgb(217, 239, 255);
+}
+article a:active {
+	outline: 0px; color: black;
+}
+.commentlist .comment a:active {
+	outline: 0px; color: black;
+}
+.Message a:active {
+	outline: 0px; color: black;
+}
+figcaption {
+	text-align: center; padding-top: 7px; font-style: italic; display: block;
+}
+.page #juice {
+	width: 73%;
+}
+.single #juice {
+	width: 73%;
+}
+.single h1 {
+	margin: 0px 0px 5px;
+}
+.end-of-article-stuff {
+	overflow: hidden; clear: both; margin-top: 25px;
+}
+.sharing {
+	width: 33.33%; text-align: center; color: white; margin-bottom: 10px; float: left; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.sharing > div {
+	padding: 15px 5px; border-radius: 15px; height: 21px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+.sharing-twitter {
+	padding-right: 10px;
+}
+.sharing-google-plus {
+	padding-right: 10px;
+}
+.sharing-twitter > div {
+	background: rgb(70, 208, 254);
+}
+.sharing-google-plus > div {
+	background: rgb(221, 75, 57);
+}
+.sharing-facebook > div {
+	background: rgb(59, 89, 152);
+}
+.previous-article {
+	width: 100%;
+}
+.previous-article > div {
+	background: rgb(124, 72, 181); height: auto;
+}
+.previous-article a {
+	padding: 3px 6px; border-radius: 10px; color: white;
+}
+.date-bubble {
+	background: rgb(192, 187, 185); border-radius: 65px; left: -153px; top: 0px; width: 105px; height: 90px; text-align: center; color: rgb(68, 68, 68); line-height: 1.2; overflow: hidden; padding-top: 15px; font-family: "kulturista-web-1","kulturista-web-2",Serif; font-size: 21px; font-weight: 600; position: absolute; z-index: -1; -moz-border-radius: 65px; -webkit-border-radius: 65px;
+}
+.comment-bubble {
+	background: rgb(192, 187, 185); border-radius: 65px; left: -153px; top: 0px; width: 105px; height: 90px; text-align: center; color: rgb(68, 68, 68); line-height: 1.2; overflow: hidden; padding-top: 15px; font-family: "kulturista-web-1","kulturista-web-2",Serif; font-size: 21px; font-weight: 600; position: absolute; z-index: -1; -moz-border-radius: 65px; -webkit-border-radius: 65px;
+}
+.date-bubble span {
+	display: block;
+}
+.comment-bubble {
+	background: rgb(205, 199, 195); top: 90px; height: 105px; color: rgb(216, 210, 206); text-indent: -6px; letter-spacing: -5px; padding-top: 0px; font-size: 98px; z-index: -2;
+}
+.comment-bubble a {
+	color: rgb(212, 206, 202);
+}
+
+.commentlist {
+	list-style: none; margin: 0px 0px 30px; padding-top: 5px;
+}
+.comment {
+	margin: 0px 0px 20px; clear: both; font-size: 16px; position: relative;
+}
+/*** Header need to color change satya ***/
+.comment-content {
+	background: #B0E0E6; padding: 15px; border-radius: 15px; width: 70%; overflow: hidden; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; float: right; position: relative; z-index: 2; min-height: 85px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+
+.comment-content-triumph {
+	background: #B0E0E6; padding: 15px; border-radius: 15px; width: 90%; overflow: hidden; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; float: right; position: relative; z-index: 2; min-height: 85px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+
+.comment-content-kudos {
+	background: #F0F8FF; padding: 15px; border-radius: 15px; width: 90%; overflow: hidden; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; float: right; position: relative; z-index: 2; min-height: 85px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+
+.comment-content-polls {
+	background: #D9D9D9; padding: 15px; border-radius: 15px; width: 90%; overflow: hidden; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; float: right; position: relative; z-index: 2; min-height: 85px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+.comment-content-others {
+	background: #DFE7F2; padding: 15px; border-radius: 15px; width: 90%; overflow: hidden; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; float: right; position: relative; z-index: 2; min-height: 85px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+.comment-content-others1 {
+	background: #DFE7F2; padding: 15px; border-radius: 15px; width: 90%; overflow: hidden; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; float: right; position: relative; z-index: 2; min-height: 85px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+
+.comment-content-jobs {
+	background: #DFE7F2; padding: 15px; border-radius: 15px; width: 90%; overflow: hidden; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; float: right; position: relative; z-index: 2; min-height: 125px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+.comment-content-people {
+	background: #B0E0E6; padding: 15px; border-radius: 15px; width: 90%; overflow: hidden; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; float: right; position: relative; z-index: 2; min-height: 150px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+.comment-content-companies {
+	background: #D9D9D9; padding: 15px; border-radius: 15px; width: 90%; overflow: hidden; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; float: right; position: relative; z-index: 2; min-height: 250px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+
+.comment-author-wrap {
+	font: 12px/normal "myriad-pro-1", "myriad-pro-2", "Lucida Grande", Sans-Serif; left: 0px; top: 0px; width: 30%; color: black; margin-top: 10px; display: block; position: absolute; font-size-adjust: none; font-stretch: normal;
+}
+.comment-author-wrap-triumph {
+	width: 850px; font: 12px/normal "myriad-pro-1", "myriad-pro-2", "Lucida Grande", Sans-Serif; left: 0px; top: 0px; width: 10%; color: black; margin-top: 10px; display: block; position: absolute; font-size-adjust: none; font-stretch: normal;
+}
+.comment-author-wrap-kudos {
+	font: 12px/normal "myriad-pro-1", "myriad-pro-2", "Lucida Grande", Sans-Serif; left: 0px; top: 0px; width: 20%; color: black; margin-top: 10px; display: block; position: absolute; font-size-adjust: none; font-stretch: normal;
+}
+.comment-author-wrap-polls {
+	font: 12px/normal "myriad-pro-1", "myriad-pro-2", "Lucida Grande", Sans-Serif; left: 0px; top: 0px; width: 10%; color: black; margin-top: 10px; display: block; position: absolute; font-size-adjust: none; font-stretch: normal;
+}
+.comment-author-wrap-others {
+	font: 12px/normal "myriad-pro-1", "myriad-pro-2", "Lucida Grande", Sans-Serif; left: 0px; top: 0px; width: 10%; color: black; margin-top: 10px; display: block; position: absolute; font-size-adjust: none; font-stretch: normal;
+}
+.comment-author-wrap-others1 {
+	font: 12px/normal "myriad-pro-1", "myriad-pro-2", "Lucida Grande", Sans-Serif; left: 0px; top: 0px; width: 10%; color: black; margin-top: 10px; display: block; position: absolute; font-size-adjust: none; font-stretch: normal;
+}
+.comment-author-wrap-jobs {
+	font: 16px/normal "myriad-pro-1", "myriad-pro-2", "Lucida Grande", Sans-Serif; left: 0px; top: 0px; width: 10%; color: black; margin-top: 10px; display: block; position: absolute; font-size-adjust: none; font-stretch: normal;
+}
+.comment-author-wrap-people {
+	font: 12px/normal "myriad-pro-1", "myriad-pro-2", "Lucida Grande", Sans-Serif; left: 0px; top: 0px; width: 10%; color: black; margin-top: 10px; display: block; position: absolute; font-size-adjust: none; font-stretch: normal;
+}
+.comment-author-wrap-companies {
+	font: 12px/normal "myriad-pro-1", "myriad-pro-2", "Lucida Grande", Sans-Serif; left: 0px; top: 0px; width: 10%; color: black; margin-top: 10px; display: block; position: absolute; font-size-adjust: none; font-stretch: normal;
+}
+.comment-author-wrap a {
+	border: 0px currentColor; color: black;
+}
+.comment-author {
+	font-size: 15px;
+}
+.avatar {
+	border-radius: 42px; position: relative; z-index: 1;
+}
+.avatar-wrap {
+	margin: 0px 0px 3px; border-radius: 42px; border: 8px solid rgb(232, 232, 232); width: 68px; height: 68px; position: relative;
+}
+.avatar-wrap::before {
+	background: rgb(232, 232, 232); left: 60px; top: 30px; width: 350px; height: 8px; position: absolute; content: "";
+}
+.comment-reply-link {
+	background: url("/jsp/images/css-tricks.png") no-repeat -10px -284px !important; border: currentColor !important; width: 24px; height: 19px; right: 15px; bottom: 10px; text-indent: -9999px; display: block; position: absolute; opacity: 0;
+}
+.comment {
+	width: 650px;  box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+
+.comment-content {
+	width: 100%;  padding-left: 30%; float: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+
+.children .comment-content {
+	width: 100%; padding-left: 110px; float: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+
+.comment-content-triumph {
+	width: 650px; padding-left: 10%; float: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.comment-content-kudos {
+	width: 100%;  padding-left: 10%; float: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.comment-content-polls {
+	width: 100%;  padding-left: 10%; float: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.comment-content-others {
+	width: 500px;  padding-left: 10%; float: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.comment-content-others1 {
+	width: 500px;  padding-left: 10%; float: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.comment-content-jobs {
+	width: 100%;  padding-left: 10%; float: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.comment-content-people {
+	width: 100%;  padding-left: 10%; float: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.comment-content-companies {
+	width: 100%;  padding-left: 10%; float: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+
+.children .comment-content-kudos {
+	width: 100%; padding-left: 110px; float: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.comment-author-wrap {
+	left: 10px; z-index: 4;
+}
+.comment-author-wrap-kudos {
+	left: 10px; z-index: 4;
+}
+.comment-author-wrap-polls {
+	left: 10px; z-index: 4;
+}
+.comment-author-wrap-others {
+	left: 10px; z-index: 4;
+}
+.comment-author-wrap-others1 {
+	left: 10px; z-index: 4;
+}
+.comment-author-wrap-triumph {
+	left: 10px; z-index: 4;
+}
+.avatar-wrap {
+	border-color: rgb(194, 194, 194);
+}
+

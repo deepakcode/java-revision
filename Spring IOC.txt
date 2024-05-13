@@ -1,0 +1,192 @@
+DI/IOC
+
+constructor
+setter
+field
+
+scope
+Singleton
+Prototype
+Request
+Session
+Global-session - portlat based application
+
+
+lazy-init/
+
+<beans>
+<bean id="aid" class="......" lazy-init="false" scope="singleton/prototype" autowire="byName/byType/constructor/auto-detect"> //default is "false"
+
+Wiring -
+
+Explicite
+	-byName
+	-byType
+	-constructor
+	-autodetect - not in 3.0
+Implicite/Autowiring
+
+
+Bean- load/contructor
+2. DI- wiring- anotation/xml /autowiringn
+3. Spring contaringer callback- Awar/
+4.PostProcessor
+
+//Initialization call back(interface/anotation/xml)
+
+//desproty call back
+//
+
+
+---difference 
+1.lazy
+2. supprt BeanPostProcessor
+3.Anotation
+4.EventPublishing
+5. Resolve Message bundle
+
+
+-----------
+Integration with Remote services- RMI/EJB/WebServerice/Mail/
+Timer
+RegistryServices
+Transaction managment
+Resource managment
+Persistence managment
+DI- AOP is fully support Interceptor
+MVC- best 				enforce implimentation.
+
+
+Event
+-----------
+class MyEvent extends ApplicationEvent{
+
+Batch batch;
+
+public MyEvent(Object source,Batch batch){
+this.batch=batch;
+}
+public Batch getBatch(){
+return batch;
+}
+}
+
+
+Publish Event
+----
+MyEvent be= new BatchEvent(this,batch);
+ctx.publishEvent(bc);
+
+Event Listner
+---------
+class EventListern implement ApplicationListner{
+
+public void onApplicationEvent(ApplicationEvent event){
+
+if(event instanceof BatchEvent){
+BatchEvent
+Batch batch=getBatch();
+ut (batch)
+sy
+/, 
+Register Application Listern
+--------
+
+java.util.List 
+com.test.deepak.ListEditor
+java.bens.PropertyEditorSupport;
+
+class ListEditor extends PropertyEditorSupport{
+public void setAsTest(String txt){
+	Stringt str[]=txt.split(",");
+	List list=Arrary.asList(str);
+	this.setValue(list);
+}
+}
+
+org.springframework.beans.factory.config.CustomeEditorConfigurer
+
+----------------------------.context.suport.ResourceBundleMessageSource;
+basename- messages
+
+cutomeEditor
+
+
+
+
+}
+}
+----------------
+
+layout.jsp
+----------
+
+<tiles:getAsString  name="titile">
+<tiles:insert name="header">
+<tiles:insert name="footer">
+<tiles:insert name="menubar">
+<tiles:insert name="content">
+<tiles:insert name="left">
+<tiles:insert name="right">
+
+<%@taglib prefix="tiles" uri="/WEB_INF/Struts-tiles.tld">
+
+tiles-definitation.xml
+--------------
+<tiles-definitions>
+<defination name="Home" page="WEB-INF/jsps/JLCLayout.jsp">
+<put name="titile" value="Hello"/>
+<put name="header" value="/WEB-INF/jsps/header.jsp">
+</defination>
+
+id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles.TilesConfigurer" >
+<list>
+/web-inf/tiles-definitation.xml
+</llist>
+
+
+j
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+

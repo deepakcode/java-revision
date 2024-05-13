@@ -1,0 +1,9 @@
+HashMap			HashTable
+
+1. not sych		Synchronize
+2. Allow Null		Not allowed
+3. can be convert to		it cann't
+    Linked HashMap
+4. Fail-fast iterator		enumerator
+
+

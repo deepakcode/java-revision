@@ -1,0 +1,49 @@
+<list?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.scolex.hib.core.onetoone.u">
+
+<class name="Student" table="students">
+<id name="sid" type="int" coloumn="sid">
+	<generator class="increment">
+</id>
+
+<property name="sname"/>
+<property name="dob"/>
+<property name="qualification"/>
+
+<array name="courses" table="courses">
+<key name="sid"/>
+<index column="idx"/>
+<element column="cname" type="string"/>
+</array>
+
+<list name="emails" table="email" type="string">
+<key name="sid"/>
+<index/>
+<element column="emails" type="string">
+</list>
+
+<bag name="marks" tables="marks">
+<key column="sid"/>
+<element column="marks type="int"/>
+</bag>
+</bag>
+
+<set name="phone" table="phone">
+<key column="sid"/>
+<element column="phoneno" type="long">
+</set>
+
+<map name="refs" table="ref">
+<key colomn="sid" type="string"/>
+<index column="refs" type="strings">
+<element column="rphone" type="long">
+</map>
+</class>
+</hibernate-mapping>
+
+
+

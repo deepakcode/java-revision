@@ -1,0 +1,1080 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+   
+      <title>Java Performance - Memory and Runtime Analysis - Tutorial</title>
+      <link rel="stylesheet" type="text/css" href="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/articles.css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+      <meta name="description" content="Abstract This article will be a collection of Java performance measurement pointer. It describes how memory works in general and how Java use the heap and the stack. The article describes how to set the available memory for Java. It discusses then how to get the runtime and the memory consumption of a Java application.">
+      <link rel="shortcut icon" href="http://www.vogella.de/img/favicon.ico">
+   </head>
+   <body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
+      
+      
+      <!-- Jennifers Analytics -->
+      
+      <script async="" src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/cbgapi.loaded_0"></script><script type="text/javascript" async="" src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/quant.js"></script><script src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-3967758-1']);_gaq.push(['_trackPageview']);_gaq.push(['_trackPageLoadTime']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+      
+      <script src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/flattr.js" type="text/javascript"></script>
+      
+      
+      <!-- Load jQuery -->
+      <script type="text/javascript" src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/jquery.js"></script> 
+      
+      <!-- jQuery Up Button -->
+      <script src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/jqueryup.js" type="text/javascript"></script>
+      
+      
+      
+      
+      <!-- Lake Quincy Ads -->
+      <script type="text/javascript" language="Javascript" src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/m.js"></script>
+      
+      <div id="headerpart">
+         	
+         <div id="topnav">
+            	  
+            <ul id="home" class="topnav">
+               		
+               <li>
+                  			<a class="homebutton" title="Home" href="http://www.vogella.com/">vogella.com</a>
+                  		
+               </li>
+               		
+               <li>
+                  			<a title="Tutorials" href="http://www.vogella.com/tutorials.html"> Tutorials
+                     			</a>
+                  		
+               </li>
+               		
+               		
+               <li>
+                  			<a title="Training" href="http://www.vogella.com/training/index.html">
+                     				Training
+                     			</a>
+                  		
+               </li>
+               		
+               <li>
+                  			<a title="Services" href="http://www.vogella.com/services/index.html">
+                     				Services
+                     			</a>
+                  		
+               </li>
+               		
+               <li>
+                  			<a title="Books" href="http://www.vogella.com/books.html">
+                     				Publications
+                     			</a>
+                  		
+               </li>
+               		
+               <li>
+                  			<a title="Connect" href="http://www.vogella.com/social.html">
+                     				Connect
+                     			</a>
+                  		
+               </li>
+               	
+            </ul>
+            
+            	
+         </div>
+         
+         	
+         <div id="logo">
+            		<a title="vogella.com" href="http://www.vogella.com/">
+               			<img src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/vogella_current_logo.png" alt="vogella.com"> 
+               		</a>
+            	
+         </div>
+         
+         
+      </div> 
+      <!-- headerpart -->
+      
+      
+      
+      
+      <div id="leftcol">
+         
+         	
+         <div class="sidebar">
+            		
+            <div id="intro">
+               		<br>
+               		
+               <!-- GooglePlus - Place this tag in your head or just before your close body tag -->
+               		<script gapi_processed="true" type="text/javascript" src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/plusone.js"></script>
+               
+               		
+               <!-- Place this tag where you want the +1 button to render -->
+               		<div id="___plusone_0" style="height: 24px; width: 106px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;"><iframe title="+1" data-gapiattached="true" allowtransparency="true" src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/fastbutton.htm" name="I0_1365010437365" id="I0_1365010437365" vspace="0" tabindex="0" style="position: static; top: 0px; width: 106px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+               
+               		
+            </div> 
+            <!--intro-->
+            
+            		
+            		
+            		<br>
+            		Free tutorial, donate to support
+            		<br><br>
+            		
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+               		<input name="cmd" value="_s-xclick" type="hidden">
+               		<input name="hosted_button_id" value="10463995" type="hidden">
+               		<input src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/btn_donateCC_LG.gif" name="submit" alt="Donation" border="0" type="image">
+               		<img alt="" src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/pixel.gif" border="0" height="1" width="1">
+                                       				
+               		
+            </form>
+            		<br>
+             			
+            <div class="figure">
+                                
+                              
+               <p><a rel="author" href="http://www.vogella.com/about.html"> 
+                                          		<img src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/LarsVogelArticle8.png" alt="About Lars Vogel" height="115" width="125">
+                                          	</a>
+                                    	
+                                 
+               </p>
+                                
+                              
+               <p>by Lars Vogel</p>
+                              
+                   
+            </div>
+             		
+            		
+            	
+         </div> 
+         <!--sidebar-->
+         	
+         
+         
+         <script type="text/javascript">google_ad_client="ca-pub-3851443674951530";google_ad_slot="6294971031";google_ad_width=160;google_ad_height=600;</script>
+         <script type="text/javascript" src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/show_ads.js"></script><ins style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px"><ins id="aswift_0_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="600" scrolling="no" width="160"></iframe></ins></ins>
+         
+         
+         <br>
+         <br>
+         <br>
+         <br>
+         
+         
+         
+         <!-- Lake Quincy-->
+         
+         <div class="lqm_ad" lqm_publisher="lqm.javaeclipseandroid.site" lqm_zone="ron" lqm_tags="Android%2cMobile%2cJava" lqm_format="160x600"><iframe id="lqmad1" marginwidth="0" marginheight="0" frameborder="0" height="600" scrolling="no" width="160"></iframe></div>
+         
+         <p></p>
+         
+         
+         <p style="display: none;" id="back-top"><a href="#top"><span></span> Back to top </a>
+            
+         </p>
+         
+         
+         
+      </div> 
+      <!-- leftcolumn -->
+      
+      
+      
+      
+      <div id="rightcol">
+         
+         
+         <p class="training-bg">
+                     
+                        <a class="image-z" href="http://www.vogella.com/training/overview.html"> 
+                                <img src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/vogellatraining_ad.png" alt="vogella training" height="364" width="200">
+               	
+                           </a>
+                        <a class="btn-training button1" href="http://www.vogella.com/training/overview.html">Training</a>
+                        <a class="btn-training button2" href="http://www.vogella.com/books.html">Books</a>
+            
+         </p>
+         
+         
+         <div class="twitter">
+                
+            <div class="twitt">
+                               <a href="http://www.twitter.com/vogella"> 
+                                      <img src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/twitter.png" alt="Follow me on twitter">  
+                                  </a>
+                   
+            </div>
+                        
+                
+            <div class="googleplus">
+                               <a rel="me" href="https://profiles.google.com/104044918586174763681">
+                                      <img src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/google.png" alt="Lars Vogel on Google+"> 
+                                  </a>
+                  
+            </div>
+            
+         </div>
+         
+         
+      </div> 
+      <!--rightcol-->
+      
+      
+      
+      <div class="article">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title"><a name="d19167e1"></a>Java Performance - Memory and Runtime Analysis - Tutorial
+                     
+                  </h2>
+               </div>
+               <div>
+                  <div class="author">
+                     <h3 class="author"><span class="firstname">Lars</span> <span class="surname">Vogel</span></h3>
+                  </div>
+               </div>
+               <div>
+                  <p class="releaseinfo">
+                           
+                  </p>
+                  <p>Version 0.8</p>
+                  <p class="releaseinfo">
+                         
+                  </p>
+               </div>
+               <div>
+                  <p class="copyright">Copyright © 2008 - 2009  Lars Vogel</p>
+               </div>
+               <div>
+                  <p class="pubdate">12.12.2010</p>
+               </div>
+               <div>
+                  <div class="revhistory">
+                     <table summary="Revision History">
+                        <tbody><tr>
+                           <th colspan="4" align="left" valign="top"><b>Revision History</b></th>
+                        </tr>
+                        <tr>
+                           <td align="left">Revision 0.1</td>
+                           <td align="left">28.12.2008</td>
+                           <td align="left"><span class="firstname">Lars<br></span><span class="surname">Vogel<br></span></td>
+                           <td align="left">created</td>
+                        </tr>
+                        <tr>
+                           <td align="left">Revision 0.2 -0.8</td>
+                           <td align="left">12.01.2009 - 12.12.2010</td>
+                           <td align="left"><span class="firstname">Lars<br></span><span class="surname">Vogel<br></span></td>
+                           <td align="left">bug fixes and enhancements</td>
+                        </tr>
+                     </tbody></table>
+                  </div>
+               </div>
+               <div>
+                  <div class="abstract"><a name="abstract"></a><p class="title"><b>Abstract</b></p>
+                     <p>This article will be a collection of Java performance
+                                measurement pointer.
+                     </p>
+                     <p> It describes how memory works in general and how Java use the
+                                heap and the stack. The article describes how to set the available
+                                memory for Java. It discusses then how to get the runtime and the
+                                memory consumption of a Java application.
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <hr>
+         </div>
+         <div class="toc">
+            <p><b>Table of Contents</b></p>
+            <dl>
+               <dt><span class="section"><a href="#overview">1. Performance factors</a></span></dt>
+               <dt><span class="section"><a href="#memory">2. Memory </a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="section"><a href="#memory_native">2.1. Native Memory</a></span></dt>
+                     <dt><span class="section"><a href="#memory_overview">2.2. Memory in Java </a></span></dt>
+                     <dt><span class="section"><a href="#memory_heap">2.3. Java Heap</a></span></dt>
+                     <dt><span class="section"><a href="#memory_stack">2.4. Java Stack</a></span></dt>
+                     <dt><span class="section"><a href="#Escape%20Analysis">2.5. Escape Analysis</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="section"><a href="#garbagecollector">3. Garbage Collector</a></span></dt>
+               <dt><span class="section"><a href="#jvmsettings">4. Memory settings for Java virtual machine</a></span></dt>
+               <dt><span class="section"><a href="#runtimeinfo">5. Memory Consumption and Runtime</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="section"><a href="#runtimeinfo_memory">5.1. Memory Consumption</a></span></dt>
+                     <dt><span class="section"><a href="#runtimeinfo_runtime">5.2. Runtime of a Java program</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="section"><a href="#lazyinit">6. Lazy initialization</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="section"><a href="#lazyinit_synchronized">6.1. Concurrency - Overview</a></span></dt>
+                     <dt><span class="section"><a href="#lazyinit_doublecheckitem">6.2. Double-Check Item</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="section"><a href="#jit">7. Just-in-time (JIT) compiler</a></span></dt>
+               <dt><span class="section"><a href="#profiler">8. Profiler</a></span></dt>
+               <dt><span class="section"><a href="#loadtest">9. Load Test</a></span></dt>
+               <dt><span class="section"><a href="#thankyou">10. Thank you </a></span></dt>
+               <dt><span class="section"><a href="#questions">11. Questions and Discussion</a></span></dt>
+               <dt><span class="section"><a href="#resources">12. Links and Literature</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="section"><a href="#resources_performance">12.1. Performance </a></span></dt>
+                  </dl>
+               </dd>
+            </dl>
+         </div> 
+         
+         
+         
+         
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="overview"></a>1.&nbsp;Performance factors
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>
+               Important influence factors to the performance of a Java program can
+               be separated into two main parts:
+               
+            </p>
+            <div class="itemizedlist">
+               <ul class="itemizedlist" type="disc">
+                  <li class="listitem">
+                     <p>Memory Consumption of the Java program</p>
+                  </li>
+                  <li class="listitem">
+                     <p>Total runtime of a program</p>
+                  </li>
+               </ul>
+            </div>
+            <p>
+               
+            </p>
+            <p> In case the program is to some case a program which interacts
+               with others also the response time is a very important fact of the
+               performance of a program.
+            </p>
+            <p>
+               
+            </p>
+            <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+               <h3 class="title">Tip</h3> A average CPU can do approximately 1 billion (10^9) operations
+               per second.
+            </div>
+            <p>
+               
+            </p>
+            <p>
+               This article does not cover concurrency. If you want to read about
+               concurrency / multithreading please see
+               <a class="ulink" href="http://www.vogella.com/articles/JavaConcurrency/article.html" target="_top"> Concurrency / Multithreading in Java</a>
+               
+            </p>
+         </div>
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="memory"></a>2.&nbsp;Memory 
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p> Java handles its memory in two areas. The heap and the stack. We
+               will start with a short overview of memory in general on a computer.
+               Then the Java heap and stack is explained.
+            </p>
+            <div class="section">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="memory_native"></a>2.1.&nbsp;Native Memory
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p> Native memory is the memory which is available to a process,
+                  e.g. the Java process. Native memory is controlled by the operating
+                  system (OS) and based on physical memory and other physical devices,
+                  e.g. disks, flash memory, etc.
+               </p>
+               <p> The processor (CPU) of the computer computes the instructions
+                  to execute and stores its computation results into registers. These
+                  registers are fast memory elements which stores the result of the
+                  CPU. The processor can access the normal memory over the memory bus.
+                  A amount of memory a CPU can access is based on the size of the
+                  physical address which the CPU uses to identify physical memory. A
+                  16-bit address can access 2^16 (=65.536) memory locations. A 32-bit
+                  address can access 2^32 (=4.294.967.296) memory locations. If each
+                  memory area consists of 8 bytes then a 16-bit system can access 64KB
+                  of memory and the 32-bit system can access 4GB of memory.
+               </p>
+               <p> An OS normally uses virtual memory to map the physical memory
+                  to memory which each process can see. The OS assigns then memory to
+                  each process in a virtual memory space for this process and maps
+                  access to this virtual memory to the real physical memory.
+               </p>
+               <p> Current 32-bit systems uses an extension (Physical Address
+                  Extension (PAE)) which extends the physical space to 36-bits of the
+                  operation system. This allows the OS to access 64GB. The OS uses then
+                  virtual memory to allow the individual process 4 GB of memory. Even
+                  with PAE enabled a process can not access more then 4 GB of memory.
+                  
+               </p>
+               <p> Of course with a 64-bit OS this 4GB limitation does not exists
+                  any more.
+               </p>
+            </div>
+            <div class="section">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="memory_overview"></a>2.2.&nbsp;Memory in Java 
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p> Java manages the memory for use. New objects created and placed
+                  in the heap. Once your application have no reference anymore to an
+                  objects the Java garbage collector is allowed to delete this object
+                  and remove the memory so that your application can use this memory
+                  again.
+               </p>
+            </div>
+            <div class="section">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="memory_heap"></a>2.3.&nbsp;Java Heap
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p> In the heap the Java Virtual Machine (JVM) stores all objects
+                  created by the Java application, e.g. by using the "new" operator.
+                  The Java garbage collector (gc) can logically separate the heap into
+                  different areas, so that the gc can faster identify objects which can
+                  get removed
+               </p>
+               <p> The memory for new objects is allocated on the heap at run
+                  time. Instance variables live inside the object in which they are
+                  declared.
+               </p>
+            </div>
+            <div class="section">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="memory_stack"></a>2.4.&nbsp;Java Stack
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>Stack is where the method invocations and the local
+                  variables are stored. If a method is called then its stack frame is
+                  put onto the top of the call stack. The stack frame holds the state
+                  of the method including which line of code is executing and the
+                  values of all local variables. The method at the top of the stack is
+                  always the current running method for that stack. Threads have their
+                  own call stack.
+               </p>
+            </div>
+            <div class="section">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="Escape Analysis"></a>2.5.&nbsp;Escape Analysis
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>As said earlier in Java objects are created in the heap. The
+                  programming language
+                  does not offer the possibility to let the
+                  programmer decide if an
+                  objects should be generated in the stack. But
+                  in certain cases it would be desirable to allocate an object on the
+                  stack, as the memory allocation on the stack is cheaper then the
+                  memory allocation
+                  in the heap, deallocation on the stack is  free and
+                  the stack is efficiently
+                  managed by the
+                  runtime.  
+               </p>
+               <p> The JVM uses therefore internally escape analysis to check if
+                  an
+                  object is used only with a thread or method. If the JVM identify
+                  this
+                  it may decide to create the object on the stack, increasing
+                  performance of the Java program.
+               </p>
+            </div>
+         </div>
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="garbagecollector"></a>3.&nbsp;Garbage Collector
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p> The JVM automatically re-collects the memory which is not used
+               any more. The memory for objects which are not referred any more will
+               be automatically released by the garbage collector.
+            </p>
+            <p>To see then the garbage collector starts working add the
+               command line argument "-verbose:gc" to your virtual machine.
+            </p>
+            <p>
+               An in-depth article about the garbage collector can be found here:
+               <a class="ulink" href="http://java.sun.com/docs/hotspot/gc5.0/gc_tuning_5.html" target="_top"> Tuning Garbage Collection with the 5.0 Java Virtual
+                  Machine</a>
+               
+            </p>
+         </div> 
+         <script type="text/javascript">google_ad_client="pub-3851443674951530";google_ad_slot="8639282357";google_ad_width=728;google_ad_height=90;</script>
+         <script type="text/javascript" src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/show_ads.js"></script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" frameborder="0" height="90" scrolling="no" width="728"></iframe></ins></ins>
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="jvmsettings"></a>4.&nbsp;Memory settings for Java virtual machine
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>
+               The JVM runs with fixed available memory. Once this memory is
+               exceed
+               you will receive "java.lang.OutOfMemoryError". The JVM tries to
+               make an
+               intelligent choice about the available memory at startup (see
+               <a class="ulink" href="http://java.sun.com/javase/6/docs/technotes/tools/windows/java.html" target="_top"> Java settings</a>
+               for details) but you can overwrite the default with the following
+               settings.
+               
+            </p>
+            <p> To turn performance you can use certain parameters in the JVM.
+               
+            </p>
+            <p>
+               
+            </p>
+            <div class="table"><a name="d19167e155"></a><p class="title"><b>Table&nbsp;1.&nbsp;</b></p>
+               <div class="table-contents">
+                  <table border="1">
+                     <colgroup>
+                        <col class="c1" align="left">
+                        <col class="c2" align="left">
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th align="left"> Parameter</th>
+                           <th align="left">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td align="left">
+                              
+                              <p>
+                                 -Xms1024m
+                                 
+                              </p>
+                              
+                           </td>
+                           <td align="left">Set the minimum available memory for the JVM to 1024
+                              Megabyte
+                           </td>
+                        </tr>
+                        <tr>
+                           <td align="left">
+                              
+                              <p>-Xmx1800m</p>
+                              
+                           </td>
+                           <td align="left">Set the maximum available memory for the JVM to 1800
+                              Megabyte. The Java application cannot use more heap memory then
+                              defined via this parameter. 
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><br class="table-break">
+               
+            </p>
+            <p>
+               
+            </p>
+            <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+               <h3 class="title">Tip</h3> Increase the values in these parameters to avoid the following
+               error: "Exception in thread java.lang.OutOfMemoryError: Java heap
+               space". Note that you cannot allocate more memory then you have
+               physically available.
+            </div>
+            <p>
+               
+            </p>
+            <p> If you start your Java program from the command line use for
+               example the following setting: java -Xmx1024m YourProgram. 
+            </p>
+            <p>In Eclipse
+               your can use the VM arguments in the run configuration.
+               
+            </p>
+            <p>
+               
+            </p>
+            <div class="mediaobject"><img src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/vmsettings10.gif"></div>
+            <p>
+               
+            </p>
+         </div>
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="runtimeinfo"></a>5.&nbsp;Memory Consumption and Runtime
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>In general a operation is considered as extensive if this
+               operation has a long runtime or a high memory consumption.
+            </p>
+            <div class="section">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="runtimeinfo_memory"></a>5.1.&nbsp;Memory Consumption
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p> The total used / free memory of an program can be obtained in
+                  the program via java.lang.Runtime.getRuntime();
+               </p>
+               <p> The runtime has several method which relates to the memory. The
+                  following coding example demonstrate its usage.
+               </p>
+               <p>
+                  
+               </p><pre class="programlisting"><span class="hl-keyword">package</span> test;
+
+<span class="hl-keyword">import</span> java.util.ArrayList;
+<span class="hl-keyword">import</span> java.util.List;
+
+<span class="hl-keyword">public</span> <span class="hl-keyword">class</span> PerformanceTest {
+  <span class="hl-keyword">private</span> <span class="hl-keyword">static</span> <span class="hl-keyword">final</span> <span class="hl-keyword">long</span> MEGABYTE = <span class="hl-number">1024L</span> * <span class="hl-number">1024L</span>;
+
+  <span class="hl-keyword">public</span> <span class="hl-keyword">static</span> <span class="hl-keyword">long</span> bytesToMegabytes(<span class="hl-keyword">long</span> bytes) {
+    <span class="hl-keyword">return</span> bytes / MEGABYTE;
+  }
+
+  <span class="hl-keyword">public</span> <span class="hl-keyword">static</span> <span class="hl-keyword">void</span> main(String[] args) {
+    <em class="hl-comment" style="color: #080">// I assume you will know how to create a object Person yourself...</em>
+    List&lt;Person&gt; list = <span class="hl-keyword">new</span> ArrayList&lt;Person&gt;();
+    <span class="hl-keyword">for</span> (<span class="hl-keyword">int</span> i = <span class="hl-number">0</span>; i &lt;= <span class="hl-number">100000</span>; i++) {
+      list.add(<span class="hl-keyword">new</span> Person(<span class="hl-string" style="color:blue">"Jim"</span>, <span class="hl-string" style="color:blue">"Knopf"</span>));
+    }
+    <em class="hl-comment" style="color: #080">// Get the Java runtime</em>
+    Runtime runtime = Runtime.getRuntime();
+    <em class="hl-comment" style="color: #080">// Run the garbage collector</em>
+    runtime.gc();
+    <em class="hl-comment" style="color: #080">// Calculate the used memory</em>
+    <span class="hl-keyword">long</span> memory = runtime.totalMemory() - runtime.freeMemory();
+    System.out.println(<span class="hl-string" style="color:blue">"Used memory is bytes: "</span> + memory);
+    System.out.println(<span class="hl-string" style="color:blue">"Used memory is megabytes: "</span>
+        + bytesToMegabytes(memory));
+  }
+} </pre><p>
+                  
+               </p>
+            </div>
+            <div class="section">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="runtimeinfo_runtime"></a>5.2.&nbsp;Runtime of a Java program
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p> Use System.currentTimeMillis() to get the start time and the
+                  end time and calculate the difference.
+               </p>
+               <p>
+                  
+               </p><pre class="programlisting"><span class="hl-keyword">package</span> de.vogella.performance.test;
+
+<span class="hl-keyword">class</span> TimeTest1 {
+  <span class="hl-keyword">public</span> <span class="hl-keyword">static</span> <span class="hl-keyword">void</span> main(String[] args) {
+
+    <span class="hl-keyword">long</span> startTime = System.currentTimeMillis();
+
+    <span class="hl-keyword">long</span> total = <span class="hl-number">0</span>;
+    <span class="hl-keyword">for</span> (<span class="hl-keyword">int</span> i = <span class="hl-number">0</span>; i &lt; <span class="hl-number">10000000</span>; i++) {
+      total += i;
+    }
+
+    <span class="hl-keyword">long</span> stopTime = System.currentTimeMillis();
+    <span class="hl-keyword">long</span> elapsedTime = stopTime - startTime;
+    System.out.println(elapsedTime);
+  }
+} </pre><p>
+                  
+               </p>
+            </div>
+         </div>
+         <!-- Lake Quincy Ads -->
+         <div class="lqm_ad" lqm_publisher="lqm.javaeclipseandroid.site" lqm_tags="Java%20Mobile%20Android" lqm_zone="ron" lqm_format="728x90"><iframe id="lqmad2" marginwidth="0" marginheight="0" frameborder="0" height="90" scrolling="no" width="728"></iframe></div>
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="lazyinit"></a>6.&nbsp;Lazy initialization
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p> In case a variable is very expensive to create then sometimes it
+               is good to defer the creation of this variable until the variable is
+               needed. This is called lazy initialization.
+            </p>
+            <p> In general lazy initialization should only be used if a analysis
+               has proven that this is really a very expensive operations. This is
+               based on the fact that lazy initialization makes it more difficult to
+               read the code.
+            </p>
+            <p> I use the project "de.vogella.performance.lazyinitialization" for
+               the examples in this chapter. And a have a own field defined."
+            </p>
+            <p>
+               
+            </p><pre class="programlisting"><span class="hl-keyword">package</span> de.vogella.performance.lazyinitialization;
+
+<span class="hl-keyword">public</span> <span class="hl-keyword">class</span> MyField {
+
+} </pre><p>
+               
+            </p>
+            <div class="section">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="lazyinit_synchronized"></a>6.1.&nbsp;Concurrency - Overview
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p> The simplest way is to use a synchronized block. As then field
+                  access is always synchronized in case on read access this variant is
+                  slow.
+               </p>
+               <p>
+                  
+               </p><pre class="programlisting"><span class="hl-keyword">package</span> de.vogella.performance.lazyinitialization;
+
+<span class="hl-keyword">public</span> <span class="hl-keyword">class</span> SynchronizedTest {
+  <span class="hl-keyword">private</span> MyField myField;
+
+  <span class="hl-keyword">public</span> <span class="hl-keyword">synchronized</span> MyField getMyField() {
+    <span class="hl-keyword">if</span> (myField == null) {
+      myField = <span class="hl-keyword">new</span> MyField();
+    }
+    <span class="hl-keyword">return</span> myField;
+  }
+
+} </pre><p>
+                  
+               </p>
+            </div>
+            <div class="section">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="lazyinit_doublecheckitem"></a>6.2.&nbsp;Double-Check Item
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p> Faster is to use the synchronized block only if the variable is
+                  still initial and to define the variable as volatile to propergate
+                  the change to other threads.
+               </p>
+               <p>
+                  
+               </p><pre class="programlisting"><span class="hl-keyword">package</span> de.vogella.performance.lazyinitialization;
+
+<span class="hl-keyword">public</span> <span class="hl-keyword">class</span> DoubleCheckItem {
+  <span class="hl-keyword">private</span> <span class="hl-keyword">volatile</span> MyField myField;
+
+  <span class="hl-keyword">public</span> MyField getMyField() {
+    <span class="hl-keyword">if</span> (myField == null) {
+      <span class="hl-keyword">synchronized</span> (<span class="hl-keyword">this</span>) {
+        <span class="hl-keyword">if</span> (myField == null) {
+          myField = <span class="hl-keyword">new</span> MyField();
+        }
+      }
+    }
+    <span class="hl-keyword">return</span> myField;
+  }
+} </pre><p>
+                  
+               </p>
+               <p> An improved version of this came from Joshua Bloch.</p>
+               <p>
+                  
+               </p><pre class="programlisting"><span class="hl-keyword">package</span> de.vogella.performance.lazyinitialization;
+
+<span class="hl-keyword">public</span> <span class="hl-keyword">class</span> DoubleCheckItemImproved {
+  <span class="hl-keyword">private</span> <span class="hl-keyword">volatile</span> MyField myField;
+
+  <span class="hl-keyword">public</span> MyField getMyField() {
+    MyField tmp = myField;
+    <span class="hl-keyword">if</span> (tmp == null) {
+      <span class="hl-keyword">synchronized</span> (<span class="hl-keyword">this</span>) {
+        tmp = myField;
+        <span class="hl-keyword">if</span> (tmp == null) {
+          myField = tmp = <span class="hl-keyword">new</span> MyField();
+        }
+      }
+    }
+    <span class="hl-keyword">return</span> tmp; <em class="hl-comment" style="color: #080">// Using tmp here instead of myField avoids an memory update</em>
+  }
+} </pre><p>
+                  
+               </p>
+            </div>
+            <p>
+               
+            </p>
+            <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+               <h3 class="title">Tip</h3> Avoid lazy initialization if you can, the code becomes difficult
+               to read if you use it.
+            </div>
+            <p>
+               
+            </p>
+         </div>
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="jit"></a>7.&nbsp;Just-in-time (JIT) compiler
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p> The Java JIT compiler compiles Java bytecode to native
+               executable code during the runtime of your program. This increases the
+               runtime of your program significantly. The JIT compiler uses runtime
+               information to identify part in your application which are runtime
+               intensive. These so-called "hot spots" are then translated native
+               code. This is the reason why the JIT compiler is also called
+               "Hot-spot" compiler.
+            </p>
+            <p> JIT is store the original bytecode and the native code in
+               memory because JIT can also decide that a certain compilation steps
+               must be revised.
+            </p>
+         </div>
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="profiler"></a>8.&nbsp;Profiler
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p> A profiler for Java is a program which allows you to trace a
+               running java program and see the memory and CPU consumption for the
+               Java application.
+            </p>
+            <p>
+               Visualvm is already part of the jdk distribution (as of Update 7 for
+               jdk1.6).
+               <a class="ulink" href="https://visualvm.dev.java.net/" target="_top"> https://visualvm.dev.java.net/</a>. To start visualvm just click on jvisualvm.exe in the jdk bin
+               directory.
+               
+            </p>
+            <p> Netbeans seems to have an integrated profiler, but I have not
+               used it so far.
+            </p>
+            <p>
+               A good commercial seems to be this one looks nice:
+               <a class="ulink" href="http://www.yourkit.com/" target="_top"> http://www.yourkit.com</a>
+               
+            </p>
+         </div>
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="loadtest"></a>9.&nbsp;Load Test
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p> A load test tool is a tool which emulates user and system
+               actions on an application to measure the reaction and behavior of this
+               system. A load test tool is commonly used for a web application to
+               measure its behavior.
+            </p>
+            <p>
+               Popular tools for load testing are:
+               
+            </p>
+            <div class="itemizedlist">
+               <ul class="itemizedlist" type="disc">
+                  <li class="listitem">
+                     <p>Apache JMeter - See
+                        <a class="ulink" href="http://jakarta.apache.org/jmeter/" target="_top"> http://jakarta.apache.org/jmeter/</a>
+                        
+                     </p>
+                  </li>
+                  <li class="listitem">
+                     <p>Eclipse TPTP testing tool - See
+                        <a class="ulink" href="http://www.eclipse.org/tptp/" target="_top"> http://www.eclipse.org/tptp/</a> 
+                     </p>
+                  </li>
+                  <li class="listitem">
+                     <p>Grinder - See
+                        <a class="ulink" href="http://grinder.sourceforge.net/" target="_top"> http://grinder.sourceforge.net/</a>
+                        
+                     </p>
+                  </li>
+               </ul>
+            </div>
+            <p>
+               
+            </p>
+         </div>
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="thankyou"></a>10.&nbsp;Thank you 
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>
+               
+               	
+            </p>
+            <p></p>
+            <p>
+               	Please help me to support this article:
+               	
+            </p>
+            <table>
+               <tbody><tr>
+                  			
+                  <td>
+                     				<a href="http://flattr.com/thing/49772/Tutorials-for-Eclipse-Java-Android-and-Webprogramming" target="_blank">
+                        					<img src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0">
+                        				</a>
+                     			
+                  </td>
+                  
+                  			
+                  <td>
+                     				
+                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                        					<input name="cmd" value="_s-xclick" type="hidden">
+                        					<input name="hosted_button_id" value="10463995" type="hidden">
+                        					<input src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!" border="0" type="image">
+                        					<img alt="" src="Java%20Performance%20-%20Memory%20and%20Runtime%20Analysis%20-%20Tutorial_files/pixel.gif" border="0" height="1" width="1">
+                        				
+                     </form>
+                     			
+                  </td>
+                  		
+               </tr>
+            </tbody></table>
+            <p>
+               
+               
+               
+               
+            </p>
+         </div>
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="questions"></a>11.&nbsp;Questions and Discussion
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>
+               Before posting questions, please see the
+               <a class="ulink" href="http://www.vogella.com/faq.html" target="_top"> vogella FAQ</a>. If you have questions or find an error in this article please
+               use the
+               <a class="ulink" href="http://groups.google.com/group/vogella" target="_top"> www.vogella.com Google Group</a>. I have created a short list
+               <a class="ulink" href="http://www.vogella.com/blog/2010/03/09/asking-community-questions/" target="_top"> how to create good questions
+                  </a> which might also help you.
+               
+            </p>
+         </div>
+         <div class="section">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="resources"></a>12.&nbsp;Links and Literature
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <div class="section">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="resources_performance"></a>12.1.&nbsp;Performance 
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>
+                  <a class="ulink" href="https://www.ibm.com/developerworks/java/library/j-jtp09196/" target="_top"> 
+                     https://www.ibm.com/developerworks/java/library/j-jtp09196/</a>
+                  Java theory and practice: Instrumenting applications with JMX
+                  
+               </p>
+               <p>
+                  <a class="ulink" href="http://www.ibm.com/developerworks/java/library/j-jtp11137.html" target="_top"> 
+                     http://www.ibm.com/developerworks/java/library/j-jtp11137.html</a>
+                  Java theory and practice: Stick a fork in it, Part 1
+                  
+               </p>
+               <p>
+                  <a class="ulink" href="http://www.ibm.com/developerworks/java/library/j-jtp03048.html" target="_top"> 
+                     http://www.ibm.com/developerworks/java/library/j-jtp03048.html</a>
+                  Java theory and practice: Stick a fork in it, Part 2
+                  
+               </p>
+            </div>
+         </div>
+      </div>
+      
+      
+      
+   
+</body></html>

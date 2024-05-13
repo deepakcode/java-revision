@@ -1,0 +1,1288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if IE 8]>
+<html id="ie8" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<![endif]-->
+<!--[if !(IE 8) ]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><!--<![endif]--><head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Java classloaders.. | Tech Read..</title>
+<link rel="pingback" href="http://tech-read.com/xmlrpc.php">
+<meta name="google-site-verification" content="sGrk1oIMXjQkBDplJaxhFvK5jjuYr6jSLJypb6rzznM">
+<meta name="msvalidate.01" content="32E9CB92211187BD7A62F4B97625CC95">
+		<script src="classLoader_files/a_002" type="text/javascript" async=""></script><script type="text/javascript" async="" src="classLoader_files/quant.js"></script><script src="classLoader_files/a" type="text/javascript" async=""></script><script src="classLoader_files/remote-login.php" type="text/javascript"></script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if ( 'function' === typeof WPRemoteLogin ) {
+				document.cookie = "wordpress_test_cookie=test; path=/";
+				if ( document.cookie.match( /(;|^)\s*wordpress_test_cookie\=/ ) ) {
+					WPRemoteLogin();
+				}
+			}
+		/* ]]> */
+		</script>
+		<link rel="alternate" type="application/rss+xml" title="Tech Read.. » Feed" href="http://tech-read.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Tech Read.. » Comments Feed" href="http://tech-read.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Tech Read.. » Java&nbsp;classloaders.. Comments Feed" href="http://tech-read.com/2009/01/13/java-classloaders/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" id="all-css-0" href="classLoader_files/a.css" type="text/css" media="all">
+<link rel="stylesheet" id="print-css-0" href="classLoader_files/global-print.css" type="text/css" media="print">
+<script type="text/javascript">
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="classLoader_files/a.js"></script>
+<link rel="stylesheet" id="all-css-0" href="classLoader_files/style.css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='http://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://technologiquepanorama.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://technologiquepanorama.wordpress.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="What is JAR hell&nbsp;?" href="http://tech-read.com/2009/01/13/what-is-jar-hell/">
+<link rel="next" title="Immutable&nbsp;Class." href="http://tech-read.com/2009/01/22/immutable-class/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="http://tech-read.com/2009/01/13/java-classloaders/">
+<link rel="shortlink" href="http://wp.me/pc0I8-1P">
+<link rel="alternate" type="application/json+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=json&amp;url=http%3A%2F%2Ftech-read.com%2F2009%2F01%2F13%2Fjava-classloaders%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=xml&amp;url=http%3A%2F%2Ftech-read.com%2F2009%2F01%2F13%2Fjava-classloaders%2F&amp;for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java classloaders..">
+<meta property="og:url" content="http://tech-read.com/2009/01/13/java-classloaders/">
+<meta property="og:description" content="Classloader allows JVM to load classes. Regular Java applications running from command line involve three classloaders – Bootstrap, Extensions and System-Classpath classloaders. The three class loa...">
+<meta property="og:site_name" content="Tech Read..">
+<meta property="og:image" content="http://i1.wp.com/technologiquepanorama.wordpress.com/files/2009/01/pic1.gif?fit=1000%2C1000">
+<meta property="og:image" content="http://i1.wp.com/technologiquepanorama.wordpress.com/files/2009/01/puc21.gif?fit=1000%2C1000">
+<meta property="og:image" content="http://i1.wp.com/technologiquepanorama.wordpress.com/files/2009/01/pic3.gif?fit=1000%2C1000">
+<meta property="og:image" content="http://i0.wp.com/technologiquepanorama.wordpress.com/files/2009/01/pic4.gif?fit=1000%2C1000">
+<meta name="twitter:site" content="@wordpressdotcom">
+<meta name="twitter:image0" content="http://i1.wp.com/technologiquepanorama.wordpress.com/files/2009/01/pic1.gif?fit=1000%2C1000">
+<meta name="twitter:image1" content="http://i1.wp.com/technologiquepanorama.wordpress.com/files/2009/01/puc21.gif?fit=1000%2C1000">
+<meta name="twitter:image2" content="http://i1.wp.com/technologiquepanorama.wordpress.com/files/2009/01/pic3.gif?fit=1000%2C1000">
+<meta name="twitter:image3" content="http://i0.wp.com/technologiquepanorama.wordpress.com/files/2009/01/pic4.gif?fit=1000%2C1000">
+<meta name="twitter:card" content="gallery">
+<meta name="twitter:creator" content="@wordpressdotcom">
+<link rel="shortcut icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311975824g" sizes="16x16 24x24 32x32 48x48">
+<link rel="icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311975824g" sizes="16x16 24x24 32x32 48x48">
+<link rel="apple-touch-icon-precomposed" href="http://s0.wp.com/i/webclip.png?m=1355642671g">
+<link rel="openid.server" href="http://technologiquepanorama.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="http://technologiquepanorama.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="http://tech-read.com/osd.xml" title="Tech Read..">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+		<style>
+		/* <![CDATA[ */
+		/* Block: reblog */
+		
+		.reblog-from img                   { margin: 0 10px 0 0; vertical-align: middle; padding: 0; border: 0; }
+		.reblogger-note img.avatar         { float: left; padding: 0; border: 0; }
+		.reblogger-note-content            { margin: 0 0 20px; }
+		.reblog-post .wpcom-enhanced-excerpt-content { border-left: 3px solid #eee; padding-left: 15px; }
+		.reblog-post ul.thumb-list         { display: block; list-style: none; margin: 2px 0; padding: 0; clear: both; }
+		.reblog-post ul.thumb-list li      { display: inline; margin: 0; padding: 0 1px; border: 0; }
+		.reblog-post ul.thumb-list li a    { margin: 0; padding: 0; border: 0; }
+		.reblog-post ul.thumb-list li img  { margin: 0; padding: 0; border: 0; }
+		
+		.reblog-post .wpcom-enhanced-excerpt { clear: both; }
+		
+		.reblog-post .wpcom-enhanced-excerpt address,
+		.reblog-post .wpcom-enhanced-excerpt li,
+		.reblog-post .wpcom-enhanced-excerpt h1,
+		.reblog-post .wpcom-enhanced-excerpt h2,
+		.reblog-post .wpcom-enhanced-excerpt h3,
+		.reblog-post .wpcom-enhanced-excerpt h4,
+		.reblog-post .wpcom-enhanced-excerpt h5,
+		.reblog-post .wpcom-enhanced-excerpt h6,
+		.reblog-post .wpcom-enhanced-excerpt p { font-size: 100% !important; }
+		
+		.reblog-post .wpcom-enhanced-excerpt blockquote,
+		.reblog-post .wpcom-enhanced-excerpt pre,
+		.reblog-post .wpcom-enhanced-excerpt code,
+		.reblog-post .wpcom-enhanced-excerpt q { font-size: 98% !important; }
+		
+
+		/* ]]> */
+		</style>
+				<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none !important;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Tech Read.."><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-task" content="name=Subscribe;action-uri=http://tech-read.com/feed/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="title" content="Java&nbsp;classloaders.. | Tech Read.. on WordPress.com">
+<meta name="description" content="Classloader allows JVM to load classes. Regular Java applications running from command line involve three classloaders – Bootstrap, Extensions and System-Classpath classloaders. The three class loaders have a parent child relationship among themselves 1. Classes in the list of bootstrap classes— These are classes that embody the Java platform, such as the classes in rt.jar.…">
+<style type="text/css">
+#header h1 a, #header h1 a:hover, #header .description {
+color: #fff;
+}
+</style>
+
+<script type="text/javascript" src="classLoader_files/google_service.js">
+</script>
+<script type="text/javascript">
+if ( typeof GS_googleAddAdSenseService == 'function' ) { GS_googleAddAdSenseService("ca-pub-3443918307802676"); }
+if ( typeof GS_googleEnableAllServices == 'function' ) { GS_googleEnableAllServices() };
+</script><script src="classLoader_files/google_ads.js"></script>
+<script type="text/javascript">
+if ( typeof GA_googleAddSlot == 'function' ) { GA_googleAddSlot("ca-pub-3443918307802676", "wpcom_below_post"); }
+</script>
+<script type="text/javascript">
+if ( typeof GA_googleFetchAds == 'function' ) { GA_googleFetchAds(); }
+</script>
+
+<script type="text/javascript">
+var wpcom_ads = { bid: 2862672, pt: 'permalink', wa: 0, as: 0, domain: 'tech-read.com', url: 'http://tech-read.com/2009/01/13/java-classloaders/', gid: '', };
+</script>
+<style id="syntaxhighlighteranchor"></style>
+<script type="text/javascript"> 
+	window.google_analytics_uacct = "UA-52447-2"; 
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'none']);
+	_gaq.push(['_setAllowLinker', true]);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script><script src="classLoader_files/ga.js" async="" type="text/javascript"></script>
+<script src="classLoader_files/osd.js" type="text/javascript"></script><script src="classLoader_files/rating-top.php" charset="utf-8"></script><script src="classLoader_files/rate.php" charset="utf-8"></script><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="classLoader_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="classLoader_files/services.css"><style id="pd_popup_holder_style_992345_post_113" type="text/css">#pd_popup_holder_992345_post_113 { position:absolute; display:none; width:350px; height:auto; top:0px; left:0px; z-index:10000; border:solid 1px #CCC; background-color:white; padding:0px 15px;font-family:Arial,Sans;box-shadow: -10px 10px 20px rgba(0, 0, 0, .5);-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25);-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25); }</style></head>
+<body class="single single-post postid-113 single-format-standard mp6 highlander-enabled highlander-light"><div id="container">
+
+<div id="header">
+
+	<div id="menu">
+		<ul id="menu-ok" class="menu"><li id="menu-item-566" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-566"><a href="http://tech-read.com/category/java/">java</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://tech-read.com/category/spring/">spring</a></li>
+</ul>	</div>
+
+	<div id="header-box">
+	<div id="header-image">
+		<img src="classLoader_files/bg_header_img.png" alt="">
+	</div>
+	<div id="header-overlay">
+		<img src="classLoader_files/bg_header_overlay.png" alt="">
+	</div>
+
+	<div id="pagetitle">
+		<h1><a href="http://tech-read.com/" title="Tech Read..">Tech Read..</a></h1>
+	</div>
+
+	<div id="syndication">
+		<a href="http://tech-read.com/feed/" title="Syndicate this site using RSS" class="feed">Entries <abbr title="Really Simple Syndication">RSS</abbr></a> | <a href="http://tech-read.com/comments/feed/" title="Syndicate comments using RSS">Comments RSS</a>
+	</div>
+	<div id="searchbox">
+		<form method="get" id="searchform" action="http://tech-read.com/">
+<div>
+	<input name="s" id="s" type="text">
+	<input id="searchsubmit" value="Search" type="submit">
+</div>
+</form>	</div>
+	</div>
+</div>
+
+<div class="pagewrapper"><div id="page">
+
+<!-- Start Obar -->
+
+	<div class="obar">
+<ul>
+
+<li id="linkcat-1356" class="widget widget_links"><h2 class="widgettitle">Blogroll</h2>
+
+	<ul class="xoxo blogroll">
+<li><a href="http://www.blogcatalog.com/directory/technology/internet/web_programming/">Blog catalog</a></li>
+<li><a href="http://codemonkeyism.com/">Code Monkeyism</a></li>
+<li><a href="http://alexmiller/">http://tech.puredanger.com/</a></li>
+<li><a href="http://technoticles/" title="My another blog">http://technoticles.com/</a></li>
+<li><a href="http://www.java-questions.com/" rel="me" title="Java interview questions" target="_top">Java Interview questions</a></li>
+<li><a href="http://www.technoticles.com/">Technoticles</a></li>
+
+	</ul>
+</li>
+
+<li id="categories-274942002" class="widget widget_categories"><h2 class="widgettitle">Categories</h2>
+		<ul>
+	<li class="cat-item cat-item-56113"><a href="http://tech-read.com/category/ant/" title="View all posts filed under ant">ant</a> (1)
+</li>
+	<li class="cat-item cat-item-89467"><a href="http://tech-read.com/category/data-structure/" title="View all posts filed under data structure">data structure</a> (8)
+</li>
+	<li class="cat-item cat-item-17907"><a href="http://tech-read.com/category/hibernate/" title="View all posts filed under hibernate">hibernate</a> (2)
+</li>
+	<li class="cat-item cat-item-647"><a href="http://tech-read.com/category/html/" title="View all posts filed under html">html</a> (1)
+</li>
+	<li class="cat-item cat-item-1017"><a href="http://tech-read.com/category/java/" title="View all posts filed under java">java</a> (47)
+</li>
+	<li class="cat-item cat-item-6662543"><a href="http://tech-read.com/category/jgoodies/" title="View all posts filed under jgoodies">jgoodies</a> (1)
+</li>
+	<li class="cat-item cat-item-72721"><a href="http://tech-read.com/category/json/" title="View all posts filed under json">json</a> (1)
+</li>
+	<li class="cat-item cat-item-14529"><a href="http://tech-read.com/category/latest-news/" title="View all posts filed under Latest News">Latest News</a> (15)
+</li>
+	<li class="cat-item cat-item-21954763"><a href="http://tech-read.com/category/mongodb/" title="View all posts filed under mongodb">mongodb</a> (2)
+</li>
+	<li class="cat-item cat-item-28224982"><a href="http://tech-read.com/category/node-js/" title="View all posts filed under node.js">node.js</a> (1)
+</li>
+	<li class="cat-item cat-item-832"><a href="http://tech-read.com/category/python/" title="View all posts filed under python">python</a> (3)
+</li>
+	<li class="cat-item cat-item-4681"><a href="http://tech-read.com/category/quiz/" title="View all posts filed under quiz">quiz</a> (1)
+</li>
+	<li class="cat-item cat-item-6652"><a href="http://tech-read.com/category/rails/" title="View all posts filed under rails">rails</a> (1)
+</li>
+	<li class="cat-item cat-item-4872"><a href="http://tech-read.com/category/ruby/" title="View all posts filed under ruby">ruby</a> (1)
+</li>
+	<li class="cat-item cat-item-9486"><a href="http://tech-read.com/category/spring/" title="View all posts filed under spring">spring</a> (16)
+</li>
+	<li class="cat-item cat-item-8688"><a href="http://tech-read.com/category/swing/" title="View all posts filed under swing">swing</a> (1)
+</li>
+	<li class="cat-item cat-item-599182"><a href="http://tech-read.com/category/twitter/" title="View all posts filed under twitter">twitter</a> (1)
+</li>
+	<li class="cat-item cat-item-9203"><a href="http://tech-read.com/category/unix/" title="View all posts filed under unix">unix</a> (1)
+</li>
+	<li class="cat-item cat-item-52824296"><a href="http://tech-read.com/category/yql-2/" title="View all posts filed under YQL">YQL</a> (1)
+</li>
+		</ul>
+</li>
+<li id="archives-3" class="widget widget_archive"><h2 class="widgettitle">Archives</h2>
+		<ul>
+			<li><a href="http://tech-read.com/2013/05/" title="May 2013">May 2013</a>&nbsp;(3)</li>
+	<li><a href="http://tech-read.com/2013/04/" title="April 2013">April 2013</a>&nbsp;(1)</li>
+	<li><a href="http://tech-read.com/2011/11/" title="November 2011">November 2011</a>&nbsp;(1)</li>
+	<li><a href="http://tech-read.com/2011/10/" title="October 2011">October 2011</a>&nbsp;(3)</li>
+	<li><a href="http://tech-read.com/2011/09/" title="September 2011">September 2011</a>&nbsp;(4)</li>
+	<li><a href="http://tech-read.com/2011/07/" title="July 2011">July 2011</a>&nbsp;(1)</li>
+	<li><a href="http://tech-read.com/2011/03/" title="March 2011">March 2011</a>&nbsp;(1)</li>
+	<li><a href="http://tech-read.com/2011/02/" title="February 2011">February 2011</a>&nbsp;(1)</li>
+	<li><a href="http://tech-read.com/2011/01/" title="January 2011">January 2011</a>&nbsp;(2)</li>
+	<li><a href="http://tech-read.com/2010/10/" title="October 2010">October 2010</a>&nbsp;(1)</li>
+	<li><a href="http://tech-read.com/2010/07/" title="July 2010">July 2010</a>&nbsp;(1)</li>
+	<li><a href="http://tech-read.com/2010/06/" title="June 2010">June 2010</a>&nbsp;(2)</li>
+	<li><a href="http://tech-read.com/2010/04/" title="April 2010">April 2010</a>&nbsp;(2)</li>
+	<li><a href="http://tech-read.com/2010/02/" title="February 2010">February 2010</a>&nbsp;(2)</li>
+	<li><a href="http://tech-read.com/2010/01/" title="January 2010">January 2010</a>&nbsp;(5)</li>
+	<li><a href="http://tech-read.com/2009/09/" title="September 2009">September 2009</a>&nbsp;(1)</li>
+	<li><a href="http://tech-read.com/2009/08/" title="August 2009">August 2009</a>&nbsp;(4)</li>
+	<li><a href="http://tech-read.com/2009/07/" title="July 2009">July 2009</a>&nbsp;(2)</li>
+	<li><a href="http://tech-read.com/2009/06/" title="June 2009">June 2009</a>&nbsp;(1)</li>
+	<li><a href="http://tech-read.com/2009/05/" title="May 2009">May 2009</a>&nbsp;(5)</li>
+	<li><a href="http://tech-read.com/2009/04/" title="April 2009">April 2009</a>&nbsp;(6)</li>
+	<li><a href="http://tech-read.com/2009/03/" title="March 2009">March 2009</a>&nbsp;(12)</li>
+	<li><a href="http://tech-read.com/2009/02/" title="February 2009">February 2009</a>&nbsp;(8)</li>
+	<li><a href="http://tech-read.com/2009/01/" title="January 2009">January 2009</a>&nbsp;(7)</li>
+	<li><a href="http://tech-read.com/2008/12/" title="December 2008">December 2008</a>&nbsp;(3)</li>
+	<li><a href="http://tech-read.com/2008/11/" title="November 2008">November 2008</a>&nbsp;(6)</li>
+	<li><a href="http://tech-read.com/2008/09/" title="September 2008">September 2008</a>&nbsp;(5)</li>
+	<li><a href="http://tech-read.com/2008/06/" title="June 2008">June 2008</a>&nbsp;(1)</li>
+	<li><a href="http://tech-read.com/2008/05/" title="May 2008">May 2008</a>&nbsp;(2)</li>
+		</ul>
+</li>
+
+</ul>
+	</div>
+
+<!-- End Obar -->
+	<div class="wrapper"><!-- This wrapper class appears only on Page and Single Post pages. -->
+	<div class="narrowcolumnwrapper"><div class="narrowcolumn">
+
+		<div class="content">
+
+			
+			<div class="post-113 post type-post status-publish format-standard hentry category-java tag-classloaders" id="post-113">
+
+				<h2><a href="http://tech-read.com/2009/01/13/java-classloaders/" rel="bookmark" title="Java&nbsp;classloaders..">Java&nbsp;classloaders..</a></h2>
+
+				<div class="postinfo">
+Posted on <span class="postdate">January 13, 2009</span> by Harshit				</div>
+
+				<div class="entry">
+
+					<div style="display: inline-block;" class="pd-rating" id="pd_rating_holder_992345_post_113"><div class="rating-msg" id="PDRTJS_992345_post_113_msg" style="text-align: left;font:normal normal /16px ;color: #;">14 Votes</div><p style="padding: 0px; margin: 0px; clear: both;"></p><div class="rating-icons" id="pd_rate_992345_post_113" style="float:left;"><div class="rating-star-icon" onmouseout="PDRTJS_992345_post_113.rebuild();" onclick="PDRTJS_992345_post_113.rate(1);" onmouseover="PDRTJS_992345_post_113.hover(1);" id="PDRTJS_992345_post_113_stars_1" style="background-size: 32px 48px!important; cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(http://i0.poll.fm/images/ratings/star-yellow-sml.png) top left; float: left; padding: 0px; marging: 0px; margin-right: 1px;">&nbsp;</div><div class="rating-star-icon" onmouseout="PDRTJS_992345_post_113.rebuild();" onclick="PDRTJS_992345_post_113.rate(2);" onmouseover="PDRTJS_992345_post_113.hover(2);" id="PDRTJS_992345_post_113_stars_2" style="background-size: 32px 48px!important; cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(http://i0.poll.fm/images/ratings/star-yellow-sml.png) top left; float: left; padding: 0px; marging: 0px; margin-right: 1px;">&nbsp;</div><div class="rating-star-icon" onmouseout="PDRTJS_992345_post_113.rebuild();" onclick="PDRTJS_992345_post_113.rate(3);" onmouseover="PDRTJS_992345_post_113.hover(3);" id="PDRTJS_992345_post_113_stars_3" style="background-size: 32px 48px!important; cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(http://i0.poll.fm/images/ratings/star-yellow-sml.png) top left; float: left; padding: 0px; marging: 0px; margin-right: 1px;">&nbsp;</div><div class="rating-star-icon" onmouseout="PDRTJS_992345_post_113.rebuild();" onclick="PDRTJS_992345_post_113.rate(4);" onmouseover="PDRTJS_992345_post_113.hover(4);" id="PDRTJS_992345_post_113_stars_4" style="background-size: 32px 48px!important; cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(http://i0.poll.fm/images/ratings/star-yellow-sml.png) top left; float: left; padding: 0px; marging: 0px; margin-right: 1px;">&nbsp;</div><div class="rating-star-icon" onmouseout="PDRTJS_992345_post_113.rebuild();" onclick="PDRTJS_992345_post_113.rate(5);" onmouseover="PDRTJS_992345_post_113.hover(5);" id="PDRTJS_992345_post_113_stars_5" style="background-size: 32px 48px!important; cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(http://i0.poll.fm/images/ratings/star-yellow-sml.png) center left; float: left; padding: 0px; marging: 0px; margin-right: 1px;">&nbsp;</div></div><span style="float:left;">&nbsp;</span><div id="rating_info_992345_post_113" style="display:block;float:left;background:url(http://i0.poll.fm/images/ratings/info.png) no-repeat 3px 2px;width:16px;height:16px;cursor:pointer; null " onclick="javascript:PDRTJS_992345_post_113.togglePopup();return false;"><span style="display:none;">i</span></div><div class="pd_popup_holder" id="pd_popup_holder_992345_post_113">&nbsp;</div><img src="classLoader_files/p-ab3gTb8xb3dLg.gif" style="display: none;" alt="Quantcast" height="1" border="0" width="1"></div><br><div class="mceTemp">
+<div class="mceTemp"></div>
+<p>Classloader allows JVM to load classes. Regular Java applications 
+running from command line involve three classloaders – Bootstrap, 
+Extensions and System-Classpath classloaders. The three class loaders 
+have a parent child relationship among themselves</p></div>
+<p>1. Classes in the list of bootstrap classes— These are classes that embody the Java platform, such as the classes in rt.jar.</p>
+<p>2. Classes that appear in the list of extension classes— These 
+classes use the Extension Mechanism Framework to extend the Java 
+platform, with archive files (.jar, .zip, etc.) located in the /lib/ext 
+directory of the runtime environment.</p>
+<p>3. User classes—These are classes that do not use the extension 
+mechanism architecture identified using the -classpath command-line 
+option or the CLASSPATH environment variable.</p>
+<p><img class="alignnone size-full wp-image-114" title="pic1" src="classLoader_files/pic1.gif" alt="pic1"></p>
+<p>&nbsp;Classloader problems, when they occur are difficult to debug. There are only three basic principles to understand.</p>
+<div id="attachment_118" class="wp-caption aligncenter" style="width: 370px"><img class="size-full wp-image-118" title="puc21" src="classLoader_files/puc21.gif" alt="Classloader hierarchy illustrating the delegation."><p class="wp-caption-text">Classloader hierarchy illustrating the delegation.</p></div>
+<p>&nbsp;The first principle is <strong>Delegation Principle</strong>. 
+According to this principle, if a particular class is not loaded 
+already, the classloaders delegate the requests to load that class to 
+their parent classloaders. This delegation continues until the top of 
+the hierarchy is reached and the primordial classloader loads the class.
+ The System-ClassPath classloader loads a class called MyApp. MyApp 
+creates a new instance of java.util.Vector. Assume that java.util.Vector
+ has not been loaded already. Since System-Classpath classloader loaded 
+the MyApp class, it first asks its parent, the extension classloader to 
+load the class. The extension classloader asks the Bootstrap classloader
+ to load java.util.Vector. Since java.util.Vector is a J2SE class, the 
+bootstrap classloader loads it and returns. Consider a slightly 
+different scenario. In this case, MyApp creates a new instance of 
+MyClass, another application specific class. Assume that MyClass has not
+ been loaded yet. As usual, when the System-Classpath classloader 
+receives the request to load the class, it delegates it to its parent. 
+The request finally reaches the Bootstrap classloader. It cannot find 
+the class. Hence its child, Extensions classloader tries to load it. It 
+cannot find it either. Finally the request comes back to the 
+System-Classpath classloader. It finds the class and loads it. This 
+explains the alternative path when everything is not a happy day 
+scenario.</p>
+<div id="attachment_116" class="wp-caption alignnone" style="width: 370px"><img class="size-full wp-image-116" title="pic3" src="classLoader_files/pic3.gif" alt=" Classloader hierarchy illustrating the delegation when classes cannot be found"><p class="wp-caption-text">Classloader hierarchy illustrating the delegation when classes cannot be found</p></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div id="attachment_117" class="wp-caption aligncenter" style="width: 370px"><img class="size-full wp-image-117" title="pic4" src="classLoader_files/pic4.gif" alt=" Classloader hierarchy and classes visibility."><p class="wp-caption-text">Classloader hierarchy and classes visibility.</p></div>
+<p>&nbsp;The second principle is the <strong>Visibility principle</strong>.
+ According to this principle, Classes loaded by parent classloaders are 
+visible to child classloaders but not vice versa. What this means is 
+that a class can only see other classes loaded by the ClassX’s 
+classloader or one of its parents. The reverse is not true i.e. a class 
+loaded by ClassX’s parent classloader cannot see ClassX. An example will
+ make things clearer. Look at above figure. Four classloaders are shown-
+ ClassLoaders A, B, X and Y. Class A is the topmost Classloader. 
+ClassLoader B is its child. ClassLoaders X and Y are B’s siblings. Each 
+of them loads classes with same names i.e. A, B, X and Y. A is the only 
+class visible as far as other classes loaded by ClassLoader A are 
+concerned. As far as classes loaded by ClassLoader B is concerned, A and
+ B are the visible classes. Similarly for classes loaded by ClassLoader 
+X, classes A, B and X are visible, but not class Y. Sibling classloaders
+ cannot see each other’s classes.</p>
+<p>The third principle is the class <strong>Uniqueness Principle</strong>.
+ According to this principle, when a classloader loads a class, the 
+child classloaders in the hierarchy will never reload the class. This 
+follows from the delegation principle since a classloader always 
+delegates class loading to its parents. The child classloader will load 
+it (or try to load it) only if the parent hierarchy fails to load the 
+class. Thus the uniqueness of the class is maintained. An interesting 
+scenario emerges when both parent and child classloaders load the same 
+class. You might think how is this feasible after all. Isn’t this 
+contradicting the class uniqueness principle? To answer this question 
+look at figure again. Let us assume that none of the classes have been 
+loaded anywhere in the hierarchy. Let us also suppose that X, loaded by 
+ClassLoader X, forcefully uses its classloader to load B. This can be 
+done as shown in example below by using an API such as Class.forName(). 
+The code shows such a scenario. Using Class.forName() 01 public class X {
+ 02 03 public X() { 04 ClassLoader cl = 
+this.getClass().getClassLoader(); 05 Class B = Class.forName(“B”, true, 
+cl); 06 } 07 } In the constructor for X, the class B is loaded by 
+explicitly using Person’s parent classloader, i.e. the parent of the 
+classloader that loaded Person. By doing so, the delegation is 
+overridden and B is loaded by ClassLoaderX – the classloader of X. Now 
+suppose that another class loaded by ClassLoader B tries to access B, it
+ cannot find it and hence follows the delegation principle. Since the 
+delegation principle only consults the parents, ClassLoader B also 
+eventually loads Class B. When some other code tries to compare two 
+objects of type B – each loaded by different classloaders, it gets a 
+ClassCastException.</p>
+
+<div class="wpa" style="position: relative; width:300px; text-align: center; padding: 0; margin: 10px auto; overflow: hidden; clear: both;">
+<a style="position: absolute; text-align: left; display: block; font: 9px/1 sans-serif; text-decoration: underline;" href="http://en.wordpress.com/about-these-ads/" rel="nofollow">About these ads</a>
+<script type="text/javascript">
+		var wpcom_adclk_hovering = false;
+		var wpcom_adclk_recorded = false;
+		var wpcom_adclk_theme = "Digg 3 Column";
+		var wpcom_adclk_slot = "wpcom_below_post";
+		var wpcom_adclk_network = ( typeof wpcom_adclk_network === "undefined" ) ? "" : wpcom_adclk_network ;
+
+		jQuery(document).ready( function() {
+			function wpcom_adclk_hover_yes() { wpcom_adclk_hovering = true; }
+			function wpcom_adclk_hover_no() { wpcom_adclk_hovering = false; }
+			jQuery(".wpa").click(wpcom_adclk_click);
+			jQuery(".wpa iframe").hover( wpcom_adclk_hover_yes, wpcom_adclk_hover_no );
+			jQuery(".wpa object").hover( wpcom_adclk_hover_yes, wpcom_adclk_hover_no );
+
+			jQuery(window).blur( function() {
+				if ( wpcom_adclk_hovering ) { wpcom_adclk_click(); }
+			});
+		});
+
+		function wpcom_adclk_impression() {
+			var stat_gif = document.location.protocol + "//stats.wordpress.com/g.gif?v=wpcom-no-pv";
+			stat_gif += "&x_ads_imp_theme=" + wpcom_adclk_theme;
+			stat_gif += "&x_ads_imp_placement="+wpcom_adclk_slot;
+			stat_gif += "&x_ads_imp_network=" + wpcom_adclk_network;
+			stat_gif += "&x_ads_imp_theme_network="+wpcom_adclk_theme+"_"+wpcom_adclk_network;
+			new Image().src = stat_gif + "&baba=" + Math.random();
+			return true;
+		}
+
+		function wpcom_adclk_click() {
+			if (wpcom_adclk_recorded) { return true; } // no double counting
+			var stat_gif = document.location.protocol + "//stats.wordpress.com/g.gif?v=wpcom-no-pv";
+			stat_gif += "&x_ads_click_theme=" + wpcom_adclk_theme;
+			stat_gif += "&x_ads_click_placement="+wpcom_adclk_slot;
+			stat_gif += "&x_ads_click_network=" + wpcom_adclk_network;
+			stat_gif += "&x_ads_click_theme_network="+wpcom_adclk_theme+"_"+wpcom_adclk_network;
+
+			new Image().src = stat_gif + "&baba=" + Math.random();
+			wpcom_adclk_recorded = true;
+			var now=new Date(); var end=now.getTime()+250;
+			while(true){now=new Date();if(now.getTime()>end){break;}}
+			return true;
+		}
+	
+if ( typeof GA_googleAddAttr == 'function' ) {
+GA_googleAddAttr("AdOpt", "1");
+GA_googleAddAttr("Origin", "other");
+GA_googleAddAttr("LangId", "1");
+GA_googleAddAttr("Domain", "tech-read.com");
+GA_googleAddAttr("BlogId", "2862672");
+GA_googleAddAttr("Autotag", "education");
+GA_googleAddAttr("Tag", "java");
+GA_googleAddAttr("Tag", "classloaders");
+GA_googleAddAttr("theme_bg", "ffffff");
+GA_googleAddAttr("theme_border", "666666");
+GA_googleAddAttr("theme_text", "333333");
+GA_googleAddAttr("theme_link", "105CB6");
+GA_googleAddAttr("theme_url", "8DAB3B");
+GA_googleAddAdSensePageAttr("google_page_url", "http://tech-read.com/2009/01/13/java-classloaders/");
+GA_googleFillSlot("wpcom_below_post");
+}
+</script><script src="classLoader_files/ads"></script><div id="google_ads_div_wpcom_below_post_ad_wrapper">
+<div id="google_ads_div_wpcom_below_post_ad_container" style="display:inline-block;"><!--/* OpenX JavaScript tag */-->
+
+<!-- /*
+ * The tag in this template has been generated for use on a
+ * non-SSL page. If this tag is to be placed on an SSL page, change the
+ * 'http://us-ads.openx.net/...'
+ * to
+ * 'https://us-ads.openx.net/...'
+ */ -->
+
+<script type="text/javascript">
+if (!window.OX_ads) { OX_ads = []; }
+OX_ads.push({ "auid" : "355525" });
+</script>
+<script type="text/javascript">
+document.write('<scr'+'ipt src="http://us-ads.openx.net/w/1.0/jstag"><\/scr'+'ipt>');
+</script><script src="classLoader_files/jstag"></script><script type="text/javascript" id="ox_arj_679657716" src="classLoader_files/arj"></script><iframe src="classLoader_files/pd.htm" style="display:none;" height="0" width="0"></iframe><div id="beacon_33862446" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="classLoader_files/ri.gif"></div><iframe id="4ec6d94f14679" name="4ec6d94f14679" src="classLoader_files/afr.htm" frameborder="0" height="250" scrolling="no" width="300">&lt;a
+ 
+href="http://psa-d.openx.com/w/1.0/rc?cs=4ec6d94f14679&amp;cb=fJ44wU0e1S"
+ &gt;&lt;img 
+src="http://psa-d.openx.com/w/1.0/ai?auid=34589&amp;cs=4ec6d94f14679&amp;amp;cb=4eRFvXqegv"
+ border="0" alt=""&gt;&lt;/a&gt;</iframe>
+<noscript><iframe id="511edf482499c" name="511edf482499c" src="http://us-ads.openx.net/w/1.0/afr?auid=355525&cb=INSERT_RANDOM_NUMBER_HERE" frameborder="0" scrolling="no" width="300" height="250"><a href="http://us-ads.openx.net/w/1.0/rc?cs=511edf482499c&cb=INSERT_RANDOM_NUMBER_HERE" ><img src="http://us-ads.openx.net/w/1.0/ai?auid=355525&cs=511edf482499c&cb=INSERT_RANDOM_NUMBER_HERE" border="0" alt=""></a></iframe></noscript>
+
+</div>
+</div>
+
+</div>
+<style type="text/css">
+div.wpa>div { margin-top: 1em; }
+</style>
+<script type="text/javascript">
+jQuery( window ).load( function() {
+    if ( jQuery(".wpa script[src*='shareth.ru']").length > 0 || jQuery(".wpa iframe[src*='boomvideo.tv']").length > 0 || jQuery(".wpa iframe[src*='viewablemedia.net']").length > 0 || jQuery(".wpa .sharethrough-placement").length > 0 ) {
+        jQuery( '.wpa' ).css( 'width', '400px' );
+    }
+setTimeout(function(){if(typeof GS_googleAddAdSenseService !== 'function'){new Image().src=document.location.protocol+"//stats.wordpress.com/g.gif?v=wpcom-no-pv&x_noads=adblock&baba="+Math.random()}},100);
+} );
+</script>
+<div id="jp-post-flair" class="sharedaddy sd-rating-enabled sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-stumbleupon"><a rel="nofollow" class="share-stumbleupon sd-button share-icon no-text" href="http://tech-read.com/2009/01/13/java-classloaders/?share=stumbleupon&amp;nb=1" title="Click to share on StumbleUpon"><span></span></a></li><li class="share-reddit"><a rel="nofollow" class="share-reddit sd-button share-icon no-text" href="http://tech-read.com/2009/01/13/java-classloaders/?share=reddit&amp;nb=1" title="Click to share on Reddit"><span></span></a></li><li class="share-twitter"><a rel="nofollow" class="share-twitter sd-button share-icon no-text" href="http://tech-read.com/2009/01/13/java-classloaders/?share=twitter&amp;nb=1" title="Click to share on Twitter" id="sharing-twitter-113"><span></span></a></li><li class="share-google-plus-1"><a rel="nofollow" class="share-google-plus-1 sd-button share-icon no-text" href="http://tech-read.com/2009/01/13/java-classloaders/?share=google-plus-1&amp;nb=1" title="Click to share on Google+" id="sharing-google-113"><span></span></a></li><li class="share-print"><a rel="nofollow" class="share-print sd-button share-icon no-text" href="http://tech-read.com/2009/01/13/java-classloaders/#print" title="Click to print"><span></span></a></li><li class="share-email share-service-visible"><a rel="nofollow" class="share-email sd-button share-icon no-text" href="http://tech-read.com/2009/01/13/java-classloaders/?share=email&amp;nb=1" title="Click to email this to a friend"><span></span></a></li><li class="share-end"></li></ul></div></div></div><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-loaded" id="like-post-wrapper-2862672-113-520d75ce508f0" data-src="//widgets.wp.com/likes/#blog_id=2862672&amp;post_id=113&amp;origin=technologiquepanorama.wordpress.com&amp;obj_id=2862672-113-520d75ce508f0" data-name="like-post-frame-2862672-113-520d75ce508f0"><h3 class="sd-title">Like this:</h3><div class="post-likes-widget-placeholder" style="height: 55px; display: none;"><span class="button"><span>Like</span></span> <span class="loading">Loading...</span></div><iframe style="display: inline;" class="post-likes-widget jetpack-likes-widget" name="like-post-frame-2862672-113-520d75ce508f0" src="classLoader_files/a.htm" frameborder="0" height="55px" width="100%"></iframe><span class="sd-text-color"></span><a class="sd-link-color"></a></div></div>					
+					<p class="postinfo">
+				Filed under: <a href="http://tech-read.com/category/java/" title="View all posts in java" rel="category tag">java</a> Tagged: | <a href="http://tech-read.com/tag/classloaders/" rel="tag">classloaders</a>					</p>
+
+				</div>
+			</div>
+
+
+
+			<div class="browse">« <a href="http://tech-read.com/2009/01/13/what-is-jar-hell/" rel="prev">What is JAR hell&nbsp;?</a>  <a href="http://tech-read.com/2009/01/22/immutable-class/" rel="next">Immutable&nbsp;Class.</a> »</div>
+
+
+
+		</div><!-- End content -->
+
+	</div></div><!-- End narrowcolumnwrapper and narrowcolumn classes -->
+
+	
+<div class="narrowcolumnwrapper"><div class="narrowcolumn">
+	<div class="content">
+	<div class="post-113 post type-post status-publish format-standard hentry category-java tag-classloaders post">
+
+	<h3 id="comments">7 Responses</h3>
+
+	<ol class="commentlist">
+	
+<li class="comment even thread-even depth-1 highlander-comment" id="comment-23">
+<div id="div-comment-23">
+	<div class="comment-meta commentmetadata">
+		<div class="avatar"><img id="grav-732e9bb1abbea3db11841d89c8ec7dbd-0" alt="" src="classLoader_files/732e9bb1abbea3db11841d89c8ec7dbd.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32"></div>		<span class="comment-author vcard"><strong class="fn"><a href="http://no/" rel="external nofollow" class="url">Suryapraksh</a></strong>, on <a href="#comment-23" title="">January 14, 2009 at 2:58 am</a> said:		</span>
+			</div>
+
+	<p>Hi,<br>
+this is a very good information to related to classloder,</p>
+<p>Thanks</p>
+
+	<div class="reply">
+		<a class="comment-reply-link" href="http://tech-read.com/2009/01/13/java-classloaders/?replytocom=23#respond" onclick='return addComment.moveForm("div-comment-23", "23", "respond", "113")'>Reply</a>	</div>
+</div>
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-44">
+<div id="div-comment-44">
+	<div class="comment-meta commentmetadata">
+		<div class="avatar"><img id="grav-6be6296549f8f2b003e69833e8232c15-0" alt="" src="classLoader_files/6be6296549f8f2b003e69833e8232c15.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32"></div>		<span class="comment-author vcard"><strong class="fn">Tejas Shah</strong>, on <a href="#comment-44" title="">April 16, 2009 at 10:56 am</a> said:		</span>
+			</div>
+
+	<p>Yes , really good and indepth document providing information<br>
+about classloaders</p>
+
+	<div class="reply">
+		<a class="comment-reply-link" href="http://tech-read.com/2009/01/13/java-classloaders/?replytocom=44#respond" onclick='return addComment.moveForm("div-comment-44", "44", "respond", "113")'>Reply</a>	</div>
+</div>
+</li><!-- #comment-## -->
+
+<li class="comment even thread-even depth-1 highlander-comment" id="comment-125">
+<div id="div-comment-125">
+	<div class="comment-meta commentmetadata">
+		<div class="avatar"><img id="grav-d5c85e3200916cd3c66305871a250a7c-0" alt="" src="classLoader_files/d5c85e3200916cd3c66305871a250a7c.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32"></div>		<span class="comment-author vcard"><strong class="fn">prateek</strong>, on <a href="#comment-125" title="">September 1, 2009 at 5:30 am</a> said:		</span>
+			</div>
+
+	<p>Dear Sir, </p>
+<p>I Want Made my own jVm what i can Do?<br>
+I am waiting for your answer .</p>
+
+	<div class="reply">
+		<a class="comment-reply-link" href="http://tech-read.com/2009/01/13/java-classloaders/?replytocom=125#respond" onclick='return addComment.moveForm("div-comment-125", "125", "respond", "113")'>Reply</a>	</div>
+</div>
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-126">
+<div id="div-comment-126">
+	<div class="comment-meta commentmetadata">
+		<div class="avatar"><img id="grav-d5c85e3200916cd3c66305871a250a7c-1" alt="" src="classLoader_files/d5c85e3200916cd3c66305871a250a7c.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32"></div>		<span class="comment-author vcard"><strong class="fn">prateek</strong>, on <a href="#comment-126" title="">September 1, 2009 at 5:41 am</a> said:		</span>
+			</div>
+
+	<p>Dear Sir,</p>
+<p>I want to Know compiler time binding and run time binding.</p>
+
+	<div class="reply">
+		<a class="comment-reply-link" href="http://tech-read.com/2009/01/13/java-classloaders/?replytocom=126#respond" onclick='return addComment.moveForm("div-comment-126", "126", "respond", "113")'>Reply</a>	</div>
+</div>
+</li><!-- #comment-## -->
+
+<li class="pingback even thread-even depth-1 highlander-comment" id="comment-174">
+<div id="div-comment-174">
+	<div class="comment-meta commentmetadata">
+		<div class="avatar"></div>		<span class="comment-author vcard"><strong class="fn"><a href="http://lowerthan60.wordpress.com/2010/06/30/java-classloaders/" rel="external nofollow" class="url">Java classloaders | Lowerthan60's Blog</a></strong>, on <a href="#comment-174" title="">June 30, 2010 at 7:12 pm</a> said:		</span>
+			</div>
+
+	<p>[...] Java&nbsp;classloaders  Posted on June 30, 2010 by lowerthan60   <a href="http://technologiquepanorama.wordpress.com/2009/01/13/java-classloaders/" rel="nofollow">http://technologiquepanorama.wordpress.com/2009/01/13/java-classloaders/</a> [...]</p>
+
+	<div class="reply">
+		<a class="comment-reply-link" href="http://tech-read.com/2009/01/13/java-classloaders/?replytocom=174#respond" onclick='return addComment.moveForm("div-comment-174", "174", "respond", "113")'>Reply</a>	</div>
+</div>
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-193">
+<div id="div-comment-193">
+	<div class="comment-meta commentmetadata">
+		<div class="avatar"><img id="grav-51c4f1c5c2c5c7e7cbc23aa92e3cf382-0" alt="" src="classLoader_files/51c4f1c5c2c5c7e7cbc23aa92e3cf382.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32"></div>		<span class="comment-author vcard"><strong class="fn">Prashant Jain</strong>, on <a href="#comment-193" title="">August 17, 2010 at 4:26 pm</a> said:		</span>
+			</div>
+
+	<p>This article is very good… and really clears the working of class loaders.</p>
+
+	<div class="reply">
+		<a class="comment-reply-link" href="http://tech-read.com/2009/01/13/java-classloaders/?replytocom=193#respond" onclick='return addComment.moveForm("div-comment-193", "193", "respond", "113")'>Reply</a>	</div>
+</div>
+</li><!-- #comment-## -->
+
+<li class="comment byuser comment-author-hhimanshu even thread-even depth-1 highlander-comment" id="comment-203">
+<div id="div-comment-203">
+	<div class="comment-meta commentmetadata">
+		<div class="avatar"><img id="grav-2a0b2959ff20e8654aabee4b7e49a6ed-0" alt="" src="classLoader_files/2a0b2959ff20e8654aabee4b7e49a6ed.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32"></div>		<span class="comment-author vcard"><strong class="fn"><a href="http://www.linkedin.com/in/harithimanshu" rel="external nofollow" class="url">hhimanshu</a></strong>, on <a href="#comment-203" title="">November 2, 2010 at 8:09 pm</a> said:		</span>
+			</div>
+
+	<p>Nice article!</p>
+
+	<div class="reply">
+		<a class="comment-reply-link" href="http://tech-read.com/2009/01/13/java-classloaders/?replytocom=203#respond" onclick='return addComment.moveForm("div-comment-203", "203", "respond", "113")'>Reply</a>	</div>
+</div>
+</li><!-- #comment-## -->
+	</ol>
+
+	<div class="navigation">
+	<div class="alignleft"></div>
+	<div class="alignright"></div>
+	</div>
+
+	
+
+
+
+								<div id="respond" class="comment-respond js">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://tech-read.com/2009/01/13/java-classloaders/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://tech-read.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										
+
+
+												<input id="highlander_comment_nonce" name="highlander_comment_nonce" value="366d7bcdbb" type="hidden"><input name="_wp_http_referer" value="/2009/01/13/java-classloaders/" type="hidden">
+<input name="hc_post_as" id="hc_post_as" value="guest" type="hidden">
+
+<div class="comment-form-field comment-textarea">
+	
+	<div id="comment-form-comment"><textarea aria-hidden="true" tabindex="-1" style="height: 36px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; width: 446px; line-height: 16px; text-decoration: none; letter-spacing: 0px;" placeholder="Enter your comment here..." title="Enter your comment here..."></textarea><textarea style="height: 36px; resize: none; overflow-y: hidden;" placeholder="Enter your comment here..." id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div style="display: none;" id="comment-form-identity">
+
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" title="Guest">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" title="WordPress.com">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" title="Twitter">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" title="Facebook">
+					<span></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="classLoader_files/ad516503a11cd5ca435acc9bb6523536.png" alt="Gravatar" class="no-grav" width="25">
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email"></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name</label>
+					<div class="comment-form-input"><input id="author" name="author" type="text"></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text"></div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="classLoader_files/wplogo.png" alt="WordPress.com Logo" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" type="hidden">
+				<input name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" type="hidden">
+				<input name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" type="hidden">
+				<p class="comment-form-posting-as pa-wordpress"><strong></strong> You are commenting using your WordPress.com account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'wordpress'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="classLoader_files/ad516503a11cd5ca435acc9bb6523536.png" alt="Twitter picture" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" type="hidden">
+				<input name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" type="hidden">
+				<input name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" type="hidden">
+				<p class="comment-form-posting-as pa-twitter"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'twitter'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="classLoader_files/ad516503a11cd5ca435acc9bb6523536.png" alt="Facebook photo" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" type="hidden">
+				<input name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" type="hidden">
+				<input name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" type="hidden">
+				<p class="comment-form-posting-as pa-facebook"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'facebook'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+	
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+}
+jQuery(document).ready( highlander_expando_javascript );
+</script>
+
+<div style="display: none;" id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6" type="checkbox"> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of follow-up comments via email.</label></p></div>
+
+												<p style="display: none;" class="form-submit">
+							<input name="submit" id="comment-submit" value="Post Comment" type="submit">
+							<input name="comment_post_ID" value="113" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+						</p>
+						
+<input name="genseq" value="1376613838" type="hidden">
+<p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="614dc74c34" type="hidden"></p><script type="text/javascript" src="classLoader_files/form.js"></script>
+<p style="display: none;"><input id="ak_js" name="ak_js" value="1376615611989" type="hidden"></p>					</form>
+							</div><!-- #respond -->
+			<div style="clear: both"></div>			
+	</div>
+	</div>
+</div></div>
+
+
+	</div><!-- End wrapper class -->
+
+	<div class="sidebar">
+	<ul>
+
+		<li id="recent-posts-3" class="widget widget_recent_entries">		<h2 class="widgettitle">Recent Posts</h2>
+		<ul>
+					<li>
+				<a href="http://tech-read.com/2013/05/13/program-find-binary-tree-is-bst/" title="Program to find whether the binary tree is BST&nbsp;?">Program to find whether the binary tree is BST&nbsp;?</a>
+						</li>
+					<li>
+				<a href="http://tech-read.com/2013/05/09/node-js-500-error-cannot-find-module-ejs/" title="Node.js :500 Error: Cannot find module&nbsp;‘ejs’">Node.js :500 Error: Cannot find module&nbsp;‘ejs’</a>
+						</li>
+					<li>
+				<a href="http://tech-read.com/2013/05/09/write-a-program-to-find-whether-a-binary-tree-is-a-balanced/" title="Write a program to find whether a binary tree is a balanced&nbsp;?">Write a program to find whether a binary tree is a balanced&nbsp;?</a>
+						</li>
+					<li>
+				<a href="http://tech-read.com/2013/04/29/error-while-running-junit-with-spring-3-2/" title="Error while running junit with Spring&nbsp;3.2">Error while running junit with Spring&nbsp;3.2</a>
+						</li>
+					<li>
+				<a href="http://tech-read.com/2011/11/16/format-json-string-using-jsonserializer/" title="Format Json String using&nbsp;JsonSerializer.">Format Json String using&nbsp;JsonSerializer.</a>
+						</li>
+				</ul>
+		</li>
+<li id="pd_top_rated-3" class="widget top_rated"><h2 class="widgettitle">Top Rated</h2>
+<div id="pd_top_rated_holder"><p><strong>Posts</strong> | <a href="javascript:" onclick="PDRTJS_TOP.get_top( 'pages', '0' );">Pages</a> | <a href="javascript:" onclick="PDRTJS_TOP.get_top( 'comments', '0' );">Comments</a></p><p><strong><small>All</small></strong> | <a href="javascript:" title="Posts created today" onclick="PDRTJS_TOP.get_top( 'posts', '1' );"><small>Today</small></a> | <a href="javascript:" title="Posts created this week" onclick="PDRTJS_TOP.get_top( 'posts', '7' );"><small>This Week</small></a> | <a href="javascript:" title="Posts created this month" onclick="PDRTJS_TOP.get_top( 'posts', '31' );"><small>This Month</small></a></p> <ul id="top_posts"><li><a href="http://tech-read.com/2009/08/27/what-is-difference-between-static-and-init-block-in-java/">What is difference between static and init block in&nbsp;java</a><br><strong> 5/5</strong> (5 votes)</li><li><a href="http://technologiquepanorama.wordpress.com/2010/01/28/spurious-wakeup-in-java/">Spurious wakeup in Java</a><br><strong> 5/5</strong> (2 votes)</li><li><a href="http://tech-read.com/2011/03/09/extract-html-content-using-xpath/">Extract HTML content using Xpath</a><br><strong> 5/5</strong> (2 votes)</li><li><a href="http://tech-read.com/2011/10/31/spring-3-mvc-annotations/">Spring 3 MVC Annotations tutorial</a><br><strong> 5/5</strong> (2 votes)</li><li><a href="http://technologiquepanorama.wordpress.com/2008/09/05/javalangoutofmemoryerror-while-doing-ant-build/">java.lang.OutOfMemoryError while doing ant build?</a><br><strong> 5/5</strong> (1 vote)</li></ul><img src="classLoader_files/pixel.gif" style="display: none;" alt="Quantcast" height="1" border="0" width="1"></div><script language="javascript" src="classLoader_files/top-rated.js"></script><script language="javascript" type="text/javascript">PDRTJS_TOP = new PDRTJS_RATING_TOP( 992345, 995321, 995322, '111', 5 );PDRTJS_TOP.get_top( 'posts', '0' );</script></li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription"><h2 class="widgettitle"><label for="subscribe-field">Follow Blog via Email</label></h2>
+
+			<form action="https://subscribe.wordpress.com" method="post" accept-charset="utf-8" id="subscribe-blog">
+									<p>Enter your email address to follow this blog and receive notifications of new posts by email.</p>
+<p>Join 88 other followers</p>
+					<p><input name="email" style="width: 95%; padding: 1px 2px" id="subscribe-field" type="text"></p>
+				
+				<p>
+					<input name="action" value="subscribe" type="hidden">
+					<input name="blog_id" value="2862672" type="hidden">
+					<input name="source" value="http://tech-read.com/2009/01/13/java-classloaders/" type="hidden">
+					<input name="sub-type" value="widget" type="hidden">
+					<input name="redirect_fragment" value="blog_subscription-3" type="hidden">
+					<input id="_wpnonce" name="_wpnonce" value="877cee19a4" type="hidden">					<input value="Sign me up!" type="submit">
+				</p>
+			</form>
+			
+</li>
+<li id="rss_links-3" class="widget widget_rss_links"><ul><li><a href="http://tech-read.com/feed/" title="Subscribe to Posts">RSS - Posts</a></li><li><a href="http://tech-read.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></li></ul>
+</li>
+
+</ul>
+	</div>
+</div><!-- End pagewrapper -->
+
+<div id="footer">
+<p><a href="http://wordpress.com/?ref=footer" rel="generator">Blog at WordPress.com</a>. <a href="http://theme.wordpress.com/themes/digg3/" title="Learn more about this theme">The Digg 3 Column Theme</a>. </p>
+</div>
+
+</div><!-- end page -->
+
+</div><!-- End container id -->
+
+
+<script type="text/javascript">
+var _qevents = _qevents || [], wpcomQuantcastData = {"qacct":"p-18-mFEk4J448M","labels":",language.en,type.wpcom,posttag.classloaders,as"};
+function wpcomQuantcastPixel( labels, options ) {
+	var i, defaults = wpcomQuantcastData, data = { event: 'ajax' };
+
+	labels  = labels  || '';
+	options = options || {};
+
+	if ( typeof labels != 'string' )
+		options = labels;
+
+	for ( i in defaults ) {
+		data[i] = defaults[i];
+	}
+
+	for ( i in options ) {
+		data[i] = options[i];
+	}
+
+	if ( data.labels ) {
+		data.labels += ',' + labels;
+	} else {
+		data.labels = labels;
+	}
+
+	_qevents.push( data );
+};
+(function() {var elem = document.createElement('script');elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";elem.async = true;elem.type = "text/javascript";var scpt = document.getElementsByTagName('script')[0];scpt.parentNode.insertBefore(elem, scpt);  })();
+_qevents.push( wpcomQuantcastData );
+</script>
+<noscript><div style="display: none;"><img src="//pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=%2Clanguage.en%2Ctype.wpcom%2Cposttag.classloaders%2Cas" height="1" width="1" alt="" /></div></noscript>
+
+<script type="text/javascript" src="classLoader_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="classLoader_files/wpgroho.js"></script>
+<script>jQuery(document).ready(function($){ Gravatar.profile_cb = function( h, d ) { WPGroHo.syncProfileData( h, d );	}; Gravatar.my_hash = WPGroHo.my_hash; Gravatar.init( 'body', '#wp-admin-bar-my-account' ); });</script>	<div style="display:none">
+	<div class="grofile-hash-map-732e9bb1abbea3db11841d89c8ec7dbd">
+	</div>
+	<div class="grofile-hash-map-6be6296549f8f2b003e69833e8232c15">
+	</div>
+	<div class="grofile-hash-map-d5c85e3200916cd3c66305871a250a7c">
+	</div>
+	<div class="grofile-hash-map-51c4f1c5c2c5c7e7cbc23aa92e3cf382">
+	</div>
+	<div class="grofile-hash-map-2a0b2959ff20e8654aabee4b7e49a6ed">
+	</div>
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"http:\/\/technologiquepanorama.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"http:\/\/technologiquepanorama.wordpress.com\/wp-login.php?action=logout&_wpnonce=dcd2032663","homeURL":"http:\/\/tech-read.com\/","postID":"113","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="classLoader_files/a_002.js"></script>
+
+	<div style="bottom: -274px;" id="bit" class="loggedout-follow-normal">
+		<a class="bsub" href="javascript:void(0)"><span id="bsub-text">Follow</span></a>
+		<div id="bitsubscribe">
+
+					<h3><label for="loggedout-follow-field">Follow “Tech Read..”</label></h3>
+
+			<form action="https://subscribe.wordpress.com" method="post" accept-charset="utf-8" id="loggedout-follow">
+			<p>Get every new post delivered to your Inbox.</p>
+
+			<p id="loggedout-follow-error" style="display: none;"></p>
+
+						<p class="bit-follow-count">Join 88 other followers</p>
+			<p><input name="email" style="width: 95%; padding: 1px 2px" value="Enter your email address" onfocus='this.value=(this.value=="Enter your email address") ? "" : this.value;' onblur='this.value=(this.value=="") ? "Enter email address" : this.value;' id="loggedout-follow-field" type="email"></p>
+
+			<input name="action" value="subscribe" type="hidden">
+			<input name="blog_id" value="2862672" type="hidden">
+			<input name="source" value="http://tech-read.com/2009/01/13/java-classloaders/" type="hidden">
+			<input name="sub-type" value="loggedout-follow" type="hidden">
+
+			<input id="_wpnonce" name="_wpnonce" value="877cee19a4" type="hidden"><input name="_wp_http_referer" value="/2009/01/13/java-classloaders/" type="hidden">
+			<p id="bsub-subscribe-button"><input value="Sign me up" type="submit"></p>
+			</form>
+					<div id="bsub-credit"><a href="http://wordpress.com/signup/?ref=lof">Powered by WordPress.com</a></div>
+		</div><!-- #bitsubscribe -->
+	</div><!-- #bit -->
+<script type="text/javascript" charset="UTF-8" id="polldaddyRatings"><!--//--><![CDATA[//><!--
+PDRTJS_settings_992345_post_113={"id":992345,"unique_id":"wp-post-113","title":"Java%26nbsp%3Bclassloaders..","permalink":"http:\/\/tech-read.com\/2009\/01\/13\/java-classloaders\/","item_id":"_post_113"}; if ( typeof PDRTJS_RATING !== 'undefined' ){if ( typeof PDRTJS_992345_post_113 == 'undefined' ){PDRTJS_992345_post_113 = new PDRTJS_RATING( PDRTJS_settings_992345_post_113 );}}
+//--><!]]></script><script type="text/javascript" charset="UTF-8" src="classLoader_files/rating.js"></script>		<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-google-plus-1' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=600,height=600' );
+				return false;
+			});
+		});
+		</script>
+			<div id="sharing_email" style="display: none;">
+		<form action="/2009/01/13/java-classloaders/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input name="target_email" id="target_email" type="text">
+
+			
+				<label for="source_name">Your Name</label>
+				<input name="source_name" id="source_name" type="text">
+
+				<label for="source_email">Your Email Address</label>
+				<input name="source_email" id="source_email" type="text">
+
+			
+			<div class="recaptcha" id="sharing_recaptcha"></div><input name="recaptcha_public_key" id="recaptcha_public_key" value="6LcYW8MSAAAAADBAuEH9yaPcF7lWh11Iq62ZKtoo" type="hidden">
+			<img style="float: right; display: none" class="loading" src="classLoader_files/loading.gif" alt="loading" height="16" width="16">
+			<input value="Send Email" class="sharing_send" type="submit">
+			<a href="#cancel" class="sharing_cancel">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+		<iframe src="classLoader_files/master.htm" id="likes-master" name="likes-master" style="display:none;" scrolling="no"></iframe>
+		<div id="likes-other-gravatars"><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+		<script type="text/javascript">
+		//<![CDATA[
+			var jetpackLikesWidgetQueue = [];
+			var jetpackLikesMasterReady = false;
+
+			function JetpackLikespostMessage( message, target ) {
+				if ( "string" === typeof message ){
+					try{
+						message = JSON.parse( message );
+					}
+					catch(e) {
+						return;
+					}
+				}
+
+				pm( {
+					target: target,
+					type: 'likesMessage',
+					data: message,
+					origin: '*'
+				} );
+			}
+
+			function JetpackLikesMessageListener( event ) {
+				if ( "undefined" == typeof event.event )
+					return;
+
+				if ( 'masterReady' == event.event ) {
+					jQuery( document ).ready( function() {
+						jetpackLikesMasterReady = true;
+
+						var stylesData = {
+								event: 'injectStyles'
+						};
+
+						if ( jQuery( 'iframe.admin-bar-likes-widget' ).length > 0 ) {
+							JetpackLikespostMessage( { event: 'adminBarEnabled' }, window.frames[ 'likes-master' ] );
+
+							stylesData.adminBarStyles = {
+								background: jQuery( '#wpadminbar .quicklinks li#wp-admin-bar-wpl-like > a' ).css( 'background' )
+							};
+						}
+
+						if ( !window.addEventListener )
+							jQuery( '#wp-admin-bar-admin-bar-likes-widget' ).hide();
+
+						stylesData.textStyles = {
+							color: jQuery( '.sd-text-color').css( 'color' ),
+							fontFamily: jQuery( '.sd-text-color' ).css( 'font-family' ),
+							fontSize: jQuery( '.sd-text-color' ).css( 'font-size' ),
+							direction: jQuery( '.sd-text-color' ).css( 'direction' ),
+							fontWeight: jQuery( '.sd-text-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-text-color' ).css( 'font-style' ),
+							textDecoration: jQuery( '.sd-text-color' ).css('text-decoration')
+						};
+
+						stylesData.linkStyles = {
+							color: jQuery( '.sd-link-color' ).css('color'),
+							fontFamily: jQuery( '.sd-link-color' ).css('font-family'),
+							fontSize: jQuery( '.sd-link-color' ).css('font-size'),
+							textDecoration: jQuery( '.sd-link-color' ).css('text-decoration'),
+							fontWeight: jQuery( '.sd-link-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-link-color' ).css( 'font-style' )
+						};
+
+						JetpackLikespostMessage( stylesData, window.frames[ 'likes-master' ] );
+
+						var requests = [];
+						jQuery( '.jetpack-likes-widget-wrapper' ).each( function( i ) {
+							var regex = /like-(post|comment)-wrapper-(\d+)-(\d+)-(\w+)/;
+							var match = regex.exec( this.id );
+							if ( ! match || match.length != 5 )
+								return;
+
+							var info = {
+								blog_id: match[2],
+								width:   this.width
+							};
+
+							if ( 'post' == match[1] ) {
+								info.post_id = match[3];
+							} else if ( 'comment' == match[1] ) {
+								info.comment_id = match[3];
+							}
+
+							info.obj_id = match[4];
+
+							requests.push( info );
+						});
+
+						JetpackLikespostMessage( { event: 'initialBatch', requests: requests }, window.frames['likes-master'] );
+
+						jQuery( document ).on( 'inview', 'div.jetpack-likes-widget-unloaded', function() {
+							jetpackLikesWidgetQueue.push( this.id );
+						});
+					});
+				}
+
+				if ( 'showLikeWidget' == event.event ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 10 );
+					jQuery( '#' + event.id + ' .post-likes-widget-placeholder'  ).fadeOut( 'fast', function() {
+						jQuery( '#' + event.id + ' .post-likes-widget' ).fadeIn( 'fast', function() {
+							JetpackLikespostMessage( { event: 'likeWidgetDisplayed', blog_id: event.blog_id, post_id: event.post_id, obj_id: event.obj_id }, window.frames['likes-master'] );
+						});
+					});
+				}
+
+				if ( 'showOtherGravatars' == event.event ) {
+					var $container = jQuery( '#likes-other-gravatars' );
+					var $list = $container.find( 'ul' );
+
+					$container.hide();
+					$list.html( '' );
+
+					$container.find( '.likes-text span' ).text( event.total );
+
+					jQuery.each( event.likers, function( i, liker ) {
+						$list.append( '<li class="' + liker.css_class + '"><a href="' + liker.profile_URL + '" class="wpl-liker" rel="nofollow" target="_parent"><img src="' + liker.avatar_URL + '" alt="' + liker.name + '" width="30" height="30" style="padding-right: 3px;" /></a></li>');
+					} );
+
+					var offset = jQuery( "[name='" + event.parent + "']" ).offset();
+
+					$container.css( 'left', offset.left + event.position.left - 10 + 'px' );
+					$container.css( 'top', offset.top + event.position.top - 33 + 'px' );
+
+					var rowLength = Math.floor( event.width / 37 );
+					var height = ( Math.ceil( event.likers.length / rowLength ) * 37 ) + 13;
+					if ( height > 204 ) {
+						height = 204;
+					}
+
+					$container.css( 'height', height + 'px' );
+					$container.css( 'width', rowLength * 37 - 7 + 'px' );
+
+					$list.css( 'width', rowLength * 37 + 'px' );
+
+					$container.fadeIn( 'slow' );
+
+					var scrollbarWidth = $list[0].offsetWidth - $list[0].clientWidth;
+					if ( scrollbarWidth > 0 ) {
+						$container.width( $container.width() + scrollbarWidth );
+						$list.width( $list.width() + scrollbarWidth );
+					}
+				}
+			}
+
+			pm.bind( 'likesMessage', function(e) { JetpackLikesMessageListener(e); } );
+
+			jQuery( document ).click( function( e ) {
+				var $container = jQuery( '#likes-other-gravatars' );
+
+				if ( $container.has( e.target ).length === 0 ) {
+					$container.fadeOut( 'slow' );
+				}
+			});
+
+			function JetpackLikesWidgetQueueHandler() {
+				var wrapperID;
+				if ( ! jetpackLikesMasterReady ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+					return;
+				}
+
+				if ( jetpackLikesWidgetQueue.length > 0 ) {
+					// We may have a widget that needs creating now
+					var found = false;
+					while( jetpackLikesWidgetQueue.length > 0 ) {
+						// Grab the first member of the queue that isn't already loading.
+						wrapperID = jetpackLikesWidgetQueue.splice( 0, 1 )[0];
+						if ( jQuery( '#' + wrapperID ).hasClass( 'jetpack-likes-widget-unloaded' ) ) {
+							found = true;
+							break;
+						}
+					}
+					if ( ! found ) {
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				} else if ( jQuery( 'div.jetpack-likes-widget-unloaded' ).length > 0 ) {
+					// Get the next unloaded widget
+					wrapperID = jQuery( 'div.jetpack-likes-widget-unloaded' ).first()[0].id;
+					if ( ! wrapperID ) {
+						// Everything is currently loaded
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				}
+
+				var $wrapper = jQuery( '#' + wrapperID );
+				$wrapper.find( 'iframe' ).remove();
+
+				if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='22px' width='68px' frameBorder='0' scrolling='no' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				} else {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='55px' width='100%' frameBorder='0' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				}
+
+				$wrapper.removeClass( 'jetpack-likes-widget-unloaded' ).addClass( 'jetpack-likes-widget-loading' );
+
+				$wrapper.find( 'iframe' ).load( function( e ) {
+					var $iframe = jQuery( e.target );
+					$wrapper.removeClass( 'jetpack-likes-widget-loading' ).addClass( 'jetpack-likes-widget-loaded' );
+
+					JetpackLikespostMessage( { event: 'loadLikeWidget', name: $iframe.attr( 'name' ), width: $iframe.width() }, window.frames[ 'likes-master' ] );
+
+					if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+						$wrapper.find( 'iframe' ).Jetpack( 'resizeable' );
+					}
+				});
+				setTimeout( JetpackLikesWidgetQueueHandler, 250 );
+			}
+			JetpackLikesWidgetQueueHandler();
+		//]]>
+		</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var recaptcha_options = {"lang":"en"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="classLoader_files/a_003.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="classLoader_files/w.js" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({'blog':'2862672','v':'wpcom','tz':'0','user_id':'0','post':'113','subd':'technologiquepanorama'});
+ex_go({'crypt':'UE5XaGUuOTlwaD85flAmcm1mcmZsaDhkV11YdWtpP0NsWnVkPS9sL0ViLndld3AsdkJ1cXFURjg1cGp5W282ZnFTRi1mYjk1OG16QW8tcH4vaTl2WV9zNj04bUUmaG9QS09BQzcxRFM9LFJBczdrWVtaa0JMbjlkQ0Vvd1B5MUJ6cHBBd0YlYWRJLDcvWGhtWitlU0lVcmFWSGNOUzdkSXguNnlldkdyV3VlTjlBaW41d2dlZ2MmeDY0VmE/c2xES0llbyxxZ3htX0pbaUUmM1VfaVYucHZCZ3VhdGJLWlZRRlUrWVtzcHYxWS40L1BDeXN2OVtQZzBoanx4K1o3QTc9MlZPVTJjTl1xb2lQLzVFbk14Snd+ZFFQSE51bHpqeSYrZCV2MzI5flEwMEsvMFJXTw=='});
+addLoadEvent(function(){linktracker_init('2862672',113);});
+	</script><img id="wpstats" src="classLoader_files/g.gif" alt=""><img id="wpstats2" src="classLoader_files/g_002.gif" alt="" style="display:none">
+<noscript><img src="http://stats.wordpress.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//stats.wordpress.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+
+
+</body></html>

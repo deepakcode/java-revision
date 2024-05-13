@@ -1,0 +1,306 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head> 
+<link href="/css/tigon.css" type="text/css" rel="stylesheet">
+<title>When do I use HttpSessionActivationListener?</title>
+</head>
+<body>
+
+<div class="headerwide">
+<table border="0" cellpadding="0" cellspacing="0" width="1000" align="center">
+  <tr class="banner">
+    <td valign="top" align="center">
+		<IMG src="/images/logo.gif" border="0" alt="XYZWS SCDJWS SCJP"/>
+    </td> 
+	<td valign="bottom" align="right">
+	<font size="-2">Member Center:&nbsp;<a href="/registration">Register</a>&nbsp;|&nbsp;<a href="/login">Sign In</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+	
+	<br><br>
+	
+	<form method="get" action="http://www.google.com/custom" target="_top">
+<table border="0">
+<tr>
+
+<td><input type="radio" name="sitesearch" value="" checked="checked"/><font size="-2" color="#000000">The Web</font></td>
+<td><input type="radio" name="sitesearch" value="www.xyzws.com"/><font size="-2" color="#000000">xyzws.com</font></td>
+
+<td nowrap="nowrap">
+	
+	<input type="text" name="q" size="50" maxlength="255" value=""/></td>
+
+	<td><input type="submit" name="sa" value="Search"/>
+	<input type="hidden" name="domains" value="www.xyzws.com"/>
+	<input type="hidden" name="client" value="pub-5605518375162908"/>
+	<input type="hidden" name="forid" value="1"/>
+	<input type="hidden" name="ie" value="ISO-8859-1"/>
+	<input type="hidden" name="oe" value="ISO-8859-1"/>
+	<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"/>
+	<input type="hidden" name="hl" value="en"/>
+</td>
+<td nowrap="nowrap"><span id="smalltext">powered by</span></td>
+<td colspan=2 nowrap valign="top" align="left" height="32">
+<a href="http://www.google.com/">
+<img src="http://www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></a>
+</td>
+</tr>
+</table>
+</form>
+</td>
+  </tr>
+</table>
+</div>
+
+<div id="topmenu">
+<ul>
+    <li><a href="/">Home</a></li> 
+    <li><a href="/stius/view/all/page1/month/latest">STIU</a></li>
+    <li><a href="/scjp/">SCJP</a></li>
+    <li><a href="/scdjws/">SCDJWS</a></li>
+    <li><a href="/javafaq/page/1">JEE FAQ</a></li>
+    <li><a href="/wow/all/latest/1">WOW</a></li>
+    <li><a href="/aboutus">About US</a></li>
+</ul>
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" width="1000" align="center">
+<tr><td><div class="nav">You are here: <a href="http://www.xyzws.com/javafaq/page/1"><font color="#00ccff">JEE FAQ</font></a> &#187; Java Servlet FAQ</div></td></tr></table>
+<!-- main content -->
+<div class="main">
+    
+<!-- main left-->
+<div class="main_left">
+
+<div class="module">
+    <div class="content">
+        <div class="module">
+<div class="header">
+<h3>FAQ</h3>
+</div>
+<div class="content">
+
+  
+<p><a href="/javafaq/page/1">Java</a></p>
+<p><a href="/jspfaq/page/1">JSP</a></p>
+<p>Servlet</p>
+<p></p>
+    </div>
+</div>
+
+</div>
+</div>
+<br/>   
+
+<div class="left_menu_ad">
+<script type="text/javascript"><!--
+google_ad_client = "pub-5605518375162908";
+google_ad_width = 120;
+google_ad_height = 600;
+google_ad_format = "120x600_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_border = "6699ff";
+google_color_link = "0000FF";
+google_color_bg = "FFFFFF";
+google_color_text = "000000";
+google_color_url = "008000";
+google_color_bg = "f0f8ff";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script><font size=-2 color="#ffffff">Advertisement</font>
+</div>
+
+</div> <!-- end of main left-->
+
+<!-- main right -->
+<div class="main_right">
+    
+<!--top ads -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-5605518375162908";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_border = "6699ff";
+google_color_bg = "f0f8ff";
+google_color_link = "0000FF";
+google_color_url = "008000";
+google_color_text = "000000";
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script><!-- end of top ads -->
+
+<br>
+<br>
+    
+<div class="main_right_l">
+
+<div class="module">
+<div id="faq_body">
+<br>
+<h1>When do I use HttpSessionActivationListener?</h1>
+
+<p>The <code>HttpSessionActivationListener</code> is used for responding to events when a sessions object  migrates from one VM to another.  The <code>HttpSessionActivationListener</code> only has any relevance when a session is part of a web application in a distributed environment. When a session is activated, notification that the session has just been activated  will be received by the <code>SessionDidActivate</code> method and when the session is about to be destroyed,  the <code>sessionWillPassivate</code> method is invoked.</p>
+<p>Objects, that are bound (stored) to the session and its class implements  <code>HttpSessionActivationListener</code> interface, can be initialised or destroyed based upon the listener.  Also, when the session migrates between servers, the <code>sessionWillPassivate</code> is called and once it is successfully moved, the <code>sessionDidActivate</code> will be called.  It is interesting to note that the sesssion is not yet ready for service at the time the  <code>sessionDidActivate</code> method is called.</p>
+<p>The specification mandates that a container may migrate a session to another JVM for purposes such as load balancing or fail-over. This type of capability is considered vital for the deployment of large scale web application.</p>
+<p>The <code>HttpSessionActivationListener</code> has two methods:</p>
+<pre>public void sessionDidActivate(HttpSessionEvent se) <br />public void sessionWillPassivate(HttpSessionEvent se) <br /></pre>
+<p>The following quote from <code>Interface HttpSessionActivationListener API</code> document:</p>
+<blockquote>Objects that are bound to a session may listen to container events notifying them that sessions will be passivated and that session will be activated. A container that migrates session between VMs or persists sessions is required to notify all attributes bound to sessions implementing <code>HttpSessionActivationListener</code>.</blockquote>
+<p>Notes:</p>
+<ul>
+<li> For an attributes to be migrated between distributed JVM's any attributes must implement the <code>java.io.Serializable</code> interface. </li>
+<li> Don't need to (and must not) configure the classes that implements this interface in the deployment descriptor (web.xml),  just make a class implementing the <code>HttpSessionActivationListener</code> interface. </li>
+<li> The JSP/Servlet standard does not require that a web container supports distributed applications, but it must support the HttpSessionActivationListener interface, to allow code to be capable of supporting such an environment. </li>
+</ul>
+<p>Session passivation is where inactive sessions are written to a persistent store.  Session activation is the ability to a previously passivated session into memory from the persistent store.</p>
+<p>An example implements this interface:</p>
+<pre>public class myObject implements HttpSessionActivationListener {<br />  ...<br />  public void sessionWillPassivate(HttpSessionEvent se) {<br />    System.out.println("session is about to be passivated");<br />    ... //you can cleanup and store something into persistent storage<br />  }<br /><br />  public void sessionDidActivate(HttpSessionEvent se) {<br />    System.out.println("session has just been activated");<br />    ... //you can init and revtrive something from persistent storage<br />  }<br />}<br /></pre><p>
+<!--start google ad -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-5605518375162908";
+google_alternate_color = "FFFFFF";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<!--end google ad -->
+</P>
+</div>
+<hr width="100%" size="1">
+
+<div style="float:left;">
+<p>
+<img src="/images/printIcon.gif" width="16" height="15" 
+border="0" alt="Printer-friendly version" vspace="4" align="absmiddle" />
+   <a href="javascript:toPrint('4', 'servlet')" >Printer-friendly version</a> | 
+<img src="/images/emailIcon.gif" width="20" height="15" border="0" alt="Send this 
+article to a friend"> <a href="/faqMail/servlet/when-do-i-use-httpsessionactivationlistener/4">Mail this to a friend</a>
+</p>
+</div> 
+
+<!-- Doc Nav -->
+<div style="float:right;">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><a href="/servletfaq/what-is-the-defferent-between-getnameddispatcher-and-getrequestdispatcher/3"><img src="/images/doc_nav_prev.gif" border="0" width="36" height="44" alt="Previous" title="Previous" /></td>
+
+<td><a href="/servletfaq/when-do-i-use-httpsessionattributelistener/5"><img src="/images/doc_nav_next.gif" width="44" height="44" alt="Next" title="Next" border="0" /></a></td>
+
+<td><img src="/images/doc_nav_dots.gif" width="5" height="44" border="0" alt="vertical dots separating previous/next from contents/index/pdf" /></td>
+
+<td><a href="/servletfaq/page/1"><img src="/images/doc_nav_contents.gif" width="52" height="44" alt="Contents" title="Contents" border="0"/></td>
+</tr>
+</table>
+</div>
+<!--End of Doc Nav -->
+<div style="clear:both;"></div>
+
+</div>
+</div>
+
+<div class="main_right_r">
+
+<div class="module">
+<div class="header">
+<h3>Most Recent servlet Faqs</h3>
+</div>
+<div class="content"> 
+    <UL class="home">
+<LI><a href="/Servletfaq/what-is-servlet-collaboration/25">What is Servlet Collaboration?</a></LI>
+    <LI><a href="/Servletfaq/what-is-&lt;loadonstartup&gt;-in-webxml-file/24">What is &lt;load-on-startup&gt; in web.xml file?</a></LI>
+    <LI><a href="/Servletfaq/what-is-the-getinputstream-of-servletrequest-for/23">What is the getInputStream() of ServletRequest for?</a></LI>
+    <LI><a href="/Servletfaq/how-to-get-the-client-information-in-a-servlet/0">How to get the client information in a Servlet?</a></LI>
+    <LI><a href="/Servletfaq/can-i-control-session-timeout/12">Can I control Session timeout?</a></LI>
+    <LI><a href="/Servletfaq/what-is-the-difference-between-requestdispatchers-forward-method-and-httpservletresponses-sendredirect-method/2">What is the difference between RequestDispatcher's forward method and HttpServletResponse's sendRedirect method?</a></LI>
+    <LI><a href="/Servletfaq/when-do-i-use-httpsessionlistener/7">When do I use HttpSessionListener?</a></LI>
+    </UL></div>
+
+</div>
+
+<br>
+
+<div class="module">
+<div class="header">
+<h3>Most Viewed servlet Faqs</h3>
+</div>
+<div class="content"> 
+    <UL class="home">
+<LI><a href="/Servletfaq/what-is-the-difference-between-the-request-attribute-and-request-parameter/1">What is the difference between the request attribute and request parameter?</a></LI>
+    <LI><a href="/Servletfaq/when-do-i-use-httpsessionlistener/7">When do I use HttpSessionListener?</a></LI>
+    <LI><a href="/Servletfaq/how-to-use-servletcontextgetresourceasstreamjavalangstring-path/18">How to use ServletContext.getResourceAsStream(java.lang.String path)?</a></LI>
+    <LI><a href="/Servletfaq/what-is-the-difference-between-requestdispatchers-forward-method-and-httpservletresponses-sendredirect-method/2">What is the difference between RequestDispatcher's forward method and HttpServletResponse's sendRedirect method?</a></LI>
+    <LI><a href="/Servletfaq/how-to-get-the-client-information-in-a-servlet/0">How to get the client information in a Servlet?</a></LI>
+    <LI><a href="/Servletfaq/can-i-control-session-timeout/12">Can I control Session timeout?</a></LI>
+    <LI><a href="/Servletfaq/what-is-the-defferent-between-getnameddispatcher-and-getrequestdispatcher/3">What is the defferent between getNamedDispatcher() and getRequestDispatcher()?</a></LI>
+    </UL></div>
+
+</div>
+   
+
+</div>
+</div> <!-- end of main right-->
+
+</div> <!-- end of main-->
+
+<br>
+
+<div class="clearfloat">
+<div class="help">
+    <script language="Javascript" type="text/javascript">
+    <!-- //
+    var user = "webmaster"; 
+    var domain = "xyzws.com"; 
+
+    document.write('<a href=\"mailto:' + user + '@' + domain + '\">'); 
+    document.write('Support</a>');
+      // -->
+   </script>
+   &nbsp;&nbsp;|
+    <script language="Javascript" type="text/javascript">
+    <!-- //
+    document.write('<a href=\"mailto:' + user + '@' + domain + '\">'); 
+    document.write('Feedback</a>');
+      // -->
+   </script>
+   &nbsp;&nbsp;|
+       <script language="Javascript" type="text/javascript">
+    <!-- //
+    document.write('<a href=\"mailto:' + user + '@' + domain + '\">'); 
+    document.write('Help</a>');
+      // -->
+   </script>
+   &nbsp;&nbsp;
+</div>
+
+
+</div>
+<hr class="layout">
+
+<div style="clear:both;"></div>
+
+<div class="footer">
+&copy Copyright 2005-2016 www.xyzws.com All rights reserved.
+</div>
+		
+
+</body>
+</html>
+
+
+

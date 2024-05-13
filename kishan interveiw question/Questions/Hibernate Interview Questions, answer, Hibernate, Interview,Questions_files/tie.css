@@ -1,0 +1,68 @@
+#content {
+  max-width:70em;
+  width:100%;
+  margin:0 auto;
+  padding-bottom:2px;
+  overflow:hidden
+}
+.demo {
+  margin:0em;
+  padding:0 0 0 0;
+  border:1px solid #ccc;
+  position:relative;
+  overflow:hidden
+}
+.collapse pre {padding:0 10px 1em}
+
+h2{font-size:1em}
+.expand{padding-bottom:.75em}
+
+td {
+  padding: 0em;
+  margin-top: 0em;
+  margin-right: 0em;
+  margin-left: 0em;
+  margin-bottom: 0em;
+}
+body {
+  padding: 0em;
+  margin-top: 0em;
+  margin-right: 0em;
+  margin-left: 0em;
+  margin-bottom: 0em;
+}
+a{color: #4444ff; background: #ffffff; font: 15px Arial;}
+
+.mmm{color: #000000; background: #eeeeff; font-size: 12px;text-decoration:none}
+.AAA{color: #000000; background: #eeeeff; font-size: 15px;}
+.BBB{color: #000000; background: #ccccff; font-size: 12px;
+}
+#T{display: inline; background:#dddddd;}
+pre {font-family:"Times New Roman"; font-size: 15px}
+
+.AA{color: #000000; background: yellow; font-size: 15px;}
+.BB{color: #000000; background: yellow; font-size: 12px;}
+.topGr {   
+  
+  background-color: #FFFFFF;  
+  
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#6666ff), to(#FFFFFF));   
+  background-image: -webkit-linear-gradient(top, #6666ff, #FFFFFF );   
+  background-image:    -moz-linear-gradient(top, #6666ff, #FFFFFF);   
+  background-image:     -ms-linear-gradient(top, #6666ff, #FFFFFF);   
+  background-image:      -o-linear-gradient(top, #6666ff, #FFFFFF);   
+  background-image:         linear-gradient(to bottom, #6666ff, #FFFFFF); 
+  
+}  
+.bottomGr {   
+  
+  background-color: #FFFFFF;  
+  
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#6666ff));   
+  background-image: -webkit-linear-gradient(top, #FFFFFF, #6666ff );   
+  background-image:    -moz-linear-gradient(top, #FFFFFF, #6666ff);   
+  background-image:     -ms-linear-gradient(top, #FFFFFF, #6666ff);   
+  background-image:      -o-linear-gradient(top, #FFFFFF, #6666ff);   
+  background-image:         linear-gradient(to bottom,  #FFFFFF, #6666ff); 
+  
+}  

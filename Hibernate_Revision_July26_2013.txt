@@ -1,0 +1,78 @@
+Hibernate Revision : -
+------------------------
+Configuration cfg= new Configutation();
+cfg=cfg.configure();
+SessionFactory sf= cfg.buildSessionFactory();
+Session session=sf.openSession();
+Transaction tx= session.beginTransaction();
+id=session.save(obj);
+tx.commit();
+session.close();
+
+
+<hibernate-configuation>
+<session-factory>
+	<property name="hibernate.connection.driver_class">oracle.driver.jdbc.OracleDriver</property>
+	<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+	<property name="hibernate.connection.username">
+	<property name="hibernate.connection.password">
+	
+	<property name="dialect">org.hibernate.dialect.OracleDialect</>
+	<property name="show_sql">
+	<property name="hbm2ddl.auto">update</>
+	
+	<mapping class="com.jlcindia.hibernate.Customer">/<mapping resource="com/jlcindia/hibernate/Customer.hbm.xml">
+
+</session-factory>
+</hibernate-configuation>
+
+methods : 
+---------------
+session.save(obj)
+session.update(obj);
+session.delete(0);
+session.load(cls,id);
+
+Query q=session.createQuery("from candidate can");
+candidate=q.list();
+tx.commit();
+
+
+list in mapping doc
+
+<list name="email" tables="emails">
+	<key column="cid"/>
+	<index/>
+	<element column="email" type="string">
+</list>
+
+<map name="percentage" table="percent">
+	<key column="cid">
+	<index column="quali" type="string">
+	<element column="percent" type="double">
+</map>
+
+<joined-subclass ....>
+</joined-subclass ....>
+
+<<joined-subclass ....>
+</joined-subclass ....>
+@CollelcionofElements
+@JointTable(name="emails" ,
+joinColumn= @joinColumn(name="cid")
+@IndexColumn(name="idx")
+@Column(name="emailId")
+@LazyCollection(LazyCollectionOption.FALSE)
+
+
+
+---------------
+
+tx=session.beganTansaction;
+Criteria ct = session.creatCriteria(Customer.class)
+ct.add(Expression.eq("city",city);
+
+
+Criteria ct= session.createCriteria(Customer.class);
+ct.add(Expression.and(Expression.eq("city",city),Expression.eq("city",city))
+list=ct.list().get(0);
